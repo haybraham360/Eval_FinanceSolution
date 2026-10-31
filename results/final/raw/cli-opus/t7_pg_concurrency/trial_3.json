@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-opus",
+ "requested_model": "opus",
+ "params": {},
+ "task": "t7_pg_concurrency",
+ "trial": 3,
+ "utc": "2026-10-31T20:27:05+00:00",
+ "latency_s": 71.7,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"S1\": {\n    \"b_blocked\": true,\n    \"b_rowcount\": 0,\n    \"final_balance\": 20\n  },\n  \"S2\": {\n    \"b_rowcount\": 1,\n    \"final_balance\": 110\n  },\n  \"S3\": {\n    \"b_id\": 1,\n    \"b_balance\": 50\n  },\n  \"S4\": {\n    \"a_update_sqlstate\": \"40001\",\n    \"final_balance\": 70\n  },\n  \"S5\": {\n    \"from_u\": 70,\n    \"from_table\": 100,\n    \"final_balance\": 70\n  },\n  \"S6\": {\n    \"b_blocked\": true,\n    \"b_returned_rows\": 0,\n    \"stored_result\": \"a\"\n  },\n  \"S7\": {\n    \"b_select_rows\": 0,\n    \"b_insert_sqlstate\": \"40001\",\n    \"b_insert_returned_rows\": 0\n  },\n  \"S8\": {\n    \"a_update_sqlstate\": null,\n    \"b_update_sqlstate\": null,\n    \"a_commit_sqlstate\": null,\n    \"b_commit_sqlstate\": \"40001\",\n    \"sum_after\": 20\n  },\n  \"S9\": {\n    \"balance_update\": false,\n    \"for_update\": true,\n    \"for_no_key_update\": false,\n    \"owner_changed\": true,\n    \"owner_unchanged\": false\n  },\n  \"S10\": {\n    \"b_gets_42\": false,\n    \"b_gets_43\": true\n  },\n  \"S11\": {\n    \"insert_sqlstate\": \"23505\",\n    \"second_update_sqlstate\": \"25P02\",\n    \"commit_sqlstate\": null,\n    \"commit_tag\": \"ROLLBACK\",\n    \"final_balance\": 100\n  },\n  \"S12\": {\n    \"b_blocked\": true,\n    \"b_rowcount\": 0,\n    \"balance_1\": 120,\n    \"balance_2\": 50\n  },\n  \"S13\": {\n    \"b_blocked\": true,\n    \"b_rowcount\": 0,\n    \"final_balance\": 5\n  }\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.1474158,
+   "prompt_tokens": 2,
+   "completion_tokens": 7102
+  }
+ }
+}

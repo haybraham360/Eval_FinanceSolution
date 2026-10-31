@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-opus",
+ "requested_model": "opus",
+ "params": {},
+ "task": "t8_pg_locks",
+ "trial": 3,
+ "utc": "2026-10-31T20:29:31+00:00",
+ "latency_s": 146.1,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"L1\": {\n    \"b_blocked\": true,\n    \"b_rows\": 1\n  },\n  \"L2\": {\n    \"b_blocked\": false,\n    \"b_rows\": 1,\n    \"b_id\": \"2\"\n  },\n  \"L3\": {\n    \"b_rowcount\": 1,\n    \"balance_1\": \"5\",\n    \"balance_2\": \"90\"\n  },\n  \"L4\": {\n    \"audit_rows\": \"3\",\n    \"audit_old_values\": \"100,20,100\"\n  },\n  \"L5\": {\n    \"b_blocked\": true,\n    \"balance_seen_by_c_before_a_commits\": \"1\"\n  },\n  \"L6\": {\n    \"a_sqlstate\": \"40P01\",\n    \"b_sqlstate\": null,\n    \"final_balance\": \"98\"\n  },\n  \"L7\": {\n    \"balance_update_blocked\": false,\n    \"id_update_blocked\": true\n  },\n  \"L8\": {\n    \"b_blocked\": true,\n    \"b_sqlstate\": \"23503\"\n  },\n  \"L9\": {\n    \"b_sqlstate\": \"40001\"\n  },\n  \"L10\": {\n    \"b_returned\": \"a+b\",\n    \"stored\": \"a+b\"\n  },\n  \"L11\": {\n    \"a_returned_rows\": 0,\n    \"b_sqlstate\": \"55P03\"\n  },\n  \"L12\": {\n    \"do_update_sqlstate\": \"21000\",\n    \"do_nothing_sqlstate\": null,\n    \"do_nothing_rowcount\": 1,\n    \"stored_j\": \"1\"\n  },\n  \"L13\": {\n    \"id_of_y\": \"4\"\n  },\n  \"L14\": {\n    \"join_sqlstate\": \"0A000\",\n    \"distinct_sqlstate\": \"0A000\",\n    \"join_of_a_sqlstate\": null\n  },\n  \"L15\": {\n    \"b_first_sqlstate\": null,\n    \"b_second_sqlstate\": \"55P03\",\n    \"final_balance\": \"7\"\n  },\n  \"L16\": {\n    \"final_balance\": \"101\",\n    \"statement_sqlstate\": null\n  },\n  \"L17\": {\n    \"rowcount\": 1,\n    \"entries_applied\": \"1\"\n  },\n  \"L18\": {\n    \"a_count\": \"0\"\n  },\n  \"L19\": {\n    \"fetched\": \"100\",\n    \"selected\": \"5\"\n  }\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.30601179999999994,
+   "prompt_tokens": 2,
+   "completion_tokens": 14986
+  }
+ }
+}

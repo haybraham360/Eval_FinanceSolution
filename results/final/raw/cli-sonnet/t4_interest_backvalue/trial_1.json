@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t4_interest_backvalue",
+ "trial": 1,
+ "utc": "2026-10-31T20:36:26+00:00",
+ "latency_s": 21.7,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\nfrom __future__ import annotations\n\nimport calendar\nfrom bisect import bisect_right\nfrom datetime import date, datetime, timedelta\nfrom fractions import Fraction\n\n_TIER_LIMIT = 1_000_000\n\n\ndef _to_date(x) -> date:\n    if isinstance(x, datetime):\n        return x.date()\n    if isinstance(x, date):\n        return x\n    return date.fromisoformat(str(x))\n\n\ndef _round_half_even(f: Fraction) -> int:\n    \"\"\"Exact ROUND_HALF_EVEN of a Fraction to an integer.\"\"\"\n    q, r = divmod(f.numerator, f.denominator)  # floor division, 0 <= r < den\n    twice = 2 * r\n    if twice > f.denominator:\n        return q + 1\n    if twice == f.denominator:\n        return q + 1 if q % 2 else q\n    return q\n\n\ndef _month_ends(start: date, end: date) -> list[date]:\n    out = []\n    y, m = start.year, start.month\n    while True:\n        last = date(y, m, calendar.monthrange(y, m)[1])\n        if last > end:\n            break\n        if last >= start:\n            out.append(last)\n        m += 1\n        if m == 13:\n            y, m = y + 1, 1\n    return out\n\n\ndef capitalisations(opening_minor: int, start: str, end: str,\n                    transactions: list[dict], rates: list[dict]) -> list[dict]:\n    start_d = _to_date(start)\n    end_d = _to_date(end)\n    if end_d < start_d:\n        return []\n\n    # Rates: exact Fractions, never floats.\n    rate_from = [_to_date(r[\"from\"]) for r in rates]\n    rate_vals = [(Fraction(str(r[\"tier1\"])), Fraction(str(r[\"tier2\"]))) for r in rates]\n\n    txns = [(_to_date(t[\"value_date\"]), _to_date(t[\"post_date\"]), int(t[\"amount_minor\"]))\n            for t in transactions]\n\n    month_ends = _month_ends(start_d, end_d)\n    month_end_set = set(month_ends)\n\n    def rates_on(d: date) -> tuple[Fraction, Fraction]:\n        i = bisect_right(rate_from, d) - 1\n        if i < 0:\n            i = 0  # contract says this cannot happen; be defensive\n        return rate_vals[i]\n\n    def corrected_total(M: date) -> int:\n        \"\"\"R(E(M)) in the corrected history using transactions with post_date <= M.\"\"\"\n        delta: dict[date, int] = {}\n        for vd, pd, amt in txns:\n            if pd <= M and vd <= M:\n                key = vd if vd > start_d else start_d\n                delta[key] = delta.get(key, 0) + amt\n\n        bal = opening_minor\n        exact = Fraction(0)\n        prev_rounded = 0\n        d = start_d\n        one = timedelta(days=1)\n        while d <= M:\n            bal += delta.get(d, 0)\n            if bal > 0:\n                t1, t2 = rates_on(d)\n                b1 = bal if bal < _TIER_LIMIT else _TIER_LIMIT\n                b2 = bal - _TIER_LIMIT if bal > _TIER_LIMIT else 0\n                days = 366 if calendar.isleap(d.year) else 365\n                exact += (b1 * t1 + b2 * t2) / days\n            if d in month_end_set:\n                rounded = _round_half_even(exact)\n                cap = rounded - prev_rounded\n                prev_rounded = rounded\n                bal += cap  # earns from the following day\n                if d == M:\n                    return rounded\n            d += one\n        return _round_half_even(exact)\n\n    result = []\n    posted_total = 0\n    for M in month_ends:\n        target = corrected_total(M)\n        amount = target - posted_total\n        result.append({\"date\": M.isoformat(), \"amount_minor\": amount})\n        posted_total += amount\n    return result\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.033750199999999994,
+   "prompt_tokens": 2,
+   "completion_tokens": 2551
+  }
+ }
+}

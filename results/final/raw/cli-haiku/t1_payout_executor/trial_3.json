@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-haiku",
+ "requested_model": "haiku",
+ "params": {},
+ "task": "t1_payout_executor",
+ "trial": 3,
+ "utc": "2026-10-31T20:47:49+00:00",
+ "latency_s": 113.6,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\n\"\"\"Payout executor.\n\nSafety model:\n- provider.send(reference=payout_id) is idempotent for 24h from the provider's\n  first sight of the reference. The first send time F is written durably in the\n  same atomic RESERVED->SENDING transition that precedes every provider call, so\n  the provider's first sight is >= F and it forgets the reference no earlier than\n  F + 24h.\n- No send is issued at or after F + _SEND_CUTOFF (24h minus a safety margin).\n  Every send attempt therefore starts before F + _SEND_CUTOFF, which bounds the\n  most recent attempt from above without storing any attempt timestamps.\n- Once now >= F + _SEND_CUTOFF + _VISIBILITY_LAG, any transfer that landed is\n  visible to lookup, so a None lookup proves that nothing landed.\n\nAssumptions: `now` is a fresh wall-clock value, and each provider call returns\nwithin the safety margin of being started.\n\"\"\"\n\nProviderTimeout = TimeoutError\n\n_TERMINAL = (\"PAID\", \"FAILED\")\n_SEND_WINDOW = 24 * 60 * 60                  # provider idempotency window per reference\n_SAFETY_MARGIN = 60 * 60                     # covers clock skew and call latency\n_SEND_CUTOFF = _SEND_WINDOW - _SAFETY_MARGIN  # no send is issued at or after F + this\n_VISIBILITY_LAG = 900                        # lookup may miss a landed transfer this long\n\n\ndef _get_or_reserve(store, payout_id, account, amount_minor, dest):\n    row = store.get_payout(payout_id)\n    if row is not None:\n        return row\n    if store.reserve(payout_id, account, amount_minor, dest) == \"INSUFFICIENT\":\n        return None\n    row = store.get_payout(payout_id)\n    if row is None:\n        raise RuntimeError(f\"payout {payout_id!r} missing after reserve\")\n    return row\n\n\ndef _record_provider_result(store, payout_id, result):\n    \"\"\"Apply a provider verdict. Only a definitive verdict changes the status.\"\"\"\n    verdict = result.get(\"status\")\n    if verdict == \"accepted\":\n        target = \"PAID\"          # money left\n    elif verdict == \"rejected\":\n        target = \"FAILED\"        # provider rejected; no money moved\n    else:\n        return\n    # A False return means another invocation already finished the payout;\n    # the caller re-reads the true status.\n    store.finish(payout_id, \"SENDING\", target, provider_id=result.get(\"provider_id\"))\n\n\ndef _advance(store, provider, payout_id, now):\n    row = store.get_payout(payout_id)\n    status = row[\"status\"]\n    if status in _TERMINAL:\n        return  # requirement 5: no provider calls for a finished payout\n\n    if status == \"RESERVED\":\n        # The one-shot claim. It records F before any provider call, and only one\n        # invocation can win it. A RESERVED row has never been sent.\n        if not store.update(payout_id, \"RESERVED\", \"SENDING\", first_send_at=now):\n            return\n        first_send_at = now\n    else:\n        first_send_at = row[\"first_send_at\"]\n\n    cutoff = first_send_at + _SEND_CUTOFF\n\n    if now < cutoff:\n        # Inside the idempotency window: send is authoritative. Repeats, retries\n        # and concurrent calls return the original verdict and move no extra money.\n        try:\n            result = provider.send(payout_id, row[\"dest\"], row[\"amount_minor\"])\n        except ProviderTimeout:\n            return  # outcome unknown; stay SENDING and report PENDING\n        _record_provider_result(store, payout_id, result)\n        return\n\n    # Past the cutoff: no new sends. Only lookup can resolve the outcome.\n    try:\n        found = provider.lookup(payout_id)\n    except ProviderTimeout:\n        return\n    if found is not None:\n        _record_provider_result(store, payout_id, found)\n        return\n    # lookup is None. Every send started before cutoff, so once 900s have passed\n    # beyond the cutoff, no transfer can still land.\n    if now >= cutoff + _VISIBILITY_LAG:\n        store.finish(payout_id, \"SENDING\", \"FAILED\", failed_reason=\"no_transfer_landed\")\n\n\ndef execute_payout(store, provider, payout_id, account, amount_minor, dest, now) -> str:\n    \"\"\"Returns the payout's current status: \"PAID\", \"FAILED\", \"PENDING\" or \"INSUFFICIENT\".\"\"\"\n    row = _get_or_reserve(store, payout_id, account, amount_minor, dest)\n    if row is None:\n        return \"INSUFFICIENT\"\n\n    if row[\"status\"] not in _TERMINAL:\n        _advance(store, provider, payout_id, now)\n\n    # Report the true stored status at return time, not what this call tried to write.\n    final = store.get_payout(payout_id)[\"status\"]\n    return final if final in _TERMINAL else \"PENDING\"\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.01274046,
+   "prompt_tokens": 2,
+   "completion_tokens": 24686
+  }
+ }
+}

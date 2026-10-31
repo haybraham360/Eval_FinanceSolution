@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t4_interest_backvalue",
+ "trial": 3,
+ "utc": "2026-10-31T20:36:51+00:00",
+ "latency_s": 27.8,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\n\"\"\"Savings interest capitalisation with back-valued postings.\n\nStandard library only, Python 3.10+. All arithmetic uses exact integers and\nfractions.Fraction, so no floats are involved. Rounding to minor units uses\nround() on a Fraction, which is exact ROUND_HALF_EVEN.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport calendar\nfrom bisect import bisect_right\nfrom datetime import date, datetime, timedelta\nfrom fractions import Fraction\n\nTIER_BOUNDARY = 1_000_000\n_ONE_DAY = timedelta(days=1)\n\n\ndef _to_date(value) -> date:\n    \"\"\"Accept a date, datetime, or YYYY-MM-DD string.\"\"\"\n    if isinstance(value, datetime):\n        return value.date()\n    if isinstance(value, date):\n        return value\n    if isinstance(value, str):\n        return date.fromisoformat(value)\n    raise TypeError(f\"unsupported date value: {value!r}\")\n\n\ndef _to_fraction(value) -> Fraction:\n    \"\"\"Exact conversion of a decimal string (or int/Decimal) to Fraction.\"\"\"\n    if isinstance(value, float):\n        raise TypeError(\"floats are not acceptable for rates\")\n    return Fraction(str(value))\n\n\ndef _is_month_end(d: date) -> bool:\n    return (d + _ONE_DAY).day == 1\n\n\ndef _round_half_even(x: Fraction) -> int:\n    # round() on a Fraction rounds half to even and returns an int, exactly.\n    return round(x)\n\n\ndef capitalisations(\n    opening_minor: int,\n    start: str,\n    end: str,\n    transactions: list[dict],\n    rates: list[dict],\n) -> list[dict]:\n    s = _to_date(start)\n    e = _to_date(end)\n    if s > e:\n        return []\n\n    # ---- Normalise inputs -------------------------------------------------\n    txs = [\n        (_to_date(t[\"value_date\"]), _to_date(t[\"post_date\"]), int(t[\"amount_minor\"]))\n        for t in transactions\n    ]\n\n    parsed_rates = sorted(\n        (\n            (_to_date(r[\"from\"]), _to_fraction(r[\"tier1\"]), _to_fraction(r[\"tier2\"]))\n            for r in rates\n        ),\n        key=lambda r: r[0],\n    )\n    if not parsed_rates:\n        raise ValueError(\"at least one rate entry is required\")\n    rate_from = [r[0] for r in parsed_rates]\n\n    def rate_on(d: date) -> tuple[Fraction, Fraction]:\n        i = bisect_right(rate_from, d) - 1\n        if i < 0:\n            raise ValueError(f\"no rate in force on {d.isoformat()}\")\n        return parsed_rates[i][1], parsed_rates[i][2]\n\n    # ---- Month-ends in [start, end] --------------------------------------\n    month_ends: list[date] = []\n    y, m = s.year, s.month\n    while True:\n        last = date(y, m, calendar.monthrange(y, m)[1])\n        if last > e:\n            break\n        if last >= s:\n            month_ends.append(last)\n        m += 1\n        if m == 13:\n            y, m = y + 1, 1\n\n    # ---- Corrected-history simulation ------------------------------------\n    def simulate(through: date, deltas: dict[date, int]) -> int:\n        \"\"\"Return R(E(through)) in the corrected history built from `deltas`.\n\n        `through` is a month-end. Capitalisations at every earlier month-end\n        within the history are computed as R(E(m)) - R(E(p)) and feed B(d)\n        from the following day onward.\n        \"\"\"\n        d = s\n        base = opening_minor          # opening + known transactions to date\n        cap_total = 0                 # capitalisations dated < d\n        cum = Fraction(0)             # exact cumulative interest E\n        prev_rounded = 0              # R(E(p))\n\n        while d <= through:\n            base += deltas.get(d, 0)\n            balance = base + cap_total\n\n            if balance > 0:\n                t1, t2 = rate_on(d)\n                low = balance if balance < TIER_BOUNDARY else TIER_BOUNDARY\n                high = balance - TIER_BOUNDARY if balance > TIER_BOUNDARY else 0\n                days_in_year = 366 if calendar.isleap(d.year) else 365\n                cum += (low * t1 + high * t2) / days_in_year\n\n            if _is_month_end(d):\n                rounded = _round_half_even(cum)\n                cap_total += rounded - prev_rounded   # earns from d + 1\n                prev_rounded = rounded\n\n            d += _ONE_DAY\n\n        return prev_rounded\n\n    # ---- Month-end postings ----------------------------------------------\n    results: list[dict] = []\n    posted_total = 0\n\n    for M in month_ends:\n        deltas: dict[date, int] = {}\n        for value_date, post_date, amount in txs:\n            if post_date <= M and value_date <= M:\n                deltas[value_date] = deltas.get(value_date, 0) + amount\n\n        corrected_cumulative = simulate(M, deltas)\n        amount_posted = corrected_cumulative - posted_total\n        posted_total += amount_posted\n        results.append({\"date\": M.isoformat(), \"amount_minor\": amount_posted})\n\n    return results\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.0381628,
+   "prompt_tokens": 2,
+   "completion_tokens": 3544
+  }
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t12_ng_tax_interactions",
+ "trial": 1,
+ "utc": "2026-10-31T20:33:43+00:00",
+ "latency_s": 53.3,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"M1\": {\"tax\": 2160000},\n  \"M2\": {\"tax\": 996000},\n  \"M3\": {\"tax\": 672000},\n  \"M4\": {\"tax\": 3057750},\n  \"M5\": {\"tax\": 1323600},\n  \"M6\": {\"tax\": 870000},\n  \"M7\": {\"tax\": 1050000},\n  \"E1\": {\"topup\": 50000000},\n  \"E2\": {\"topup\": 0},\n  \"E3\": {\"deductible\": 15000000},\n  \"V3\": {\"vat\": 0},\n  \"V4\": {\"vat\": 750},\n  \"G5\": {\"chargeable_gain\": 2000000},\n  \"G6\": {\"chargeable_gain\": 0},\n  \"G7\": {\"chargeable_gain\": 0},\n  \"G8\": {\"chargeable_gain\": 5000000},\n  \"G9\": {\"chargeable_gain\": 0},\n  \"G10\": {\"chargeable_gain\": 15000000}\n}\n```\n\nThese figures come from my recollection of the Act. No rule text was supplied and I did not check it against the statute. These points are the least certain:\n\n- **Rate bands:** 0% on the first \u20a6800,000, then 15%, 18%, 21%, 23% and 25% above \u20a650,000,000.\n- **M1:** I added the full \u20a63,000,000 rental value to income. I am not sure whether the Act caps this amount.\n- **M2:** I valued the car benefit at 5% of cost (\u20a61,000,000), less the \u20a6300,000 the employee pays.\n- **M3:** Only the 2026 premium of \u20a6100,000 is deductible. The 2025 premium is not.\n- **M4:** I deducted pension, NHF and the owner-occupied house loan interest.\n- **M5:** Rent relief is 20% of rent, capped at \u20a6500,000, so it is \u20a6480,000 here.\n- **M6/M7:** Digital asset losses can only offset digital asset gains, not salary. In M7 the net \u20a61,000,000 gain is added to income.\n- **E1/E2:** I applied the minimum effective tax rate of 15% to companies with turnover of \u20a620 billion or more. E1 is above that and E2 is below it. I am not sure whether the threshold is \u20a620 billion or \u20a650 billion; at \u20a650 billion both would be 0. E1's effective rate is 10%, so the top-up is 5% of \u20a61 billion. I did not use depreciation or personnel cost.\n- **E3:** The deduction is limited to the CBN official rate of \u20a61,500 per dollar, so US$10,000 gives \u20a615,000,000.\n- **V3/V4:** I treated loan interest as VAT-exempt and the processing fee as standard-rated at 7.5%.\n- **G5:** Foreign currency held as an investment is a chargeable asset.\n- **G6:** I treated the painting as an exempt personal chattel because the \u20a64,900,000 proceeds are under what I recall as a \u20a65,000,000 limit.\n- **G7/G8:** Labelled-startup gains are exempt after 24 months of holding, so the 30-month sale is exempt and the 20-month sale is not.\n- **G9/G10:** A capital redundancy payment is exempt up to \u20a650,000,000, so the \u20a665,000,000 payment leaves \u20a615,000,000 chargeable."
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.07592580000000002,
+   "prompt_tokens": 2,
+   "completion_tokens": 6719
+  }
+ }
+}

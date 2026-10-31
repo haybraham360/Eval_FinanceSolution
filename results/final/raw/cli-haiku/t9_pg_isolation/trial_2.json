@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-haiku",
+ "requested_model": "haiku",
+ "params": {},
+ "task": "t9_pg_isolation",
+ "trial": 2,
+ "utc": "2026-10-31T21:06:24+00:00",
+ "latency_s": 649.6,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"I1\": {\n    \"a_saw\": \"7\"\n  },\n  \"I2\": {\n    \"a_blocked\": true,\n    \"a_saw\": \"100\",\n    \"a_update_sqlstate\": \"40001\",\n    \"final_balance\": \"7\"\n  },\n  \"I3\": {\n    \"a_blocked\": true,\n    \"a_saw\": \"7\"\n  },\n  \"I4\": {\n    \"a_blocked\": true,\n    \"a_sqlstate\": null,\n    \"a_saw\": \"100\"\n  },\n  \"I5\": {\n    \"first_sqlstate\": \"40001\",\n    \"rollback_to_sqlstate\": null,\n    \"retry_sqlstate\": \"40001\"\n  },\n  \"I6\": {\n    \"b_blocked\": true,\n    \"b_sqlstate\": \"40001\"\n  },\n  \"I7\": {\n    \"b_sqlstate\": \"23505\"\n  },\n  \"I8\": {\n    \"a_commit_sqlstate\": null,\n    \"b_commit_sqlstate\": \"40001\"\n  },\n  \"I9\": {\n    \"a_commit_sqlstate\": null,\n    \"b_commit_sqlstate\": null,\n    \"sum_after\": \"-100\"\n  },\n  \"I10\": {\n    \"a_commit_sqlstate\": null,\n    \"b_select_sqlstate\": null,\n    \"b_commit_sqlstate\": \"40001\",\n    \"b_commit_tag\": null\n  },\n  \"I11\": {\n    \"b_commit_sqlstate\": null,\n    \"c_commit_sqlstate\": null,\n    \"a_insert_sqlstate\": \"40001\",\n    \"a_commit_sqlstate\": null\n  },\n  \"I12\": {\n    \"insert_sqlstate\": null,\n    \"visible_rows\": \"2\",\n    \"commit_sqlstate\": \"23505\",\n    \"rows_after\": \"1\"\n  },\n  \"I13\": {\n    \"plain_unique_sqlstate\": \"23505\",\n    \"deferrable_unique_sqlstate\": \"23505\"\n  },\n  \"I14\": {\n    \"insert_sqlstate\": null,\n    \"set_immediate_sqlstate\": \"23503\"\n  },\n  \"I15\": {\n    \"sqlstate\": \"0A000\"\n  },\n  \"I16\": {\n    \"first\": \"100\",\n    \"second\": \"7\"\n  },\n  \"I17\": {\n    \"lock_timeout_sqlstate\": \"55P03\",\n    \"statement_timeout_sqlstate\": \"57014\"\n  }\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.01461884,
+   "prompt_tokens": 4,
+   "completion_tokens": 27256
+  }
+ }
+}

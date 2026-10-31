@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t12_ng_tax_interactions",
+ "trial": 2,
+ "utc": "2026-10-31T20:33:40+00:00",
+ "latency_s": 28.9,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"M1\": {\"tax\": 2160000},\n  \"M2\": {\"tax\": 996000},\n  \"M3\": {\"tax\": 672000},\n  \"M4\": {\"tax\": 3057750},\n  \"M5\": {\"tax\": 1323600},\n  \"M6\": {\"tax\": 870000},\n  \"M7\": {\"tax\": 1050000},\n  \"E1\": {\"topup\": 0},\n  \"E2\": {\"topup\": 0},\n  \"E3\": {\"deductible\": 15000000},\n  \"V3\": {\"vat\": 0},\n  \"V4\": {\"vat\": 750},\n  \"G5\": {\"chargeable_gain\": 2000000},\n  \"G6\": {\"chargeable_gain\": 0},\n  \"G7\": {\"chargeable_gain\": 0},\n  \"G8\": {\"chargeable_gain\": 5000000},\n  \"G9\": {\"chargeable_gain\": 0},\n  \"G10\": {\"chargeable_gain\": 15000000}\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.037250599999999995,
+   "prompt_tokens": 2,
+   "completion_tokens": 3448
+  }
+ }
+}

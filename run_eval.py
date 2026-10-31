@@ -96,6 +96,7 @@ def call_cli(model, prompt):
             return {
                 "model": resolved,
                 "provider": "claude-cli",
+                "model_usage": out.get("modelUsage"),
                 "choices": [{"finish_reason": "stop", "message": {"content": out["result"]}}],
                 "usage": {"cost": 0, "notional_cost_usd": out.get("total_cost_usd"), "prompt_tokens": usage.get("input_tokens"), "completion_tokens": usage.get("output_tokens")},
             }

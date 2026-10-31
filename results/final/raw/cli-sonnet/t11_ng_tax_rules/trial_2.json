@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t11_ng_tax_rules",
+ "trial": 2,
+ "utc": "2026-10-31T20:33:11+00:00",
+ "latency_s": 32.6,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"ST1\": {\"duty\": 50, \"payer\": \"transferor\"},\n  \"ST2\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST3\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST4\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST5\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST6\": {\"duty\": 0, \"payer\": \"none\"},\n  \"P1\": {\"tax\": 570750},\n  \"P2\": {\"tax\": 1687200},\n  \"P3\": {\"tax\": 12930000},\n  \"P4\": {\"tax\": 0},\n  \"P5\": {\"tax\": 0},\n  \"C1\": {\"cit\": 0, \"levy\": 0},\n  \"C2\": {\"cit\": 3000000, \"levy\": 400000},\n  \"C3\": {\"cit\": 3000000, \"levy\": 400000},\n  \"C4\": {\"cit\": 0, \"levy\": 0},\n  \"V1\": {\"vat\": 7.5},\n  \"V2\": {\"vat\": 7.5},\n  \"G1\": {\"chargeable_gain\": 0},\n  \"G2\": {\"chargeable_gain\": 12000000},\n  \"G3\": {\"chargeable_gain\": 1250000},\n  \"G4\": {\"chargeable_gain\": 0}\n}\n```\n\nThese answers rest on my recall of the Act, since no rule text was supplied. I am least sure of the following:\n- **ST3 and ST5:** I treated same-bank transfers between different people and salary payments as exempt from stamp duty.\n- **G3:** I apportioned the gain by the share of proceeds reinvested (\u20a6150m of \u20a6200m), which leaves 25% of the \u20a65m gain chargeable. Treating the unreinvested proceeds as the cap would give \u20a65m instead.\n- **G4:** I treated the \u20a620m above the \u20a650m exemption as employment income, not a chargeable gain.\n\nPlease check these against the section text before the audit."
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.046480799999999996,
+   "prompt_tokens": 2,
+   "completion_tokens": 4366
+  }
+ }
+}

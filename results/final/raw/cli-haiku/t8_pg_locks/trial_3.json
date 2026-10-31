@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-haiku",
+ "requested_model": "haiku",
+ "params": {},
+ "task": "t8_pg_locks",
+ "trial": 3,
+ "utc": "2026-10-31T20:56:44+00:00",
+ "latency_s": 209.6,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"L1\": {\"b_blocked\": true, \"b_rows\": 1},\n  \"L2\": {\"b_blocked\": false, \"b_rows\": 1, \"b_id\": \"2\"},\n  \"L3\": {\"b_rowcount\": 1, \"balance_1\": \"5\", \"balance_2\": \"90\"},\n  \"L4\": {\"audit_rows\": \"3\", \"audit_old_values\": \"100,20,100\"},\n  \"L5\": {\"b_blocked\": true, \"balance_seen_by_c_before_a_commits\": \"1\"},\n  \"L6\": {\"a_sqlstate\": \"40P01\", \"b_sqlstate\": null, \"final_balance\": \"98\"},\n  \"L7\": {\"balance_update_blocked\": false, \"id_update_blocked\": false},\n  \"L8\": {\"b_blocked\": true, \"b_sqlstate\": \"23503\"},\n  \"L9\": {\"b_sqlstate\": \"40001\"},\n  \"L10\": {\"b_returned\": \"a+b\", \"stored\": \"a+b\"},\n  \"L11\": {\"a_returned_rows\": 0, \"b_sqlstate\": \"55P03\"},\n  \"L12\": {\"do_update_sqlstate\": \"21000\", \"do_nothing_sqlstate\": null, \"do_nothing_rowcount\": 1, \"stored_j\": \"1\"},\n  \"L13\": {\"id_of_y\": \"4\"},\n  \"L14\": {\"join_sqlstate\": \"0A000\", \"distinct_sqlstate\": \"0A000\", \"join_of_a_sqlstate\": null},\n  \"L15\": {\"b_first_sqlstate\": null, \"b_second_sqlstate\": \"55P03\", \"final_balance\": \"7\"},\n  \"L16\": {\"final_balance\": \"101\", \"statement_sqlstate\": null},\n  \"L17\": {\"rowcount\": 1, \"entries_applied\": \"1\"},\n  \"L18\": {\"a_count\": \"0\"},\n  \"L19\": {\"fetched\": \"100\", \"selected\": \"5\"}\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.02429593,
+   "prompt_tokens": 2,
+   "completion_tokens": 46783
+  }
+ }
+}

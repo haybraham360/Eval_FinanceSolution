@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t12_ng_tax_interactions",
+ "trial": 3,
+ "utc": "2026-10-31T20:33:55+00:00",
+ "latency_s": 34.0,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"M1\": {\"tax\": 1950000},\n  \"M2\": {\"tax\": 996000},\n  \"M3\": {\"tax\": 672000},\n  \"M4\": {\"tax\": 3057750},\n  \"M5\": {\"tax\": 1323600},\n  \"M6\": {\"tax\": 870000},\n  \"M7\": {\"tax\": 1050000},\n  \"E1\": {\"topup\": 0},\n  \"E2\": {\"topup\": 0},\n  \"E3\": {\"deductible\": 15000000},\n  \"V3\": {\"vat\": 0},\n  \"V4\": {\"vat\": 750},\n  \"G5\": {\"chargeable_gain\": 2000000},\n  \"G6\": {\"chargeable_gain\": 0},\n  \"G7\": {\"chargeable_gain\": 0},\n  \"G8\": {\"chargeable_gain\": 5000000},\n  \"G9\": {\"chargeable_gain\": 0},\n  \"G10\": {\"chargeable_gain\": 15000000}\n}\n```\n\nThese come from my recollection of the Act, since no rule text was supplied. I have not checked them against the statute. Several rest on specific recalled figures: the 20% cap on rental value, the 5% vehicle benefit, the \u20a65m chattel limit, the 24-month startup holding period and the \u20a650m redundancy exemption.\n\n**Individuals (M1\u2013M7)**\n- **Tax bands:** 0% on the first \u20a6800k, then 15% on the next \u20a62.2m, 18% on the next \u20a69m, 21% on the next \u20a613m, 23% on the next \u20a625m, and 25% above \u20a650m.\n- **M1:** The rent-free premises benefit is capped at 20% of the other income, so \u20a62m rather than \u20a63m. Taxable income is \u20a612m.\n- **M2:** The car benefit is 5% of cost (\u20a61m) less the \u20a6300k the employee pays, so \u20a6700k. Taxable income is \u20a66.7m.\n- **M3:** Only the 2026 premium of \u20a6100k is deductible. Taxable income is \u20a64.9m.\n- **M4:** The pension, NHF and owner-occupied house loan interest are all deductible. Taxable income is \u20a617.275m.\n- **M5:** Rent relief is 20% of \u20a62.4m, which is \u20a6480k and under the \u20a6500k cap. Taxable income is \u20a68.52m.\n- **M6:** The digital asset loss cannot be set against salary. Tax is on \u20a66m.\n- **M7:** The \u20a62m loss offsets the \u20a63m profit, leaving a \u20a61m net gain. Taxable income is \u20a67m.\n\n**Companies (E1\u2013E3)**\n- **E1 and E2:** The 15% minimum effective tax rate applies only to MNE group members or companies with aggregate turnover of \u20a650bn or more. Neither company qualifies, so the top-up is 0.\n- **E3:** Foreign-currency expenses are deductible only at the CBN official rate: US$10,000 \u00d7 \u20a61,500 = \u20a615m.\n\n**VAT (V3\u2013V4)**\n- **V3:** Interest on a loan is VAT-exempt.\n- **V4:** The processing fee is standard-rated at 7.5%, which is \u20a6750.\n\n**Chargeable gains (G5\u2013G10)**\n- **G5:** Foreign currency held as an investment is a chargeable asset, so the full \u20a62m gain is chargeable.\n- **G6:** Chattel disposals at or under \u20a65m are exempt, and \u20a64.9m qualifies.\n- **G7 and G8:** Gains on a labelled startup are exempt after a holding period of at least 24 months. 30 months qualifies and 20 months does not.\n- **G9 and G10:** Capital-nature redundancy payments are exempt up to \u20a650m. \u20a630m is fully exempt, and \u20a665m leaves \u20a615m chargeable."
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.047636599999999994,
+   "prompt_tokens": 2,
+   "completion_tokens": 4489
+  }
+ }
+}

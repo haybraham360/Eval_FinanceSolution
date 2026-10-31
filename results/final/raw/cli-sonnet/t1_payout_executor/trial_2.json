@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t1_payout_executor",
+ "trial": 2,
+ "utc": "2026-10-31T20:34:47+00:00",
+ "latency_s": 64.1,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\n\"\"\"Payout executor.\n\nDesign\n------\nState machine, with SENDING as the only added status:\n\n    (no row) --reserve--> RESERVED --update(+sent_at)--> SENDING --finish--> PAID | FAILED\n\n* The RESERVED -> SENDING compare-and-swap is the single gate to the provider.\n  It stores `sent_at` in the same atomic write that changes the status, so\n  exactly one invocation, ever, wins the right to call `send`, and the\n  attempt time is durable before the call is made.\n* `send` is called at most once per payout, under the payout_id as the\n  reference. A repeat `send` can therefore never create a second transfer,\n  and the provider's 24-hour idempotency window never matters.\n* A timeout, a crash, or a lost response leaves the row in SENDING. Later\n  invocations only call `lookup`, which cannot move money:\n    - found, accepted  -> PAID\n    - found, rejected  -> FAILED (the provider rejected it)\n    - not found and now - sent_at >= 900 -> FAILED (nothing can have landed)\n    - not found and < 900s, or lookup timed out -> PENDING, funds stay held\n* Every return value is read back from the store, so a concurrent winner's\n  result is reported rather than what this invocation hoped to write.\n* Finished payouts return immediately with no provider calls.\n\"\"\"\n\nProviderTimeout = TimeoutError\n\n_VISIBILITY_SECONDS = 900\n\n_RESERVED = \"RESERVED\"\n_SENDING = \"SENDING\"\n_PAID = \"PAID\"\n_FAILED = \"FAILED\"\n_TERMINAL = (_PAID, _FAILED)\n\n\ndef _public_status(status):\n    if status in _TERMINAL:\n        return status\n    return \"PENDING\"\n\n\ndef _current(store, payout_id):\n    \"\"\"The true stored status, mapped to the public vocabulary.\"\"\"\n    row = store.get_payout(payout_id)\n    if row is None:\n        return \"PENDING\"\n    return _public_status(row[\"status\"])\n\n\ndef _check_same_request(row, account, amount_minor, dest):\n    if (\n        row.get(\"account\") != account\n        or row.get(\"amount_minor\") != amount_minor\n        or row.get(\"dest\") != dest\n    ):\n        raise ValueError(\n            \"payout_id %r already exists with different parameters\" % (row.get(\"payout_id\"),)\n        )\n\n\ndef _settle_from_provider(store, payout_id, result):\n    \"\"\"Apply a provider result (from send or lookup) to a SENDING payout.\"\"\"\n    status = result.get(\"status\") if isinstance(result, dict) else None\n    provider_id = result.get(\"provider_id\") if isinstance(result, dict) else None\n    if status == \"accepted\":\n        store.finish(payout_id, _SENDING, _PAID, provider_id=provider_id)\n    elif status == \"rejected\":\n        store.finish(payout_id, _SENDING, _FAILED, provider_id=provider_id,\n                     reason=\"provider_rejected\")\n    # Anything else is unknown: leave the funds held. If finish returned False,\n    # another invocation already finished the payout; either way, read it back.\n    return _current(store, payout_id)\n\n\ndef execute_payout(store, provider, payout_id, account, amount_minor, dest, now) -> str:\n    \"\"\"Returns the payout's current status: \"PAID\", \"FAILED\", \"PENDING\" or \"INSUFFICIENT\".\"\"\"\n    reference = str(payout_id)\n\n    row = store.get_payout(payout_id)\n    if row is None:\n        outcome = store.reserve(payout_id, account, amount_minor, dest)\n        if outcome == \"INSUFFICIENT\":\n            return \"INSUFFICIENT\"\n        row = store.get_payout(payout_id)\n        if row is None:  # should be impossible after CREATED/EXISTS\n            return \"PENDING\"\n\n    _check_same_request(row, account, amount_minor, dest)\n\n    status = row[\"status\"]\n    if status in _TERMINAL:\n        return status\n\n    if status == _RESERVED:\n        # Durably record the attempt time and claim the only send, atomically.\n        if not store.update(payout_id, _RESERVED, _SENDING, sent_at=now):\n            return _current(store, payout_id)\n        try:\n            result = provider.send(reference, row[\"dest\"], row[\"amount_minor\"])\n        except ProviderTimeout:\n            # The transfer may or may not have landed; the row stays SENDING.\n            return _current(store, payout_id)\n        return _settle_from_provider(store, payout_id, result)\n\n    if status == _SENDING:\n        sent_at = row.get(\"sent_at\")\n        try:\n            found = provider.lookup(reference)\n        except ProviderTimeout:\n            return _current(store, payout_id)\n\n        if found is not None:\n            return _settle_from_provider(store, payout_id, found)\n\n        if sent_at is not None and now - sent_at >= _VISIBILITY_SECONDS:\n            # The provider has no record and anything sent would be visible by now.\n            store.finish(payout_id, _SENDING, _FAILED, reason=\"not_found_after_900s\")\n        return _current(store, payout_id)\n\n    return _public_status(status)\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.0790972,
+   "prompt_tokens": 2,
+   "completion_tokens": 7630
+  }
+ }
+}

@@ -3,5 +3,3 @@ __pycache__/
 *.pyc
 .venv/
 SUBMISSION_TODO.md
-results/final/
-transcripts/final/

@@ -8,6 +8,6 @@ if grep -rIlE 'sk-or-v1-[A-Za-z0-9]{8,}|sk-ant-[A-Za-z0-9_-]{8,}|sk-[A-Za-z0-9]{
 fi
 rm -f ../ledger-eval.zip
 cd ..
-zip -qr ledger-eval.zip ledger-eval -x '*/.env' '*/__pycache__/*' '*/.venv/*' '*.DS_Store' '*/SUBMISSION_TODO.md'
+zip -qr ledger-eval.zip ledger-eval -x '*/.env' '*/.git/*' '*/__pycache__/*' '*/.venv/*' '*.DS_Store' '*/SUBMISSION_TODO.md'
 du -h ledger-eval.zip
 unzip -l ledger-eval.zip | grep -E '\.env$|\.mp4|\.mov' || true

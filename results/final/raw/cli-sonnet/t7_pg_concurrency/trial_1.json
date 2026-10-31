@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t7_pg_concurrency",
+ "trial": 1,
+ "utc": "2026-10-31T20:38:16+00:00",
+ "latency_s": 33.6,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"S1\": {\"b_blocked\": true, \"b_rowcount\": 0, \"final_balance\": 20},\n  \"S2\": {\"b_rowcount\": 1, \"final_balance\": 110},\n  \"S3\": {\"b_id\": 1, \"b_balance\": 50},\n  \"S4\": {\"a_update_sqlstate\": \"40001\", \"final_balance\": 70},\n  \"S5\": {\"from_u\": 70, \"from_table\": 100, \"final_balance\": 70},\n  \"S6\": {\"b_blocked\": true, \"b_returned_rows\": 0, \"stored_result\": \"a\"},\n  \"S7\": {\"b_select_rows\": 0, \"b_insert_sqlstate\": \"40001\", \"b_insert_returned_rows\": 0},\n  \"S8\": {\n    \"a_update_sqlstate\": null,\n    \"b_update_sqlstate\": null,\n    \"a_commit_sqlstate\": null,\n    \"b_commit_sqlstate\": \"40001\",\n    \"sum_after\": 20\n  },\n  \"S9\": {\n    \"balance_update\": false,\n    \"for_update\": true,\n    \"for_no_key_update\": false,\n    \"owner_changed\": true,\n    \"owner_unchanged\": false\n  },\n  \"S10\": {\"b_gets_42\": false, \"b_gets_43\": true},\n  \"S11\": {\n    \"insert_sqlstate\": \"23505\",\n    \"second_update_sqlstate\": \"25P02\",\n    \"commit_sqlstate\": null,\n    \"commit_tag\": \"ROLLBACK\",\n    \"final_balance\": 100\n  },\n  \"S12\": {\"b_blocked\": true, \"b_rowcount\": 0, \"balance_1\": 120, \"balance_2\": 50},\n  \"S13\": {\"b_blocked\": true, \"b_rowcount\": 0, \"final_balance\": 5}\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.0568342,
+   "prompt_tokens": 2,
+   "completion_tokens": 4143
+  }
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-haiku",
+ "requested_model": "haiku",
+ "params": {},
+ "task": "t4_interest_backvalue",
+ "trial": 3,
+ "utc": "2026-10-31T20:51:01+00:00",
+ "latency_s": 44.4,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\n\"\"\"Monthly interest capitalisation for a savings account.\n\nAll arithmetic is exact (fractions.Fraction). Only the month-end rounding\nstep R(x) rounds, using ROUND_HALF_EVEN via Python's round() on Fraction.\n\"\"\"\n\nimport calendar\nfrom bisect import bisect_right\nfrom datetime import date, datetime, timedelta\nfrom fractions import Fraction\n\n_TIER1_LIMIT = 1_000_000  # minor units earning tier1; the excess earns tier2\n\n\ndef _to_date(value) -> date:\n    if isinstance(value, datetime):\n        return value.date()\n    if isinstance(value, date):\n        return value\n    if isinstance(value, str):\n        return date.fromisoformat(value)\n    raise TypeError(f\"unsupported date value: {value!r}\")\n\n\ndef _as_int(value, what: str) -> int:\n    if isinstance(value, bool) or not isinstance(value, int):\n        raise TypeError(f\"{what} must be an int number of minor units, got {value!r}\")\n    return value\n\n\ndef _to_fraction(value) -> Fraction:\n    if isinstance(value, Fraction):\n        return value\n    # str(...) keeps decimal strings exact; floats are not expected by the spec.\n    return Fraction(str(value))\n\n\ndef _is_month_end(d: date) -> bool:\n    return (d + timedelta(days=1)).day == 1\n\n\ndef _round_half_even(x: Fraction) -> int:\n    # round() on a Fraction with no ndigits uses ROUND_HALF_EVEN and returns int.\n    return round(x)\n\n\ndef _simulate(\n    opening: int,\n    start_d: date,\n    through: date,\n    known: list,\n    rate_entries: list,\n    rate_starts: list,\n) -> int:\n    \"\"\"Corrected history: accrue from start_d through `through` using only the\n    `known` transactions, feeding month-end capitalisations back into the balance.\n    Returns R(E(through)) for this history.\n    \"\"\"\n    by_vd: dict = {}\n    for vd, _pd, amt in known:\n        by_vd[vd] = by_vd.get(vd, 0) + amt\n\n    # B(start) includes every transaction value-dated on or before start.\n    bal = opening + sum(amt for vd, _pd, amt in known if vd <= start_d)\n\n    cum = Fraction(0)   # exact cumulative interest E(x) from start\n    prev_r = 0          # R(E(p)) for the previous month-end p; 0 before the first\n\n    d = start_d\n    while True:\n        if d > start_d:\n            # Transactions earn from their value date.\n            bal += by_vd.get(d, 0)\n\n        idx = bisect_right(rate_starts, d) - 1\n        if idx < 0:\n            raise ValueError(f\"no rate in force on {d.isoformat()}\")\n        _, t1, t2 = rate_entries[idx]\n\n        # Marginal tiers; a balance at or below zero earns nothing.\n        lower = min(bal, _TIER1_LIMIT) if bal > 0 else 0\n        upper = max(bal - _TIER1_LIMIT, 0)\n        denom = 366 if calendar.isleap(d.year) else 365\n        cum += (lower * t1 + upper * t2) / denom\n\n        if _is_month_end(d):\n            r_now = _round_half_even(cum)\n            # Corrected capitalisation at this month-end: R(E(m)) - R(E(p)).\n            cap = r_now - prev_r\n            prev_r = r_now\n            # Capitalised interest earns from the day after it is capitalised.\n            bal += cap\n\n        if d >= through:\n            break\n        d += timedelta(days=1)\n\n    return _round_half_even(cum)\n\n\ndef capitalisations(\n    opening_minor: int,\n    start: str,\n    end: str,\n    transactions: list[dict],\n    rates: list[dict],\n) -> list[dict]:\n    opening = _as_int(opening_minor, \"opening_minor\")\n    start_d = _to_date(start)\n    end_d = _to_date(end)\n    if end_d < start_d:\n        return []\n\n    txns = []\n    for t in transactions:\n        txns.append((\n            _to_date(t[\"value_date\"]),\n            _to_date(t[\"post_date\"]),\n            _as_int(t[\"amount_minor\"], \"amount_minor\"),\n        ))\n\n    rate_entries = sorted(\n        (\n            (_to_date(r[\"from\"]), _to_fraction(r[\"tier1\"]), _to_fraction(r[\"tier2\"]))\n            for r in rates\n        ),\n        key=lambda e: e[0],\n    )\n    rate_starts = [e[0] for e in rate_entries]\n\n    # Month-ends M with start <= M <= end. A partial month at the end produces no row.\n    month_ends = []\n    y, m = start_d.year, start_d.month\n    while True:\n        last = date(y, m, calendar.monthrange(y, m)[1])\n        if last > end_d:\n            break\n        if last >= start_d:\n            month_ends.append(last)\n        m += 1\n        if m == 13:\n            m = 1\n            y += 1\n\n    rows = []\n    posted_total = 0  # everything actually posted at earlier month-ends\n    for M in month_ends:\n        # At M only transactions with post_date <= M are known.\n        known = [t for t in txns if t[1] <= M]\n        r_m = _simulate(opening, start_d, M, known, rate_entries, rate_starts)\n        amount = r_m - posted_total\n        posted_total += amount  # earlier postings are never edited\n        rows.append({\"date\": M.isoformat(), \"amount_minor\": amount})\n\n    return rows\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.005346929999999999,
+   "prompt_tokens": 2,
+   "completion_tokens": 9942
+  }
+ }
+}

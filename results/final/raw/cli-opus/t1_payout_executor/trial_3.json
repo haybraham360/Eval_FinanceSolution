@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-opus",
+ "requested_model": "opus",
+ "params": {},
+ "task": "t1_payout_executor",
+ "trial": 3,
+ "utc": "2026-10-31T15:23:44+00:00",
+ "latency_s": 153.2,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\n\"\"\"Execute one customer payout through the external bank-transfer provider.\n\nDesign: each payout gets at most one provider.send, ever.\n\n- The RESERVED -> SENDING compare-and-swap is the only route to send. It lets\n  one invocation win, and it durably records send_attempted_at before the\n  provider is called. A worker killed after the claim leaves a SENDING row,\n  which is treated as \"may have landed\".\n- All other invocations only use lookup, which cannot move money. The 24-hour\n  send idempotency window is deliberately not relied on, so there is no\n  reference-expiry path to a second transfer. A worker paused for any length\n  of time cannot cause one either.\n- send_attempted_at is written once, by the claim winner, so it cannot regress\n  and is always the most recent send attempt.\n\nTrade-off: a send that never landed (timeout, or a kill before the call)\nbecomes FAILED after 900 seconds instead of being retried. The held funds are\nreleased, and the payout can be reissued under a new payout_id.\n\nResidual risk: a worker can stall after its final status check and call send\nmore than 900 seconds after its claim, or be given a stale `now`. The payout\nmay then be FAILED before the transfer lands. The provider has no fencing\nmechanism, so this cannot be fully closed here. The re-read before send keeps\nthe window small, and a stalled worker that sees the transfer accepted logs a\ncritical error for reconciliation. The destination is still paid only once.\n\"\"\"\n\nimport logging\n\nProviderTimeout = TimeoutError\n\nlogger = logging.getLogger(__name__)\n\nRESERVED = \"RESERVED\"\nSENDING = \"SENDING\"\nPAID = \"PAID\"\nFAILED = \"FAILED\"\nPENDING = \"PENDING\"\nINSUFFICIENT = \"INSUFFICIENT\"\n\nLOOKUP_VISIBILITY_SECONDS = 900\n\n_OUTCOME_BY_PROVIDER_STATUS = {\"accepted\": PAID, \"rejected\": FAILED}\n\n\ndef _current_status(store, payout_id):\n    \"\"\"Return the caller-facing status from a fresh read of the stored row.\"\"\"\n    status = store.get_payout(payout_id)[\"status\"]\n    return status if status in (PAID, FAILED) else PENDING\n\n\ndef _record_result(store, payout_id, result):\n    \"\"\"Apply a provider result and return the true stored status.\"\"\"\n    outcome = _OUTCOME_BY_PROVIDER_STATUS.get(result.get(\"status\"))\n    if outcome is None:\n        # An unrecognised status proves nothing, so keep the funds held.\n        return _current_status(store, payout_id)\n\n    store.finish(\n        payout_id,\n        SENDING,\n        outcome,\n        provider_id=result.get(\"provider_id\"),\n    )\n    status = _current_status(store, payout_id)\n    if outcome == PAID and status == FAILED:\n        logger.critical(\n            \"Payout %s is FAILED but the provider accepted it; \"\n            \"manual reconciliation required\",\n            payout_id,\n        )\n    return status\n\n\ndef _send_once(store, provider, payout_id):\n    \"\"\"Make the single send for a payout. Only the claim winner calls this.\"\"\"\n    row = store.get_payout(payout_id)\n    if row[\"status\"] != SENDING:\n        # Another invocation finished the payout while this worker was stalled.\n        return _current_status(store, payout_id)\n\n    try:\n        result = provider.send(payout_id, row[\"dest\"], row[\"amount_minor\"])\n    except ProviderTimeout:\n        return _current_status(store, payout_id)\n    return _record_result(store, payout_id, result)\n\n\ndef _reconcile(store, provider, payout_id, row, now):\n    \"\"\"Resolve a SENDING payout without any call that could move money.\"\"\"\n    try:\n        result = provider.lookup(payout_id)\n    except ProviderTimeout:\n        return _current_status(store, payout_id)\n\n    if result is not None:\n        return _record_result(store, payout_id, result)\n\n    if now - row[\"send_attempted_at\"] >= LOOKUP_VISIBILITY_SECONDS:\n        store.finish(payout_id, SENDING, FAILED)\n    return _current_status(store, payout_id)\n\n\ndef execute_payout(store, provider, payout_id, account, amount_minor, dest, now) -> str:\n    \"\"\"Returns the payout's current status: \"PAID\", \"FAILED\", \"PENDING\" or \"INSUFFICIENT\".\"\"\"\n    row = store.get_payout(payout_id)\n    if row is None:\n        if store.reserve(payout_id, account, amount_minor, dest) == INSUFFICIENT:\n            return INSUFFICIENT\n        row = store.get_payout(payout_id)\n\n    if row[\"status\"] == RESERVED:\n        if store.update(payout_id, RESERVED, SENDING, send_attempted_at=now):\n            return _send_once(store, provider, payout_id)\n        row = store.get_payout(payout_id)\n\n    if row[\"status\"] == SENDING:\n        return _reconcile(store, provider, payout_id, row, now)\n\n    return _current_status(store, payout_id)\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.30025719999999995,
+   "prompt_tokens": 2,
+   "completion_tokens": 14766
+  }
+ }
+}

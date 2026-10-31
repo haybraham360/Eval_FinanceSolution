@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t4_interest_backvalue",
+ "trial": 2,
+ "utc": "2026-10-31T20:36:33+00:00",
+ "latency_s": 23.4,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\nfrom __future__ import annotations\n\nimport calendar\nimport datetime as _dt\nfrom fractions import Fraction\n\n_TIER_LIMIT = 1_000_000\n_ONE_DAY = _dt.timedelta(days=1)\n\n\ndef _to_date(x) -> _dt.date:\n    \"\"\"Accept a date, datetime or YYYY-MM-DD string.\"\"\"\n    if isinstance(x, _dt.datetime):\n        return x.date()\n    if isinstance(x, _dt.date):\n        return x\n    return _dt.date.fromisoformat(x)\n\n\ndef _is_month_end(d: _dt.date) -> bool:\n    return (d + _ONE_DAY).day == 1\n\n\ndef _round_half_even(x: Fraction) -> int:\n    \"\"\"Exact ROUND_HALF_EVEN of a Fraction to an int.\"\"\"\n    q = x.numerator // x.denominator  # floor\n    rem = x - q                       # 0 <= rem < 1\n    half = Fraction(1, 2)\n    if rem > half:\n        return q + 1\n    if rem < half:\n        return q\n    return q if q % 2 == 0 else q + 1\n\n\ndef capitalisations(opening_minor: int, start: str, end: str,\n                    transactions: list[dict], rates: list[dict]) -> list[dict]:\n    start_d = _to_date(start)\n    end_d = _to_date(end)\n    if start_d > end_d:\n        return []\n\n    # Normalise inputs.\n    txs = [(_to_date(t[\"value_date\"]), _to_date(t[\"post_date\"]), int(t[\"amount_minor\"]))\n           for t in transactions]\n    rate_list = sorted(\n        ((_to_date(r[\"from\"]), Fraction(str(r[\"tier1\"])), Fraction(str(r[\"tier2\"])))\n         for r in rates),\n        key=lambda r: r[0],\n    )\n\n    # Month-ends in [start, end].\n    month_ends: list[_dt.date] = []\n    d = start_d\n    while d <= end_d:\n        if _is_month_end(d):\n            month_ends.append(d)\n        d += _ONE_DAY\n\n    results: list[dict] = []\n    posted_total = 0\n\n    for M in month_ends:\n        # Transactions known at M, ordered by value date.\n        known = sorted((v, amt) for (v, p, amt) in txs if p <= M)\n        k = 0\n        tx_cum = 0\n\n        ri = 0  # index of rate in force\n        cap_cum = 0          # corrected capitalisations dated before current day\n        pending_cap = 0      # capitalisation made on the current day (earns from next day)\n        exact_total = Fraction(0)\n        prev_rounded = 0\n\n        day = start_d\n        while day <= M:\n            # Apply transactions with value_date <= day.\n            while k < len(known) and known[k][0] <= day:\n                tx_cum += known[k][1]\n                k += 1\n\n            # Capitalisations dated < day.\n            cap_cum += pending_cap\n            pending_cap = 0\n\n            balance = opening_minor + tx_cum + cap_cum\n\n            # Rate in force on day.\n            while ri + 1 < len(rate_list) and rate_list[ri + 1][0] <= day:\n                ri += 1\n            _, r1, r2 = rate_list[ri]\n\n            if balance > 0:\n                t1 = min(balance, _TIER_LIMIT)\n                t2 = balance - t1 if balance > _TIER_LIMIT else 0\n                annual = t1 * r1 + t2 * r2\n                days_in_year = 366 if calendar.isleap(day.year) else 365\n                exact_total += annual / days_in_year\n\n            if _is_month_end(day):\n                rounded = _round_half_even(exact_total)\n                if day == M:\n                    posted = rounded - posted_total\n                    results.append({\"date\": M.isoformat(), \"amount_minor\": posted})\n                    posted_total += posted\n                else:\n                    pending_cap = rounded - prev_rounded\n                    prev_rounded = rounded\n            day += _ONE_DAY\n\n    return results\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.028572800000000002,
+   "prompt_tokens": 2,
+   "completion_tokens": 2585
+  }
+ }
+}
