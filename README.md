@@ -12,7 +12,7 @@
 
 ## Video walkthrough
 
-PENDING: add the public link here and in the submission form.
+Walkthrough: [add public video link]
 
 ## Domain and expertise
 
@@ -158,4 +158,4 @@ Everything here was built during the hackathon. No earlier benchmark tasks or da
 
 ## AI use
 
-I led this project: I chose the fintech domain and the shift to Nigerian tax rules, decided which evaluation directions to pursue, and take responsibility for everything in it. AI coding tools assisted by drafting the tasks, graders, reference solutions, harness and documentation. PENDING: how I reviewed each task, reference answer and grading rule.
+I conceived and led this project and made its key decisions. I chose the field, Nigerian fintech, and moved the eval from general engineering to Nigerian tax law when frontier models kept passing. I decided which models to test and how to run them, directed each round of changes based on the results, and take responsibility for everything submitted here. AI coding tools assisted by drafting the tasks, graders, reference solutions, harness and documentation under my direction. I reviewed the tasks, reference answers and grading rules myself.
