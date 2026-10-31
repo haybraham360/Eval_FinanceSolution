@@ -1,0 +1,430 @@
+[
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t12_ng_tax_interactions",
+  "trial": 1,
+  "utc": "2026-10-31T15:14:36+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 8958,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "M1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G10",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t12_ng_tax_interactions",
+  "trial": 2,
+  "utc": "2026-10-31T15:14:59+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 11166,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "M1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G10",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t12_ng_tax_interactions",
+  "trial": 1,
+  "utc": "2026-10-31T15:13:49+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 4516,
+  "score": 0.8888888888888888,
+  "passed": false,
+  "checks": [
+   {
+    "check": "M1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M3",
+    "passed": false,
+    "detail": "AssertionError: M3.tax: expected 679200.0, got 672000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M3.tax: expected 679200.0, got 672000\n"
+   },
+   {
+    "check": "M4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E1",
+    "passed": false,
+    "detail": "AssertionError: E1.topup: expected 46250000.0, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: E1.topup: expected 46250000.0, got 0\n"
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G10",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t12_ng_tax_interactions",
+  "trial": 2,
+  "utc": "2026-10-31T15:14:27+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 4450,
+  "score": 0.8888888888888888,
+  "passed": false,
+  "checks": [
+   {
+    "check": "M1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M3",
+    "passed": false,
+    "detail": "AssertionError: M3.tax: expected 679200.0, got 672000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M3.tax: expected 679200.0, got 672000\n"
+   },
+   {
+    "check": "M4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "M7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E1",
+    "passed": false,
+    "detail": "AssertionError: E1.topup: expected 46250000.0, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: E1.topup: expected 46250000.0, got 0\n"
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G10",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ }
+]

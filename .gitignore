@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+SUBMISSION_TODO.md
+results/final/
+transcripts/final/

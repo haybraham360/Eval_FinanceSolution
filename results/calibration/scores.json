@@ -1,0 +1,1799 @@
+[
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t1_payout_executor",
+  "trial": 1,
+  "utc": "2026-10-31T14:45:36+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 22958,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "happy_path",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "insufficient_sends_nothing_and_is_not_sticky",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rejected_releases_funds_and_stays_failed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "finished_payout_makes_no_money_moving_calls",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "timeout_keeps_funds_held",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lookup_timeout_is_pending",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lagging_landed_transfer_is_not_failed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "never_landed_fails_after_window_and_releases",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "window_runs_from_most_recent_send",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "landed_then_retry_after_provider_forgot",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "kill_at_every_operation_retry_soon",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "kill_at_every_operation_retry_after_24h",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_invocation_at_every_operation",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "returns_stored_truth_when_another_worker_wins",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t2_webhook_convergence",
+  "trial": 1,
+  "utc": "2026-10-31T14:44:38+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 16910,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_values",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_delivery_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "reissued_fact_under_new_event_id",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_failed_either_order",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_before_capture_converges",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "unapplied_refund_reported_then_absorbed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "late_refund_shrinks_open_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "failed_refund_regrows_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lost_dispute_with_late_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "decision_before_open_has_no_effect",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "latest_instant_wins_across_offsets",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "arbitration_flip_restores_fee_position",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "big_mixed_scenario_random_orders",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t3_fx_refund",
+  "trial": 1,
+  "utc": "2026-10-31T14:44:26+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 10153,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_eur_base_pair",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_jpy_inverted_pair_zero_decimals",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_kwd_three_decimals_fee_tie",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "quote_side_per_pair_direction",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rounding_is_cumulative_not_per_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "many_partials_drain_exactly",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "exact_above_float_precision",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ties_use_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "zero_lines_are_omitted",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rejects_invalid_refunds",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t4_interest_backvalue",
+  "trial": 1,
+  "utc": "2026-10-31T14:45:10+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 10332,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_leap_january",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_common_year_march",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_marginal_tier",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "year_boundary_changes_denominator",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capitalised_interest_compounds_from_next_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sub_minor_residue_is_never_lost",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "midmonth_rate_change_and_tx",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "overdrawn_days_earn_nothing",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "month_end_value_date_counts_that_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_posts_only_in_later_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_correction_compounds_through_corrected_history",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_withdrawal_gives_negative_posting",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "posted_on_month_end_is_known_that_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "partial_final_month_has_no_row",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t5_wallet_repair",
+  "trial": 1,
+  "utc": "2026-10-31T14:45:06+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 6526,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "happy_path_fee_and_balances",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "minimum_fee",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "final_capture_releases_the_rest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "second_partial_capture_is_not_a_replay",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capture_replay_is_inert_even_after_close",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sweep_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "void_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "hold_valid_through_expiry_instant",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "expired_hold_rejects_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_ties_round_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cumulative_refund_limit",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_replay_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_returned_cumulatively",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_return_matches_formula_at_every_step",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "random_operations_conserve_money",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t6_settlement_recon",
+  "trial": 1,
+  "utc": "2026-10-31T14:45:56+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 7845,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "clean_match_is_silent",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_formats",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_precision_is_exact",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "corrected_file_replaces_whole_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "file_seq_compares_as_number",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "seq_is_per_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_before_and_at_17_est",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_during_daylight_time",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "utc_date_differs_from_local_date",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "weekend_and_holiday_roll",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_lines_ignored_on_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "split_tender_sums_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "group_date_is_latest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_nets_out",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_ledger_has_one",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_amounts_differ",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "every_break_type_sorted",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t7_pg_concurrency",
+  "trial": 1,
+  "utc": "2026-10-31T14:46:11+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 12813,
+  "score": 0.8461538461538461,
+  "passed": false,
+  "checks": [
+   {
+    "check": "S1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S7",
+    "passed": false,
+    "detail": "AssertionError: S7.b_insert_sqlstate: expected '40001', got 'NONE'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t7_pg_concurrency.py\", line 19, in check\n    eq(value, want, f\"{name}.{field}\")\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: S7.b_insert_sqlstate: expected '40001', got 'NONE'\n"
+   },
+   {
+    "check": "S8",
+    "passed": false,
+    "detail": "AssertionError: S8.b_update_sqlstate: expected None, got '40001'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t7_pg_concurrency.py\", line 19, in check\n    eq(value, want, f\"{name}.{field}\")\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: S8.b_update_sqlstate: expected None, got '40001'\n"
+   },
+   {
+    "check": "S9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S13",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t1_payout_executor",
+  "trial": 1,
+  "utc": "2026-10-31T14:43:08+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 26530,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "happy_path",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "insufficient_sends_nothing_and_is_not_sticky",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rejected_releases_funds_and_stays_failed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "finished_payout_makes_no_money_moving_calls",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "timeout_keeps_funds_held",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lookup_timeout_is_pending",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lagging_landed_transfer_is_not_failed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "never_landed_fails_after_window_and_releases",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "window_runs_from_most_recent_send",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "landed_then_retry_after_provider_forgot",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "kill_at_every_operation_retry_soon",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "kill_at_every_operation_retry_after_24h",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_invocation_at_every_operation",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "returns_stored_truth_when_another_worker_wins",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t2_webhook_convergence",
+  "trial": 1,
+  "utc": "2026-10-31T14:39:47+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 9501,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_values",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_delivery_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "reissued_fact_under_new_event_id",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_failed_either_order",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_before_capture_converges",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "unapplied_refund_reported_then_absorbed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "late_refund_shrinks_open_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "failed_refund_regrows_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lost_dispute_with_late_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "decision_before_open_has_no_effect",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "latest_instant_wins_across_offsets",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "arbitration_flip_restores_fee_position",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "big_mixed_scenario_random_orders",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t3_fx_refund",
+  "trial": 1,
+  "utc": "2026-10-31T14:39:29+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 7676,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_eur_base_pair",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_jpy_inverted_pair_zero_decimals",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_kwd_three_decimals_fee_tie",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "quote_side_per_pair_direction",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rounding_is_cumulative_not_per_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "many_partials_drain_exactly",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "exact_above_float_precision",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ties_use_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "zero_lines_are_omitted",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rejects_invalid_refunds",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t4_interest_backvalue",
+  "trial": 1,
+  "utc": "2026-10-31T14:40:26+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 5988,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_leap_january",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_common_year_march",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_marginal_tier",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "year_boundary_changes_denominator",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capitalised_interest_compounds_from_next_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sub_minor_residue_is_never_lost",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "midmonth_rate_change_and_tx",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "overdrawn_days_earn_nothing",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "month_end_value_date_counts_that_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_posts_only_in_later_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_correction_compounds_through_corrected_history",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_withdrawal_gives_negative_posting",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "posted_on_month_end_is_known_that_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "partial_final_month_has_no_row",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t5_wallet_repair",
+  "trial": 1,
+  "utc": "2026-10-31T14:40:36+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 5378,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "happy_path_fee_and_balances",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "minimum_fee",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "final_capture_releases_the_rest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "second_partial_capture_is_not_a_replay",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capture_replay_is_inert_even_after_close",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sweep_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "void_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "hold_valid_through_expiry_instant",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "expired_hold_rejects_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_ties_round_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cumulative_refund_limit",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_replay_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_returned_cumulatively",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_return_matches_formula_at_every_step",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "random_operations_conserve_money",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t6_settlement_recon",
+  "trial": 1,
+  "utc": "2026-10-31T14:41:36+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 7928,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "clean_match_is_silent",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_formats",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_precision_is_exact",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "corrected_file_replaces_whole_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "file_seq_compares_as_number",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "seq_is_per_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_before_and_at_17_est",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_during_daylight_time",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "utc_date_differs_from_local_date",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "weekend_and_holiday_roll",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_lines_ignored_on_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "split_tender_sums_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "group_date_is_latest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_nets_out",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_ledger_has_one",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_amounts_differ",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "every_break_type_sorted",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t7_pg_concurrency",
+  "trial": 1,
+  "utc": "2026-10-31T14:41:46+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 6969,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "S1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S13",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t1_payout_executor",
+  "trial": 1,
+  "utc": "2026-10-31T14:42:35+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 7159,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "happy_path",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "insufficient_sends_nothing_and_is_not_sticky",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rejected_releases_funds_and_stays_failed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "finished_payout_makes_no_money_moving_calls",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "timeout_keeps_funds_held",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lookup_timeout_is_pending",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lagging_landed_transfer_is_not_failed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "never_landed_fails_after_window_and_releases",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "window_runs_from_most_recent_send",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "landed_then_retry_after_provider_forgot",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "kill_at_every_operation_retry_soon",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "kill_at_every_operation_retry_after_24h",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_invocation_at_every_operation",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "returns_stored_truth_when_another_worker_wins",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t2_webhook_convergence",
+  "trial": 1,
+  "utc": "2026-10-31T14:42:25+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 4974,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_values",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_delivery_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "reissued_fact_under_new_event_id",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_failed_either_order",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_before_capture_converges",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "unapplied_refund_reported_then_absorbed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "late_refund_shrinks_open_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "failed_refund_regrows_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lost_dispute_with_late_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "decision_before_open_has_no_effect",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "latest_instant_wins_across_offsets",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "arbitration_flip_restores_fee_position",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "big_mixed_scenario_random_orders",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t3_fx_refund",
+  "trial": 1,
+  "utc": "2026-10-31T14:43:01+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 5308,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_eur_base_pair",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_jpy_inverted_pair_zero_decimals",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_kwd_three_decimals_fee_tie",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "quote_side_per_pair_direction",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rounding_is_cumulative_not_per_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "many_partials_drain_exactly",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "exact_above_float_precision",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ties_use_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "zero_lines_are_omitted",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rejects_invalid_refunds",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t4_interest_backvalue",
+  "trial": 1,
+  "utc": "2026-10-31T14:43:01+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 3025,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_leap_january",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_common_year_march",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_marginal_tier",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "year_boundary_changes_denominator",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capitalised_interest_compounds_from_next_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sub_minor_residue_is_never_lost",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "midmonth_rate_change_and_tx",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "overdrawn_days_earn_nothing",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "month_end_value_date_counts_that_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_posts_only_in_later_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_correction_compounds_through_corrected_history",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_withdrawal_gives_negative_posting",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "posted_on_month_end_is_known_that_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "partial_final_month_has_no_row",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t5_wallet_repair",
+  "trial": 1,
+  "utc": "2026-10-31T14:43:25+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 3317,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "happy_path_fee_and_balances",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "minimum_fee",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "final_capture_releases_the_rest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "second_partial_capture_is_not_a_replay",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capture_replay_is_inert_even_after_close",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sweep_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "void_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "hold_valid_through_expiry_instant",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "expired_hold_rejects_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_ties_round_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cumulative_refund_limit",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_replay_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_returned_cumulatively",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_return_matches_formula_at_every_step",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "random_operations_conserve_money",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t6_settlement_recon",
+  "trial": 1,
+  "utc": "2026-10-31T14:43:26+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 3558,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "clean_match_is_silent",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_formats",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_precision_is_exact",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "corrected_file_replaces_whole_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "file_seq_compares_as_number",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "seq_is_per_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_before_and_at_17_est",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_during_daylight_time",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "utc_date_differs_from_local_date",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "weekend_and_holiday_roll",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_lines_ignored_on_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "split_tender_sums_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "group_date_is_latest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_nets_out",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_ledger_has_one",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_amounts_differ",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "every_break_type_sorted",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t7_pg_concurrency",
+  "trial": 1,
+  "utc": "2026-10-31T14:43:42+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 3995,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "S1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S13",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ }
+]

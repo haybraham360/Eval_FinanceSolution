@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t12_ng_tax_interactions",
+ "trial": 2,
+ "utc": "2026-10-31T15:14:27+00:00",
+ "latency_s": 37.5,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"M1\": {\"tax\": 1950000},\n  \"M2\": {\"tax\": 996000},\n  \"M3\": {\"tax\": 672000},\n  \"M4\": {\"tax\": 3057750},\n  \"M5\": {\"tax\": 1323600},\n  \"M6\": {\"tax\": 870000},\n  \"M7\": {\"tax\": 1050000},\n  \"E1\": {\"topup\": 0},\n  \"E2\": {\"topup\": 0},\n  \"E3\": {\"deductible\": 15000000},\n  \"V3\": {\"vat\": 0},\n  \"V4\": {\"vat\": 750},\n  \"G5\": {\"chargeable_gain\": 2000000},\n  \"G6\": {\"chargeable_gain\": 0},\n  \"G7\": {\"chargeable_gain\": 0},\n  \"G8\": {\"chargeable_gain\": 5000000},\n  \"G9\": {\"chargeable_gain\": 0},\n  \"G10\": {\"chargeable_gain\": 15000000}\n}\n```\n\nI worked from recall of the Act's provisions, with no rule text to check against. The figures rest on these assumptions:\n\n- **Rates:** 0% to \u20a6800k, 15% to \u20a63m, 18% to \u20a612m, 21% to \u20a625m, 23% to \u20a650m, then 25%.\n- **M1 and M2 benefits in kind:** I assumed rent-free accommodation is taxed at the lesser of rental value and 20% of gross income, which gives \u20a62m. I assumed a car is taxed at 5% of its cost less the employee's payment, which gives \u20a6700k. I am least sure of these two rules.\n- **M3:** Only the 2026 premium is deductible.\n- **M5:** Rent relief is 20% of rent, capped at \u20a6500k, so \u20a6480k.\n- **M6 and M7:** A digital asset loss cannot offset salary, so M6 is tax on salary alone. In M7 the net gain of \u20a61m is added to income.\n- **E1 and E2:** The minimum effective tax rate applies only to MNE constituents or companies with turnover of \u20a650bn or more, so both have no top-up.\n- **E3:** The deduction is capped at the CBN official rate (10,000 \u00d7 1,500).\n- **V3 and V4:** I assumed interest is exempt and the processing fee is taxed at 7.5%.\n- **G5:** Foreign currency held as an investment is a chargeable asset.\n- **G6:** A chattel sale with consideration of \u20a65m or less is exempt.\n- **G7 and G8:** An angel investor's gain is exempt after 24 months. At 20 months it is chargeable.\n- **G9 and G10:** Redundancy compensation is exempt up to \u20a650m, so \u20a615m of the \u20a665m is chargeable."
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.04738309999999999,
+   "prompt_tokens": 2,
+   "completion_tokens": 4450
+  }
+ }
+}

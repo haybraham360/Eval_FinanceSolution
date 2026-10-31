@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t12_ng_tax_interactions",
+ "trial": 1,
+ "utc": "2026-10-31T15:13:49+00:00",
+ "latency_s": 40.9,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"M1\": {\"tax\": 1950000},\n  \"M2\": {\"tax\": 996000},\n  \"M3\": {\"tax\": 672000},\n  \"M4\": {\"tax\": 3057750},\n  \"M5\": {\"tax\": 1323600},\n  \"M6\": {\"tax\": 870000},\n  \"M7\": {\"tax\": 1050000},\n  \"E1\": {\"topup\": 0},\n  \"E2\": {\"topup\": 0},\n  \"E3\": {\"deductible\": 15000000},\n  \"V3\": {\"vat\": 0},\n  \"V4\": {\"vat\": 750},\n  \"G5\": {\"chargeable_gain\": 2000000},\n  \"G6\": {\"chargeable_gain\": 0},\n  \"G7\": {\"chargeable_gain\": 0},\n  \"G8\": {\"chargeable_gain\": 5000000},\n  \"G9\": {\"chargeable_gain\": 0},\n  \"G10\": {\"chargeable_gain\": 15000000}\n}\n```\n\nThese figures come from my recollection of the Act's provisions, as no rule text was supplied. I could not check them against the Act itself, and several rest on specific recalled thresholds.\n\n**Rate bands.** I used the Act's rate bands, which are cumulative:\n\n| Band | Rate | Cumulative tax at top of band |\n|---|---|---|\n| First \u20a6800,000 | 0% | \u20a60 |\n| Next \u20a62.2m | 15% | \u20a6330,000 |\n| Next \u20a69m | 18% | \u20a61,950,000 |\n| Next \u20a613m | 21% | \u20a64,680,000 |\n| Next \u20a625m | 23% | \u20a610,430,000 |\n| Above \u20a650m | 25% | \u2014 |\n\n**Individuals**\n- **M1:** The rent-free premises benefit is capped at 20% of the \u20a610m income, which is \u20a62m, because the \u20a63m rental value is higher. Taxable income is \u20a612m.\n- **M2:** The car benefit is 5% of the \u20a620m cost, which is \u20a61m. Less the \u20a6300k the employee pays, that is \u20a6700k, so taxable income is \u20a66.7m.\n- **M3:** Only the \u20a6100k premium paid in 2026 is deductible, so taxable income is \u20a64.9m.\n- **M4:** The deductions are pension \u20a61.6m, NHF \u20a6125k and house-loan interest \u20a61m, which total \u20a62.725m. Taxable income is \u20a617.275m.\n- **M5:** Rent relief is 20% of \u20a62.4m, which is \u20a6480k and under the \u20a6500k cap. Taxable income is \u20a68.52m.\n- **M6:** The digital asset loss cannot be set against salary, so tax is on \u20a66m.\n- **M7:** The net digital asset gain of \u20a61m is added to the salary, so taxable income is \u20a67m.\n\n**Companies**\n- **E1 and E2:** The 15% minimum effective tax rate applies only to MNE group members or companies with turnover of \u20a650bn or more. Neither company reaches that, so the top-up is 0.\n- **E3:** Foreign-currency expenses are deductible at the CBN official rate. That is US$10,000 \u00d7 \u20a61,500 = \u20a615m, and the \u20a63m paid above that rate is not deductible.\n\n**VAT**\n- **V3:** I treated interest on a loan as exempt, so VAT is 0.\n- **V4:** I treated the processing fee as a taxable service. VAT is 7.5% of \u20a610,000, which is \u20a6750.\n\n**Chargeable gains**\n- **G5:** I treated foreign currency held as an investment as a chargeable asset, so the full \u20a62m gain is chargeable.\n- **G6:** I treated a personal chattel sold for \u20a65m or less as exempt. The \u20a64.9m sale qualifies.\n- **G7 and G8:** I treated labelled-startup gains as exempt only after at least 24 months' holding. Thirty months qualifies and 20 months does not.\n- **G9 and G10:** I treated capital redundancy compensation as exempt up to \u20a650m. \u20a630m is fully exempt, and \u20a665m leaves \u20a615m chargeable."
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.0540173,
+   "prompt_tokens": 2,
+   "completion_tokens": 4516
+  }
+ }
+}

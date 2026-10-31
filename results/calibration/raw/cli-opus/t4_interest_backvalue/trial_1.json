@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-opus",
+ "requested_model": "opus",
+ "params": {},
+ "task": "t4_interest_backvalue",
+ "trial": 1,
+ "utc": "2026-10-31T14:40:26+00:00",
+ "latency_s": 57.5,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\n\"\"\"Monthly savings interest capitalisation with back-valued postings.\n\nAll interest arithmetic uses exact rationals (fractions.Fraction); floats are\nnever used. Each month-end's history is replayed in full from `start`, so any\nposting can be reproduced from the transactions known on that date.\n\"\"\"\n\nfrom bisect import bisect_right\nfrom calendar import isleap, monthrange\nfrom datetime import date, timedelta\nfrom fractions import Fraction\n\nTIER1_LIMIT_MINOR = 1_000_000\n\n\ndef _parse_date(value) -> date:\n    \"\"\"Return a date from a YYYY-MM-DD string or an existing date.\"\"\"\n    if isinstance(value, date):\n        return value\n    return date.fromisoformat(value)\n\n\ndef _month_ends(start: date, end: date) -> list[date]:\n    \"\"\"Return every calendar month-end M with start <= M <= end, oldest first.\"\"\"\n    result = []\n    year, month = start.year, start.month\n    while (year, month) <= (end.year, end.month):\n        month_end = date(year, month, monthrange(year, month)[1])\n        if month_end <= end:\n            result.append(month_end)\n        year, month = (year + 1, 1) if month == 12 else (year, month + 1)\n    return result\n\n\ndef _daily_schedule(\n    start: date, last_day: date, rates: list[dict]\n) -> list[tuple[date, Fraction, Fraction, int]]:\n    \"\"\"Return (day, tier1 rate, tier2 rate, day-count basis) for each day.\"\"\"\n    rate_dates = [_parse_date(rate[\"from\"]) for rate in rates]\n    rate_values = [\n        (Fraction(rate[\"tier1\"]), Fraction(rate[\"tier2\"])) for rate in rates\n    ]\n\n    schedule = []\n    day = start\n    while True:\n        tier1, tier2 = rate_values[bisect_right(rate_dates, day) - 1]\n        basis = 366 if isleap(day.year) else 365\n        schedule.append((day, tier1, tier2, basis))\n        if day == last_day:\n            return schedule\n        day += timedelta(days=1)\n\n\ndef _daily_interest(\n    balance: int, tier1: Fraction, tier2: Fraction, basis: int\n) -> Fraction:\n    \"\"\"Return one day's exact interest using marginal tiers.\"\"\"\n    if balance <= 0:\n        return Fraction(0)\n    tier1_balance = min(balance, TIER1_LIMIT_MINOR)\n    tier2_balance = balance - tier1_balance\n    return (tier1_balance * tier1 + tier2_balance * tier2) / basis\n\n\ndef _corrected_cumulative_interest(\n    opening_minor: int,\n    through: date,\n    known: list[tuple[date, int]],\n    schedule: list[tuple[date, Fraction, Fraction, int]],\n    month_end_dates: set[date],\n) -> Fraction:\n    \"\"\"Return E(through) in the corrected history for the known transactions.\n\n    Corrected capitalisations are applied after the month-end day's accrual,\n    so they first affect B(d) on the following day. They are independent of\n    the amounts actually posted.\n    \"\"\"\n    movements: dict[date, int] = {}\n    for value_date, amount_minor in known:\n        movements[value_date] = movements.get(value_date, 0) + amount_minor\n\n    balance = opening_minor\n    exact_interest = Fraction(0)\n    rounded_at_previous_month_end = 0\n\n    for day, tier1, tier2, basis in schedule:\n        if day > through:\n            break\n\n        balance += movements.get(day, 0)\n        exact_interest += _daily_interest(balance, tier1, tier2, basis)\n\n        if day in month_end_dates:\n            # round() on a Fraction is exact and uses ROUND_HALF_EVEN.\n            rounded = round(exact_interest)\n            balance += rounded - rounded_at_previous_month_end\n            rounded_at_previous_month_end = rounded\n\n    return exact_interest\n\n\ndef capitalisations(\n    opening_minor: int,\n    start: str,\n    end: str,\n    transactions: list[dict],\n    rates: list[dict],\n) -> list[dict]:\n    \"\"\"Return the amount actually posted at each month-end in [start, end].\"\"\"\n    start_date = _parse_date(start)\n    end_date = _parse_date(end)\n\n    month_ends = _month_ends(start_date, end_date)\n    if not month_ends:\n        return []\n\n    parsed_transactions = [\n        (\n            _parse_date(transaction[\"value_date\"]),\n            _parse_date(transaction[\"post_date\"]),\n            transaction[\"amount_minor\"],\n        )\n        for transaction in transactions\n    ]\n    schedule = _daily_schedule(start_date, month_ends[-1], rates)\n    month_end_dates = set(month_ends)\n\n    rows = []\n    total_posted = 0\n\n    for month_end in month_ends:\n        known = [\n            (value_date, amount_minor)\n            for value_date, post_date, amount_minor in parsed_transactions\n            if post_date <= month_end\n        ]\n        exact_interest = _corrected_cumulative_interest(\n            opening_minor, month_end, known, schedule, month_end_dates\n        )\n        amount_minor = round(exact_interest) - total_posted\n        total_posted += amount_minor\n        rows.append(\n            {\"date\": month_end.isoformat(), \"amount_minor\": amount_minor}\n        )\n\n    return rows\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.1359682,
+   "prompt_tokens": 2,
+   "completion_tokens": 5988
+  }
+ }
+}

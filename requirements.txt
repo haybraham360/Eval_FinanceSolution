@@ -1,0 +1,4 @@
+# The harness and graders use only the Python 3.10+ standard library.
+# psycopg is needed only for verify_postgres.py (proves the task 7 reference answers on a real server).
+psycopg[binary]==3.2.9
+tzdata==2025.2

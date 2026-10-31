@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-opus",
+ "requested_model": "opus",
+ "params": {},
+ "task": "t11_ng_tax_rules",
+ "trial": 1,
+ "utc": "2026-10-31T15:10:30+00:00",
+ "latency_s": 89.5,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"ST1\": {\"duty\": 50, \"payer\": \"transferor\"},\n  \"ST2\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST3\": {\"duty\": 50, \"payer\": \"transferor\"},\n  \"ST4\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST5\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST6\": {\"duty\": 0, \"payer\": \"none\"},\n  \"P1\": {\"tax\": 570750},\n  \"P2\": {\"tax\": 1687200},\n  \"P3\": {\"tax\": 12930000},\n  \"P4\": {\"tax\": 0},\n  \"P5\": {\"tax\": 0},\n  \"C1\": {\"cit\": 0, \"levy\": 0},\n  \"C2\": {\"cit\": 3000000, \"levy\": 400000},\n  \"C3\": {\"cit\": 3000000, \"levy\": 400000},\n  \"C4\": {\"cit\": 0, \"levy\": 0},\n  \"V1\": {\"vat\": 7.5},\n  \"V2\": {\"vat\": 7.5},\n  \"G1\": {\"chargeable_gain\": 0},\n  \"G2\": {\"chargeable_gain\": 12000000},\n  \"G3\": {\"chargeable_gain\": 1250000},\n  \"G4\": {\"chargeable_gain\": 20000000}\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.19516519999999998,
+   "prompt_tokens": 2,
+   "completion_tokens": 8822
+  }
+ }
+}

@@ -1,0 +1,14 @@
+[
+  {"label": "claude-opus-5.5", "id": "anthropic/claude-opus-5.5", "tier": "frontier", "params": {"reasoning": {"effort": "high"}}},
+  {"label": "gpt-6.1-sol", "id": "openai/gpt-6.1-sol", "tier": "frontier", "params": {"reasoning": {"effort": "high"}}},
+  {"label": "gemini-4-argon", "id": "google/gemini-4-argon", "tier": "frontier", "params": {"reasoning": {"effort": "high"}}},
+  {"label": "grok-4.7", "id": "x-ai/grok-4.7", "tier": "frontier", "params": {"reasoning": {"effort": "high"}}},
+  {"label": "claude-haiku-5.5", "id": "anthropic/claude-haiku-5.5", "tier": "small", "params": {}},
+  {"label": "deepseek-v4.1-flash", "id": "deepseek/deepseek-v4.1-flash", "tier": "small", "params": {}},
+  {"label": "cli-opus", "id": "opus", "tier": "frontier", "backend": "cli", "effort": "high"},
+  {"label": "cli-sonnet", "id": "sonnet", "tier": "frontier", "backend": "cli", "effort": "high"},
+  {"label": "cli-haiku", "id": "haiku", "tier": "small", "backend": "cli"},
+  {"label": "free-inkling", "id": "thinkingmachines/inkling:free", "tier": "free", "params": {}},
+  {"label": "free-nemotron-ultra", "id": "nvidia/nemotron-3-ultra-550b-a55b:free", "tier": "free", "params": {}},
+  {"label": "free-gemma-4", "id": "google/gemma-4-31b-it:free", "tier": "free", "params": {}}
+]

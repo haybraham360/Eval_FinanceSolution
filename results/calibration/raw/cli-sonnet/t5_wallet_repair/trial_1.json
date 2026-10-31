@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t5_wallet_repair",
+ "trial": 1,
+ "utc": "2026-10-31T14:43:25+00:00",
+ "latency_s": 24.5,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```python\nclass WalletError(Exception):\n    pass\n\n\nMIN_FEE = 30\nFEE_BPS = 250\n\n\ndef _div_half_even(numerator, denominator):\n    \"\"\"Integer division of non-negative ints, rounded ROUND_HALF_EVEN.\"\"\"\n    q, r = divmod(numerator, denominator)\n    twice = 2 * r\n    if twice > denominator or (twice == denominator and q % 2 == 1):\n        q += 1\n    return q\n\n\ndef fee_for(amount):\n    return max(MIN_FEE, _div_half_even(amount * FEE_BPS, 10000))\n\n\nclass Wallet:\n    def __init__(self):\n        self.ledger = {}\n        self.held = {}\n        self.holds = {}\n        self.captures = {}   # keyed by capture_id only\n        self.refunds = {}\n        self.merchant = 0\n        self.revenue = 0\n\n    def deposit(self, account, amount):\n        self.ledger[account] = self.ledger.get(account, 0) + amount\n\n    def available(self, account):\n        return self.ledger.get(account, 0) - self.held.get(account, 0)\n\n    def place_hold(self, hold_id, account, amount, expires_at):\n        if hold_id in self.holds:\n            return self.holds[hold_id]\n        if amount <= 0:\n            raise WalletError(\"invalid amount\")\n        if self.available(account) < amount:\n            raise WalletError(\"insufficient funds\")\n        hold = {\"account\": account, \"amount\": amount, \"captured\": 0, \"status\": \"OPEN\", \"expires_at\": expires_at}\n        self.holds[hold_id] = hold\n        self.held[account] = self.held.get(account, 0) + amount\n        return hold\n\n    def _release_rest(self, hold):\n        # Release only what has not been captured.\n        self.held[hold[\"account\"]] -= hold[\"amount\"] - hold[\"captured\"]\n\n    def capture(self, capture_id, hold_id, amount, now, final=False):\n        # Replay of a capture_id returns the original record, whatever the hold's state.\n        if capture_id in self.captures:\n            return self.captures[capture_id]\n        hold = self.holds[hold_id]\n        if hold[\"status\"] != \"OPEN\":\n            raise WalletError(\"hold not open\")\n        if now > hold[\"expires_at\"]:\n            raise WalletError(\"hold expired\")\n        if amount <= 0:\n            raise WalletError(\"invalid amount\")\n        if hold[\"captured\"] + amount > hold[\"amount\"]:\n            raise WalletError(\"over capture\")\n        fee = fee_for(amount)\n        hold[\"captured\"] += amount\n        self.held[hold[\"account\"]] -= amount\n        self.ledger[hold[\"account\"]] -= amount\n        self.merchant += amount - fee\n        self.revenue += fee\n        record = {\n            \"capture_id\": capture_id,\n            \"hold_id\": hold_id,\n            \"amount\": amount,\n            \"fee\": fee,\n            \"refunded\": 0,\n            \"fee_returned\": 0,\n        }\n        self.captures[capture_id] = record\n        if final:\n            self._release_rest(hold)\n            hold[\"status\"] = \"CLOSED\"\n        return record\n\n    def void(self, hold_id):\n        hold = self.holds[hold_id]\n        if hold[\"status\"] != \"OPEN\":\n            return hold\n        self._release_rest(hold)\n        hold[\"status\"] = \"VOIDED\"\n        return hold\n\n    def sweep_expired(self, now):\n        expired = []\n        for hold_id, hold in self.holds.items():\n            if hold[\"status\"] == \"OPEN\" and now > hold[\"expires_at\"]:\n                self._release_rest(hold)\n                hold[\"status\"] = \"EXPIRED\"\n                expired.append(hold_id)\n        return expired\n\n    def refund(self, refund_id, capture_id, amount):\n        if refund_id in self.refunds:\n            return self.refunds[refund_id]\n        capture = self.captures[capture_id]\n        if amount <= 0:\n            raise WalletError(\"invalid amount\")\n        if capture[\"refunded\"] + amount > capture[\"amount\"]:\n            raise WalletError(\"over refund\")\n        total_refunded = capture[\"refunded\"] + amount\n        # Cumulative fee target, so the total returned is exact after any sequence of refunds.\n        target = _div_half_even(capture[\"fee\"] * total_refunded, capture[\"amount\"])\n        fee_back = target - capture[\"fee_returned\"]\n        capture[\"refunded\"] = total_refunded\n        capture[\"fee_returned\"] = target\n        account = self.holds[capture[\"hold_id\"]][\"account\"]\n        self.ledger[account] = self.ledger.get(account, 0) + amount\n        self.merchant -= amount - fee_back\n        self.revenue -= fee_back\n        record = {\"refund_id\": refund_id, \"capture_id\": capture_id, \"amount\": amount, \"fee_back\": fee_back}\n        self.refunds[refund_id] = record\n        return record\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.04516019999999999,
+   "prompt_tokens": 2,
+   "completion_tokens": 3317
+  }
+ }
+}

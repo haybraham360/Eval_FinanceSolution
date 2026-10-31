@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t9_pg_isolation",
+ "trial": 1,
+ "utc": "2026-10-31T14:57:44+00:00",
+ "latency_s": 127.8,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"I1\": {\"a_saw\": \"7\"},\n  \"I2\": {\"a_blocked\": true, \"a_saw\": \"100\", \"a_update_sqlstate\": \"40001\", \"final_balance\": \"7\"},\n  \"I3\": {\"a_blocked\": true, \"a_saw\": \"7\"},\n  \"I4\": {\"a_blocked\": true, \"a_sqlstate\": null, \"a_saw\": \"100\"},\n  \"I5\": {\"first_sqlstate\": \"40001\", \"rollback_to_sqlstate\": null, \"retry_sqlstate\": \"40001\"},\n  \"I6\": {\"b_blocked\": true, \"b_sqlstate\": \"40001\"},\n  \"I7\": {\"b_sqlstate\": \"23505\"},\n  \"I8\": {\"a_commit_sqlstate\": null, \"b_commit_sqlstate\": null},\n  \"I9\": {\"a_commit_sqlstate\": null, \"b_commit_sqlstate\": null, \"sum_after\": \"-100\"},\n  \"I10\": {\"a_commit_sqlstate\": null, \"b_select_sqlstate\": null, \"b_commit_sqlstate\": \"40001\", \"b_commit_tag\": null},\n  \"I11\": {\"b_commit_sqlstate\": null, \"c_commit_sqlstate\": null, \"a_insert_sqlstate\": \"40001\", \"a_commit_sqlstate\": null},\n  \"I12\": {\"insert_sqlstate\": null, \"visible_rows\": \"2\", \"commit_sqlstate\": \"23505\", \"rows_after\": \"1\"},\n  \"I13\": {\"plain_unique_sqlstate\": \"23505\", \"deferrable_unique_sqlstate\": null},\n  \"I14\": {\"insert_sqlstate\": null, \"set_immediate_sqlstate\": \"23503\"},\n  \"I15\": {\"sqlstate\": \"55000\"},\n  \"I16\": {\"first\": \"100\", \"second\": \"7\"},\n  \"I17\": {\"lock_timeout_sqlstate\": \"55P03\", \"statement_timeout_sqlstate\": \"57014\"}\n}\n```"
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.18779310000000002,
+   "prompt_tokens": 2,
+   "completion_tokens": 15935
+  }
+ }
+}

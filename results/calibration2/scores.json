@@ -1,0 +1,1565 @@
+[
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t10_pg_money_time",
+  "trial": 1,
+  "utc": "2026-10-31T14:59:06+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 19381,
+  "score": 0.9482758620689655,
+  "passed": false,
+  "checks": [
+   {
+    "check": "E1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E18",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E19",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E20",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E21",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E22",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E23",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E24",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E25",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E26",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E27",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E28",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E29",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E30",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E31",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E32",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E33",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E34",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E35",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E36",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E37",
+    "passed": false,
+    "detail": "AssertionError: E37: expected '2592000.000000', got '2592000'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E37: expected '2592000.000000', got '2592000'\n"
+   },
+   {
+    "check": "E38",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E39",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E40",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E41",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E42",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E43",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E44",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E45",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E46",
+    "passed": false,
+    "detail": "AssertionError: E46: expected '1 day 01:00:00', got '25:00:00'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E46: expected '1 day 01:00:00', got '25:00:00'\n"
+   },
+   {
+    "check": "E47",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E48",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E49",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E50",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E51",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E52",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E53",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E54",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E55",
+    "passed": false,
+    "detail": "AssertionError: E55: expected '###.##', got '###.68'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E55: expected '###.##', got '###.68'\n"
+   },
+   {
+    "check": "E56",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E57",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E58",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t8_pg_locks",
+  "trial": 1,
+  "utc": "2026-10-31T14:59:07+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 29314,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "L1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L18",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L19",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t9_pg_isolation",
+  "trial": 1,
+  "utc": "2026-10-31T14:59:33+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 24578,
+  "score": 0.8823529411764706,
+  "passed": false,
+  "checks": [
+   {
+    "check": "I1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I8",
+    "passed": false,
+    "detail": "AssertionError: I8.b_commit_sqlstate: expected None, got '40001'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 10, in same\n    eq(got, want, label)\n    ~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: I8.b_commit_sqlstate: expected None, got '40001'\n"
+   },
+   {
+    "check": "I9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I13",
+    "passed": false,
+    "detail": "AssertionError: I13.deferrable_unique_sqlstate: expected None, got '23505'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 10, in same\n    eq(got, want, label)\n    ~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: I13.deferrable_unique_sqlstate: expected None, got '23505'\n"
+   },
+   {
+    "check": "I14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I17",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t10_pg_money_time",
+  "trial": 1,
+  "utc": "2026-10-31T14:55:30+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 12699,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "E1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E18",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E19",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E20",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E21",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E22",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E23",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E24",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E25",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E26",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E27",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E28",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E29",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E30",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E31",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E32",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E33",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E34",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E35",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E36",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E37",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E38",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E39",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E40",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E41",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E42",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E43",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E44",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E45",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E46",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E47",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E48",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E49",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E50",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E51",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E52",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E53",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E54",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E55",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E56",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E57",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E58",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t8_pg_locks",
+  "trial": 1,
+  "utc": "2026-10-31T14:55:36+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 11820,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "L1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L18",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L19",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t9_pg_isolation",
+  "trial": 1,
+  "utc": "2026-10-31T14:56:53+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 19831,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "I1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I17",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t10_pg_money_time",
+  "trial": 1,
+  "utc": "2026-10-31T14:57:38+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 6314,
+  "score": 0.9827586206896551,
+  "passed": false,
+  "checks": [
+   {
+    "check": "E1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E18",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E19",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E20",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E21",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E22",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E23",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E24",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E25",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E26",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E27",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E28",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E29",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E30",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E31",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E32",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E33",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E34",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E35",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E36",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E37",
+    "passed": false,
+    "detail": "AssertionError: E37: expected '2592000.000000', got '2629800.000000'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E37: expected '2592000.000000', got '2629800.000000'\n"
+   },
+   {
+    "check": "E38",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E39",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E40",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E41",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E42",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E43",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E44",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E45",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E46",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E47",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E48",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E49",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E50",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E51",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E52",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E53",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E54",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E55",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E56",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E57",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E58",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t8_pg_locks",
+  "trial": 1,
+  "utc": "2026-10-31T14:56:55+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 10747,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "L1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L18",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L19",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t9_pg_isolation",
+  "trial": 1,
+  "utc": "2026-10-31T14:57:44+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 15935,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "I1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I17",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ }
+]

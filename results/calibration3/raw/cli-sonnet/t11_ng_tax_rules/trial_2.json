@@ -1,0 +1,28 @@
+{
+ "model_label": "cli-sonnet",
+ "requested_model": "sonnet",
+ "params": {},
+ "task": "t11_ng_tax_rules",
+ "trial": 2,
+ "utc": "2026-10-31T15:11:06+00:00",
+ "latency_s": 37.5,
+ "system": "You are a senior backend engineer at a regulated payments company. Follow the task exactly. Your final answer must be in one fenced code block, in the language the task asks for, and it must be complete.",
+ "response": {
+  "model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "choices": [
+   {
+    "finish_reason": "stop",
+    "message": {
+     "content": "```json\n{\n  \"ST1\": {\"duty\": 50, \"payer\": \"transferor\"},\n  \"ST2\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST3\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST4\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST5\": {\"duty\": 0, \"payer\": \"none\"},\n  \"ST6\": {\"duty\": 0, \"payer\": \"none\"},\n  \"P1\": {\"tax\": 570750},\n  \"P2\": {\"tax\": 1687200},\n  \"P3\": {\"tax\": 12930000},\n  \"P4\": {\"tax\": 0},\n  \"P5\": {\"tax\": 0},\n  \"C1\": {\"cit\": 0, \"levy\": 0},\n  \"C2\": {\"cit\": 3000000, \"levy\": 400000},\n  \"C3\": {\"cit\": 3000000, \"levy\": 400000},\n  \"C4\": {\"cit\": 0, \"levy\": 0},\n  \"V1\": {\"vat\": 7.5},\n  \"V2\": {\"vat\": 7.5},\n  \"G1\": {\"chargeable_gain\": 0},\n  \"G2\": {\"chargeable_gain\": 12000000},\n  \"G3\": {\"chargeable_gain\": 1250000},\n  \"G4\": {\"chargeable_gain\": 0}\n}\n```\n\nThese answers come from my recall of the Act. I had no rule text to check against, so a few points need confirming against the gazetted text before the audit:\n\n- **Stamp duty:** I took the duty as \u20a650 on transfers of \u20a610,000 or more, paid by the sender. I treated same-bank transfers, own-account transfers and salary payments as exempt. ST3 and ST5 rest most on that recall. ST6 converts to \u20a68,000, which is under the threshold.\n- **Personal income tax:** I used the bands of 0% to \u20a6800,000, then 15%, 18%, 21%, 23% and 25% above \u20a650 million. Rent relief is 20% of rent, capped at \u20a6500,000. For P5, I treated income at the minimum wage as exempt.\n- **Company income tax:** I took a small company as one with turnover of \u20a650 million or less and fixed assets of \u20a6250 million or less. A small company pays no company income tax or development levy. The law firm company is a professional services firm, so it is excluded from small-company status. Other companies pay 30% tax and a 4% development levy. If the turnover threshold is actually \u20a6100 million, C3 changes to 0 and 0.\n- **VAT:** The rate is 7.5%. In V2 the \u20a6107.50 includes VAT, so the VAT is \u20a67.50.\n- **Chargeable gains:**\n  - Share disposals are exempt where proceeds are under \u20a6150 million and the gain is \u20a610 million or less.\n  - For G3, I reduced the gain in proportion to the unreinvested proceeds: \u20a65,000,000 \u00d7 50/200 = \u20a61,250,000. The proportional treatment is the least certain item here.\n  - For G4, loss-of-employment compensation is employment income, not a capital gain, so the chargeable gain is 0. The part above the \u20a650 million exemption is taxed separately as income."
+    }
+   }
+  ],
+  "usage": {
+   "cost": 0,
+   "notional_cost_usd": 0.054029799999999996,
+   "prompt_tokens": 2,
+   "completion_tokens": 5107
+  }
+ }
+}

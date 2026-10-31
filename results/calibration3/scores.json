@@ -1,0 +1,1100 @@
+[
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-10-31T15:11:27+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 7402,
+  "score": 0.8571428571428571,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": false,
+    "detail": "AssertionError: ST5.duty: expected 0, got 50\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: ST5.duty: expected 0, got 50\n"
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "AssertionError: G1.chargeable_gain: expected 0, got 8000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G1.chargeable_gain: expected 0, got 8000000\n"
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 2,
+  "utc": "2026-10-31T15:11:41+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 8850,
+  "score": 0.8095238095238095,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": false,
+    "detail": "AssertionError: ST5.duty: expected 0, got 50\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: ST5.duty: expected 0, got 50\n"
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": false,
+    "detail": "AssertionError: P5.tax: expected 0, got 6000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P5.tax: expected 0, got 6000\n"
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "AssertionError: G1.chargeable_gain: expected 0, got 8000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G1.chargeable_gain: expected 0, got 8000000\n"
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-haiku",
+  "resolved_model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 3,
+  "utc": "2026-10-31T15:11:47+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 9134,
+  "score": 0.7142857142857143,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": false,
+    "detail": "AssertionError: ST5.duty: expected 0, got 50\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: ST5.duty: expected 0, got 50\n"
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": false,
+    "detail": "AssertionError: P1.tax: expected 570750, got 390750\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P1.tax: expected 570750, got 390750\n"
+   },
+   {
+    "check": "P2",
+    "passed": false,
+    "detail": "AssertionError: P2.tax: expected 1687200, got 1309200\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P2.tax: expected 1687200, got 1309200\n"
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": false,
+    "detail": "AssertionError: C2.cit: expected 3000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C2.cit: expected 3000000, got 0\n"
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "AssertionError: G1.chargeable_gain: expected 0, got 8000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G1.chargeable_gain: expected 0, got 8000000\n"
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-10-31T15:10:30+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 8822,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 2,
+  "utc": "2026-10-31T15:10:16+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 7449,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 3,
+  "utc": "2026-10-31T15:10:29+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 8790,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-10-31T15:10:53+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 4458,
+  "score": 0.9047619047619048,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": false,
+    "detail": "AssertionError: ST3.duty: expected 50, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: ST3.duty: expected 50, got 0\n"
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 2,
+  "utc": "2026-10-31T15:11:06+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 5107,
+  "score": 0.9047619047619048,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": false,
+    "detail": "AssertionError: ST3.duty: expected 50, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: ST3.duty: expected 50, got 0\n"
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "cli-sonnet",
+  "resolved_model": "claude-haiku-5-5,claude-sonnet-5-5",
+  "provider": "claude-cli",
+  "task": "t11_ng_tax_rules",
+  "trial": 3,
+  "utc": "2026-10-31T15:11:01+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 4024,
+  "score": 0.9523809523809523,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ }
+]
