@@ -8,7 +8,10 @@
   {"label": "cli-opus", "id": "opus", "tier": "frontier", "backend": "cli", "effort": "high"},
   {"label": "cli-sonnet", "id": "sonnet", "tier": "frontier", "backend": "cli", "effort": "high"},
   {"label": "cli-haiku", "id": "haiku", "tier": "small", "backend": "cli"},
-  {"label": "free-inkling", "id": "thinkingmachines/inkling:free", "tier": "free", "params": {}},
   {"label": "free-nemotron-ultra", "id": "nvidia/nemotron-3-ultra-550b-a55b:free", "tier": "free", "params": {}},
-  {"label": "free-gemma-4", "id": "google/gemma-4-31b-it:free", "tier": "free", "params": {}}
+  {"label": "free-gemma-4", "id": "google/gemma-4-31b-it:free", "tier": "free", "params": {}},
+  {"label": "free-nemotron-3.5-super", "id": "nvidia/nemotron-3.5-super-vl:free", "tier": "free", "params": {}},
+  {"label": "free-north-mini-code", "id": "cohere/north-mini-code:free", "tier": "free", "params": {}},
+  {"label": "free-gemma-4-26b", "id": "google/gemma-4-26b-a4b-it:free", "tier": "free", "params": {}},
+  {"label": "free-dots-3", "id": "dots-studio/dots-3-note-preview:free", "tier": "free", "params": {}}
 ]

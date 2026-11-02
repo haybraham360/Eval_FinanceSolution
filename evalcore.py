@@ -24,13 +24,25 @@ def extract_answer(text, kind):
     """Take the last fenced block in the requested language, falling back to the last block.
 
     The last block is used because models often sketch code before the final version.
-    Returns None when the output has no fenced block at all."""
+    An unfenced answer is accepted only if the whole output is valid, so a model isn't zeroed for a
+    missing fence. Returns None when no complete answer can be found."""
     blocks = FENCE.findall(text or "")
     if not blocks:
-        return None
+        return text.strip() if _is_complete(text or "", kind) else None
     wanted = ("python", "py", "python3") if kind == "python" else ("json",)
     matching = [body for lang, body in blocks if lang.lower() in wanted]
     return (matching or [blocks[-1][1]])[-1]
+
+
+def _is_complete(text, kind):
+    try:
+        if kind == "json":
+            json.loads(text)
+        else:
+            compile(text, "answer", "exec")
+    except (ValueError, SyntaxError):
+        return False
+    return bool(text.strip())
 
 
 def _sandbox_prefix():

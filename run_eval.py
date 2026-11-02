@@ -11,6 +11,7 @@ import concurrent.futures as cf
 import json
 import os
 import random
+import ssl
 import subprocess
 import sys
 import tempfile
@@ -21,10 +22,13 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+import certifi
+
 import evalcore
 from evalcore import ROOT, TASKS
 
 URL = "https://openrouter.ai/api/v1/chat/completions"
+TLS = ssl.create_default_context(cafile=certifi.where())  # python.org builds on macOS ship with no CA bundle
 MAX_TOKENS = 40000
 SYSTEM = (
     "You are a senior backend engineer at a regulated payments company. "
@@ -58,7 +62,7 @@ def call_model(model, prompt, api_key):
     last_error = None
     for attempt in range(6):
         try:
-            with urllib.request.urlopen(request, timeout=900) as resp:
+            with urllib.request.urlopen(request, timeout=900, context=TLS) as resp:
                 payload = json.load(resp)
             choice = (payload.get("choices") or [{}])[0]
             if "error" in payload or not (choice.get("message") or {}).get("content"):
@@ -158,6 +162,8 @@ def grade_record(path):
 
 def summarize(run_dir, tiers):
     paths = sorted((run_dir / "raw").glob("*/*/trial_*.json"))
+    if not paths:
+        sys.exit(f"No saved trials in {run_dir}.")
     with cf.ThreadPoolExecutor(max_workers=os.cpu_count()) as pool:
         rows = list(pool.map(grade_record, paths))
     (run_dir / "scores.json").write_text(json.dumps(rows, indent=1))

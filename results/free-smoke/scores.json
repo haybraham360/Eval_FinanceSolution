@@ -1,0 +1,490 @@
+[
+ {
+  "model": "free-dots-3",
+  "resolved_model": "dots-studio/dots-3-note-preview:free",
+  "provider": "AtlasCloud",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-11-02T07:48:51+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1272,
+  "tokens_out": 34979,
+  "score": 0.38095238095238093,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": false,
+    "detail": "AssertionError: ST4.duty: expected 0, got 50\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: ST4.duty: expected 0, got 50\n"
+   },
+   {
+    "check": "ST5",
+    "passed": false,
+    "detail": "AssertionError: ST5.duty: expected 0, got 50\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: ST5.duty: expected 0, got 50\n"
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": false,
+    "detail": "AssertionError: P1.tax: expected 570750, got 659375\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P1.tax: expected 570750, got 659375\n"
+   },
+   {
+    "check": "P2",
+    "passed": false,
+    "detail": "AssertionError: P2.tax: expected 1687200, got 1785000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P2.tax: expected 1687200, got 1785000\n"
+   },
+   {
+    "check": "P3",
+    "passed": false,
+    "detail": "AssertionError: P3.tax: expected 12930000, got 14775000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P3.tax: expected 12930000, got 14775000\n"
+   },
+   {
+    "check": "P4",
+    "passed": false,
+    "detail": "AssertionError: P4.tax: expected 0, got 35000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P4.tax: expected 0, got 35000\n"
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C2",
+    "passed": false,
+    "detail": "AssertionError: C2.cit: expected 3000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C2.cit: expected 3000000, got 0\n"
+   },
+   {
+    "check": "C3",
+    "passed": false,
+    "detail": "AssertionError: C3.levy: expected 400000, got 200000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C3.levy: expected 400000, got 200000\n"
+   },
+   {
+    "check": "C4",
+    "passed": false,
+    "detail": "AssertionError: C4.cit: expected 0, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C4.cit: expected 0, got 2000000\n"
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "AssertionError: G1.chargeable_gain: expected 0, got 7900000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G1.chargeable_gain: expected 0, got 7900000\n"
+   },
+   {
+    "check": "G2",
+    "passed": false,
+    "detail": "AssertionError: G2.chargeable_gain: expected 12000000, got 11900000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G2.chargeable_gain: expected 12000000, got 11900000\n"
+   },
+   {
+    "check": "G3",
+    "passed": false,
+    "detail": "AssertionError: G3.chargeable_gain: expected 1250000, got 1150000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G3.chargeable_gain: expected 1250000, got 1150000\n"
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-3.5-super",
+  "resolved_model": "nvidia/nemotron-3.5-super-vl:free",
+  "provider": "Nvidia",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-11-02T07:40:41+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1261,
+  "tokens_out": 27679,
+  "score": 0.5238095238095238,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": false,
+    "detail": "AssertionError: P1.tax: expected 570750, got 588875\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P1.tax: expected 570750, got 588875\n"
+   },
+   {
+    "check": "P2",
+    "passed": false,
+    "detail": "AssertionError: P2.tax: expected 1687200, got 1817600\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P2.tax: expected 1687200, got 1817600\n"
+   },
+   {
+    "check": "P3",
+    "passed": false,
+    "detail": "AssertionError: P3.tax: expected 12930000, got 14192000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P3.tax: expected 12930000, got 14192000\n"
+   },
+   {
+    "check": "P4",
+    "passed": false,
+    "detail": "AssertionError: P4.tax: expected 0, got 84000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P4.tax: expected 0, got 84000\n"
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": false,
+    "detail": "AssertionError: C1.cit: expected 0, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C1.cit: expected 0, got 2000000\n"
+   },
+   {
+    "check": "C2",
+    "passed": false,
+    "detail": "AssertionError: C2.cit: expected 3000000, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C2.cit: expected 3000000, got 2000000\n"
+   },
+   {
+    "check": "C3",
+    "passed": false,
+    "detail": "AssertionError: C3.levy: expected 400000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C3.levy: expected 400000, got 0\n"
+   },
+   {
+    "check": "C4",
+    "passed": false,
+    "detail": "AssertionError: C4.cit: expected 0, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C4.cit: expected 0, got 2000000\n"
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "AssertionError: G1.chargeable_gain: expected 0, got 8000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G1.chargeable_gain: expected 0, got 8000000\n"
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-11-02T07:26:31+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1261,
+  "tokens_out": 6075,
+  "score": 0.5238095238095238,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": false,
+    "detail": "AssertionError: P1.tax: expected 570750, got 378875\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P1.tax: expected 570750, got 378875\n"
+   },
+   {
+    "check": "P2",
+    "passed": false,
+    "detail": "AssertionError: P2.tax: expected 1687200, got 1097600\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P2.tax: expected 1687200, got 1097600\n"
+   },
+   {
+    "check": "P3",
+    "passed": false,
+    "detail": "AssertionError: P3.tax: expected 12930000, got 14192000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P3.tax: expected 12930000, got 14192000\n"
+   },
+   {
+    "check": "P4",
+    "passed": false,
+    "detail": "AssertionError: P4.tax: expected 0, got 84000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P4.tax: expected 0, got 84000\n"
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": false,
+    "detail": "AssertionError: C1.cit: expected 0, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C1.cit: expected 0, got 2000000\n"
+   },
+   {
+    "check": "C2",
+    "passed": false,
+    "detail": "AssertionError: C2.cit: expected 3000000, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C2.cit: expected 3000000, got 2000000\n"
+   },
+   {
+    "check": "C3",
+    "passed": false,
+    "detail": "AssertionError: C3.levy: expected 400000, got 100000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C3.levy: expected 400000, got 100000\n"
+   },
+   {
+    "check": "C4",
+    "passed": false,
+    "detail": "AssertionError: C4.cit: expected 0, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C4.cit: expected 0, got 2000000\n"
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "AssertionError: G1.chargeable_gain: expected 0, got 8000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G1.chargeable_gain: expected 0, got 8000000\n"
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 60000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 60000000\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-north-mini-code",
+  "resolved_model": "cohere/north-mini-code:free",
+  "provider": "Cohere",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-11-02T07:26:57+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1004,
+  "tokens_out": 343,
+  "score": 0.0,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": false,
+    "detail": "KeyError: 'ST1'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'ST1'\n"
+   },
+   {
+    "check": "ST2",
+    "passed": false,
+    "detail": "KeyError: 'ST2'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'ST2'\n"
+   },
+   {
+    "check": "ST3",
+    "passed": false,
+    "detail": "KeyError: 'ST3'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'ST3'\n"
+   },
+   {
+    "check": "ST4",
+    "passed": false,
+    "detail": "KeyError: 'ST4'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'ST4'\n"
+   },
+   {
+    "check": "ST5",
+    "passed": false,
+    "detail": "KeyError: 'ST5'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'ST5'\n"
+   },
+   {
+    "check": "ST6",
+    "passed": false,
+    "detail": "KeyError: 'ST6'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'ST6'\n"
+   },
+   {
+    "check": "P1",
+    "passed": false,
+    "detail": "KeyError: 'P1'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'P1'\n"
+   },
+   {
+    "check": "P2",
+    "passed": false,
+    "detail": "KeyError: 'P2'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'P2'\n"
+   },
+   {
+    "check": "P3",
+    "passed": false,
+    "detail": "KeyError: 'P3'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'P3'\n"
+   },
+   {
+    "check": "P4",
+    "passed": false,
+    "detail": "KeyError: 'P4'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'P4'\n"
+   },
+   {
+    "check": "P5",
+    "passed": false,
+    "detail": "KeyError: 'P5'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'P5'\n"
+   },
+   {
+    "check": "C1",
+    "passed": false,
+    "detail": "KeyError: 'C1'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'C1'\n"
+   },
+   {
+    "check": "C2",
+    "passed": false,
+    "detail": "KeyError: 'C2'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'C2'\n"
+   },
+   {
+    "check": "C3",
+    "passed": false,
+    "detail": "KeyError: 'C3'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'C3'\n"
+   },
+   {
+    "check": "C4",
+    "passed": false,
+    "detail": "KeyError: 'C4'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'C4'\n"
+   },
+   {
+    "check": "V1",
+    "passed": false,
+    "detail": "KeyError: 'V1'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'V1'\n"
+   },
+   {
+    "check": "V2",
+    "passed": false,
+    "detail": "KeyError: 'V2'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'V2'\n"
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "KeyError: 'G1'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'G1'\n"
+   },
+   {
+    "check": "G2",
+    "passed": false,
+    "detail": "KeyError: 'G2'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'G2'\n"
+   },
+   {
+    "check": "G3",
+    "passed": false,
+    "detail": "KeyError: 'G3'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'G3'\n"
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "KeyError: 'G4'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 14, in check\n    got = json.loads(text)[name]\n          ~~~~~~~~~~~~~~~~^^^^^^\nKeyError: 'G4'\n"
+   }
+  ],
+  "error": null
+ }
+]
