@@ -266,7 +266,7 @@ For example:
 * Some models made mistakes involving daylight-saving time and exact financial calculations.
 * Sonnet had one payout task where its implementation passed the money-safety checks but returned an unexpected internal status.
 
-The complete failure analysis and transcripts are available in the repository.
+The failing checks for every task are listed in [results/final/summary.md](results/final/summary.md), and the lowest-scoring trial for each model and task is in [transcripts/final/](transcripts/final/).
 
 ---
 
