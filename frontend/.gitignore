@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# Generated on every build by scripts/export_explorer_data.py. Never hand-edit or commit.
+public/explorer-data.json

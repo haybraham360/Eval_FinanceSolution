@@ -1,0 +1,88 @@
+# Rebuilds and redeploys the Ledger-Eval Explorer from the committed repository on every push to main.
+# It never runs a model evaluation and needs no secrets or API keys: it validates the graders, proves the
+# committed scores still re-grade identically, extracts the data bundle, builds the static site and
+# publishes it to GitHub Pages. If any step fails, nothing is deployed and the previous site stays up;
+# the site itself then shows a "may be out of date" notice because its commit no longer matches main.
+name: Deploy Ledger-Eval Explorer
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: explorer-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out the pushed commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the graders' only runtime dependencies
+        run: pip install certifi==2025.8.3 tzdata==2025.2
+
+      - name: Validate the graders (references pass, every mutant fails its target check)
+        run: python validate_graders.py
+
+      - name: Prove committed scores still match the current graders
+        run: python scripts/verify_committed_results.py
+
+      - name: Test the data extractor
+        run: python -m unittest discover -s scripts/tests -v
+
+      - name: Extract the explorer data from this commit
+        run: python scripts/export_explorer_data.py --out frontend/public/explorer-data.json
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Test the frontend
+        working-directory: frontend
+        run: npm test
+
+      - name: Build the site
+        working-directory: frontend
+        env:
+          EXPLORER_BASE: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

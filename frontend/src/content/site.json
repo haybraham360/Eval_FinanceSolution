@@ -1,0 +1,35 @@
+{
+  "_note": "Plain-language positioning copy only. No scores, counts, dates or model names belong here: every number on the page comes from the repository at build time.",
+  "headline": "Can AI be trusted with your money?",
+  "description": "We gave AI models real problems from the world of money, like sending payouts, fixing a broken wallet and applying Nigerian tax law, and checked every answer with code.",
+  "families": [
+    {
+      "match": "financial engineering",
+      "name": "Moving money safely",
+      "plain": "Payouts, refunds, currency exchange and reconciling bank records, where one slip can pay someone twice or lose money.",
+      "icon": "coins"
+    },
+    {
+      "match": "postgres|database",
+      "name": "Keeping records correct",
+      "plain": "How a database behaves when many payments happen at the same moment, and how it rounds money and handles dates and time zones.",
+      "icon": "database"
+    },
+    {
+      "match": "tax|compliance",
+      "name": "Following Nigerian tax law",
+      "plain": "Applying the Nigeria Tax Act 2025 without being given the law, including rules that limit or override other rules.",
+      "icon": "law"
+    }
+  ],
+  "steps": [
+    {"title": "Give the AI a real problem", "body": "Each test is written like a work ticket at a payments company.", "icon": "ticket"},
+    {"title": "The AI writes its answer", "body": "Code or figures, with no tools, no internet and no second chances.", "icon": "ai"},
+    {"title": "Code checks every detail", "body": "A program checks the answer, item by item, against the right result. No AI judges another AI.", "icon": "check"}
+  ],
+  "fairness": [
+    "Every answer is checked by a program, not by another AI.",
+    "The checkers are tested too: they must reject deliberately wrong answers and accept correct ones.",
+    "Every answer, score and checker is public on GitHub."
+  ]
+}
