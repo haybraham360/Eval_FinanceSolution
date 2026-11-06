@@ -47,8 +47,8 @@ export const isPlainNumber = (x: string) => /^'?-?\d+(\.\d+)?'?$/.test(x.trim())
  *  most models failed, then the most failed attempts, then task order. If any mistake has a written rule, only
  *  those are shown.
  *  Only grader messages "expected X, got Y" where both X and Y are plain numbers qualify, so every card is
- *  readable without technical knowledge; at most one mistake per task. */
-export function topMistakes(run: Run | undefined, taskOrder: string[], limit = 3): Mistake[] {
+ *  readable without technical knowledge; at most `perTask` mistakes from one task and `limit` in all. */
+export function topMistakes(run: Run | undefined, taskOrder: string[], limit = 6, perTask = 3): Mistake[] {
   if (!run) return [];
   const groups = new Map<string, Mistake>();
   for (const f of run.failures) {
@@ -67,8 +67,15 @@ export function topMistakes(run: Run | undefined, taskOrder: string[], limit = 3
   );
   // When some mistakes come with a written rule, show only those: a bare code or count means little to most readers.
   const pool = sorted.some(explained) ? sorted.filter(explained) : sorted;
-  const seen = new Set<string>();
-  return pool.filter((g) => !seen.has(g.task) && seen.add(g.task)).slice(0, limit);
+  const perTaskCount = new Map<string, number>();
+  return pool
+    .filter((g) => {
+      const n = perTaskCount.get(g.task) ?? 0;
+      if (n >= perTask) return false;
+      perTaskCount.set(g.task, n + 1);
+      return true;
+    })
+    .slice(0, limit);
 }
 
 /** Average score per family across all models in the run, for the one-line takeaway. */

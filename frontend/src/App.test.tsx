@@ -90,3 +90,17 @@ describe("mistake cards stay readable", () => {
     expect(["None", "'23505'x", "[1, 2]", "True"].some(isPlainNumber)).toBe(false);
   });
 });
+
+describe("mistake selection", () => {
+  it("caps cards per task and overall, explained mistakes first", async () => {
+    const { topMistakes } = await import("./lib/insights");
+    const mk = (task: string, check: string, ruled: boolean) => ({
+      model: "m-a", task, check, message: `AssertionError: ${check}: expected 10, got 5`, failedTrials: [1], trialsRun: 1,
+      transcriptPath: null, transcriptTrial: null, rawPath: null, sourcePath: "s",
+      reference: ruled ? { provision: "s.1", rule: "A rule", sourcePath: "r" } : null,
+    });
+    const run = { failures: [mk("t1", "a", true), mk("t1", "b", true), mk("t1", "c", true), mk("t1", "d", true), mk("t2", "a", true), mk("t3", "a", false)] } as never;
+    const got = topMistakes(run, ["t1", "t2", "t3"]).map((m) => `${m.task}/${m.check}`);
+    expect(got).toEqual(["t1/a", "t1/b", "t1/c", "t2/a"]);
+  });
+});
