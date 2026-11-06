@@ -188,6 +188,15 @@ class ExplorerDataFollowsRepository(unittest.TestCase):
         with self.assertRaises(ex.DataError):
             self.repo.build()
 
+    def test_report_folders_are_not_runs(self):
+        self.repo.write("results/additional/report.md", "# notes\n")
+        self.repo.write("results/half-run/raw/m-a/t1_alpha/trial_1.json", "{}")
+        self.repo.commit()
+        d = self.repo.build()
+        self.assertEqual([r["id"] for r in d["runs"]], ["run1"])
+        self.assertFalse(any("additional" in w for w in d["warnings"]))
+        self.assertTrue(any("half-run" in w for w in d["warnings"]), "a run with raw outputs but no scores is still flagged")
+
     def test_uncommitted_changes_are_flagged(self):
         self.repo.task("t9_draft")
         d = self.repo.build()

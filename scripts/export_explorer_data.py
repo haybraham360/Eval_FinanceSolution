@@ -281,6 +281,8 @@ def load_runs(root, tasks, models_cfg, sources, warnings):
     for d in sorted(p for p in rdir.iterdir() if p.is_dir()):
         scores = d / "scores.json"
         rel = str(scores.relative_to(root))
+        if not scores.exists() and not (d / "raw").is_dir():
+            continue  # documentation such as results/additional/, not a run
         if not scores.exists():
             warnings.append(f"results/{d.name} has no scores.json, so it is not shown. Run `python run_eval.py regrade --run-id {d.name}`.")
             continue
