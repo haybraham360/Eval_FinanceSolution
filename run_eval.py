@@ -15,11 +15,13 @@ import ssl
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 import urllib.error
 import urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
+from decimal import Decimal
 from pathlib import Path
 
 import certifi
@@ -28,6 +30,8 @@ import evalcore
 from evalcore import ROOT, TASKS
 
 URL = "https://openrouter.ai/api/v1/chat/completions"
+DAILY_LIMIT_HIT = threading.Event()  # OpenRouter's free daily quota: retrying only burns more of it
+COST_SEEN = threading.Event()  # --free-only: set if any response reports a non-zero cost, which stops the run
 TLS = ssl.create_default_context(cafile=certifi.where())  # python.org builds on macOS ship with no CA bundle
 MAX_TOKENS = 40000
 SYSTEM = (
@@ -60,6 +64,7 @@ def call_model(model, prompt, api_key):
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json", "X-Title": "ledger-eval"},
     )
     last_error = None
+    rate_limited = 0
     for attempt in range(6):
         try:
             with urllib.request.urlopen(request, timeout=900, context=TLS) as resp:
@@ -73,6 +78,15 @@ def call_model(model, prompt, api_key):
             last_error = f"HTTP {exc.code}: {exc.read()[:300]!r}"
             if exc.code in (400, 401, 402, 403, 404):
                 break
+            if exc.code == 429 and "per-day" in last_error:
+                DAILY_LIMIT_HIT.set()
+                break
+            if exc.code == 429:  # upstream rate limit: pause, and give up after two, so free quota is not burned
+                rate_limited += 1
+                if rate_limited >= 2:
+                    break
+                time.sleep(60)
+                continue
         except Exception as exc:  # network failures and read timeouts are provider faults, so retry
             last_error = repr(exc)
         time.sleep(2**attempt + random.random())
@@ -113,10 +127,14 @@ def trial_path(run_dir, model, task, trial):
     return run_dir / "raw" / model["label"] / task / f"trial_{trial}.json"
 
 
-def run_trial(run_dir, model, task, trial, api_key):
+def run_trial(run_dir, model, task, trial, api_key, free_only=False):
     path = trial_path(run_dir, model, task, trial)
     if path.exists():
         return "skipped"
+    if COST_SEEN.is_set():
+        return "not run: a response reported a non-zero cost, so the --free-only run stopped"
+    if DAILY_LIMIT_HIT.is_set() and model.get("backend") != "cli":
+        return "not run: OpenRouter daily limit reached, rerun the same --run-id later"
     started = time.time()
     prompt = evalcore.task_prompt(task)
     payload = call_cli(model, prompt) if model.get("backend") == "cli" else call_model(model, prompt, api_key)
@@ -133,6 +151,9 @@ def run_trial(run_dir, model, task, trial, api_key):
         "response": payload,
     }
     path.write_text(json.dumps(record, indent=1))
+    if free_only and (payload.get("usage") or {}).get("cost"):
+        COST_SEEN.set()
+        raise RuntimeError(f"response reported cost {payload['usage']['cost']}; stopping the --free-only run")
     return "ok"
 
 
@@ -237,6 +258,42 @@ def _sd(values):
     return (sum((v - mean) ** 2 for v in values) / len(values)) ** 0.5
 
 
+def verify_free(models, tasks, trials, api_key):
+    """--free-only: abort unless every selected model is an OpenRouter `:free` entry that OpenRouter
+    prices at exactly 0 right now. Uses only the free metadata endpoints, which make no model call."""
+    print(f"Free-only plan, checked {datetime.now(timezone.utc).isoformat(timespec='seconds')}:")
+    with urllib.request.urlopen("https://openrouter.ai/api/v1/models", timeout=60, context=TLS) as resp:
+        listed = {m["id"]: m for m in json.load(resp)["data"]}
+    problems = []
+    for m in models:
+        entry = listed.get(m["id"])
+        prices = (entry or {}).get("pricing") or {}
+        paid = {k: v for k, v in prices.items() if Decimal(str(v)) != 0}
+        if m.get("backend") == "cli":
+            problems.append(f"{m['label']} is a CLI model, not an OpenRouter free model")
+        elif m.get("tier") != "free" or not m["id"].endswith(":free"):
+            problems.append(f"{m['label']} ({m['id']}) is not a :free entry")
+        elif entry is None:
+            problems.append(f"{m['label']} ({m['id']}) is not listed by OpenRouter today")
+        elif not prices or paid:
+            problems.append(f"{m['label']} ({m['id']}) has non-zero pricing {paid or prices}")
+        print(f"  {m['label']}: {m['id']} pricing={prices or 'missing'}")
+    request = urllib.request.Request("https://openrouter.ai/api/v1/key", headers={"Authorization": f"Bearer {api_key}"})
+    with urllib.request.urlopen(request, timeout=60, context=TLS) as resp:
+        key = json.load(resp).get("data", {})
+    daily = key.get("free_model_daily_requests") or {}
+    jobs = len(models) * len(tasks) * trials
+    print(f"  tasks: {len(tasks)}, trials per task: {trials}, model calls: {jobs}")
+    print(f"  key: free tier={key.get('is_free_tier')}, lifetime usage=${key.get('usage')}, free requests left today={daily.get('remaining')}/{daily.get('limit')}")
+    if daily.get("remaining") is not None and daily["remaining"] < jobs:
+        print(f"  warning: only {daily['remaining']} free requests left today; the rest will stop at the daily limit and can resume later")
+    if daily.get("remaining") == 0:
+        problems.append("no free requests left today")
+    if problems:
+        sys.exit("Aborting, nothing was called:\n  " + "\n  ".join(problems))
+    print("  cost classification: FREE (OpenRouter :free models priced at 0; any response reporting a cost stops the run)")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", choices=["run", "regrade"])
@@ -245,6 +302,8 @@ def main():
     parser.add_argument("--tasks", default=None, help="comma-separated task ids (default: all)")
     parser.add_argument("--trials", type=int, default=3)
     parser.add_argument("--workers", type=int, default=3)
+    parser.add_argument("--free-only", action="store_true", help="abort unless every model is an OpenRouter :free model priced at 0 today")
+    parser.add_argument("--dry-run", action="store_true", help="print the plan (and the --free-only check) without calling any model")
     args = parser.parse_args()
 
     models = json.loads((ROOT / "models.json").read_text())
@@ -264,11 +323,21 @@ def main():
         if not models:
             sys.exit("No models to run. Set OPENROUTER_API_KEY in .env or choose CLI models.")
         tasks = args.tasks.split(",") if args.tasks else TASKS
+        unknown = [t for t in tasks if t not in evalcore.ALL_TASKS]
+        if unknown:
+            sys.exit(f"Unknown task ids: {unknown}")
+        if args.free_only:
+            if not api_key:
+                sys.exit("--free-only needs OPENROUTER_API_KEY.")
+            verify_free(models, tasks, args.trials, api_key)
+        if args.dry_run:
+            print(f"Dry run: {[m['label'] for m in models]} x {len(tasks)} tasks x {args.trials} trials -> {run_dir}. Nothing was called.")
+            return
         jobs = [(m, t, n) for m in models for t in tasks for n in range(1, args.trials + 1)]
         print(f"{len(jobs)} trials -> {run_dir}", flush=True)
         failed = 0
         with cf.ThreadPoolExecutor(max_workers=args.workers) as pool:
-            futures = {pool.submit(run_trial, run_dir, m, t, n, api_key): (m["label"], t, n) for m, t, n in jobs}
+            futures = {pool.submit(run_trial, run_dir, m, t, n, api_key, args.free_only): (m["label"], t, n) for m, t, n in jobs}
             for i, future in enumerate(cf.as_completed(futures), 1):
                 try:
                     status = future.result()

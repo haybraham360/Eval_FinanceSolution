@@ -1,0 +1,18 @@
+[
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t13_treasury_close_recovery",
+  "trial": 1,
+  "utc": "2026-11-06T20:55:15+00:00",
+  "finish_reason": "length",
+  "cost_usd": 0,
+  "tokens_in": 8284,
+  "tokens_out": 40000,
+  "score": 0.0,
+  "passed": false,
+  "checks": [],
+  "error": "no fenced code block in output"
+ }
+]

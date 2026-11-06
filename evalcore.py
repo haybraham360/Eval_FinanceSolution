@@ -2,13 +2,17 @@
 import json
 import os
 import re
+import signal
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-TASKS = sorted(p.name for p in (ROOT / "tasks").iterdir() if p.is_dir())
+ALL_TASKS = sorted(p.name for p in (ROOT / "tasks").iterdir() if p.is_dir())
+# Tasks marked "experimental" in meta.json run only when named with --tasks, so the default
+# benchmark stays the original 12 tasks.
+TASKS = [t for t in ALL_TASKS if not json.loads((ROOT / "tasks" / t / "meta.json").read_text()).get("experimental")]
 FENCE = re.compile(r"```([a-zA-Z0-9_+-]*)[ \t]*\n(.*?)```", re.S)
 
 
@@ -74,6 +78,8 @@ def grade_file(task_id, solution_path, timeout=300):
         last = proc.stdout.strip().splitlines()[-1] if proc.stdout.strip() else ""
         if last.startswith('{"load_error"'):
             return {"score": 0.0, "passed": False, "checks": [], "error": json.loads(last)["load_error"]}
+        if proc.returncode == -signal.SIGXCPU:
+            return {"score": 0.0, "passed": False, "checks": [], "error": "solution exceeded the CPU time limit"}
         return {"score": 0.0, "passed": False, "checks": [], "error": f"grader crashed: {proc.stderr[-800:]}"}
     done = sum(c["passed"] for c in checks)
     return {"score": done / len(checks), "passed": done == len(checks), "checks": checks, "error": None}

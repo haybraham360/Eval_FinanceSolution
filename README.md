@@ -302,6 +302,53 @@ The bigger goal is to make financial AI systems easier to evaluate before they a
 
 ---
 
+## Additional Experiments
+
+These experiments were added after the main evaluation. **They are kept separate from the 108-trial results above, which are unchanged.** The details are in [results/additional/additional_evaluation_report.md](results/additional/additional_evaluation_report.md).
+
+### Explore the results visually
+
+**[Ledger-Eval Explorer](https://haybraham360.github.io/Eval_FinanceSolution/)** is a plain-language website that explains the evaluation and shows the latest committed results. It is rebuilt from this repository on every push, so it never shows numbers typed in by hand. See [frontend/README.md](frontend/README.md).
+
+### Cross-provider check (exploratory)
+
+Do the weak spots only appear in Claude models? I ran one free model from another company on the same 12 tasks: **Nemotron 3 Ultra** from NVIDIA (`nvidia/nemotron-3-ultra-550b-a55b:free`), through OpenRouter's free tier, at no cost. It ran **one attempt per task**, not three, so it is weaker evidence than the main results.
+
+| Model | Trials | Average Score | Engineering | PostgreSQL | Nigerian Tax |
+|---|---|---|---|---|---|
+| Nemotron 3 Ultra (free) | 12 | 70.2% | 83.3% | 63.9% | 43.3% |
+
+The same pattern appeared: payments engineering was easiest and Nigerian tax law hardest. The model also repeated the exact tax mistakes Sonnet and Haiku made: the ₦50m compensation limit, the accommodation cap, and the rule that the insurance deduction uses the *preceding* year's premium.
+
+This run also found a defect in the t1 grader. Its fake payment store names its parameters differently from the task prompt, so a model that uses the documented names gets 0%. **The original Claude results are not affected**, because they passed those values by position. A fix is pending. A second free model, Gemma 4, could not be run because its free endpoint was rate-limited. Full report: [results/additional/free_cross_provider_report.md](results/additional/free_cross_provider_report.md).
+
+### Advanced scenario (experimental)
+
+| Task | What It Tests | What Makes It Challenging |
+|---|---|---|
+| `t13_treasury_close_recovery` | Closing a month of payments for a wallet company | Timeouts, duplicate and late events, reversals, currency rates, fee refunds and corrected bank files all interact in one ledger, and every difference from the provider's statement must be explained. |
+
+The grader for t13 has 34 checks. A reference solution and an independently written solution both pass every check, and all 33 deliberately wrong variants fail the check they target. t13 is **not part of the main scores**, and the default run still covers the original 12 tasks.
+
+| Model | Trials | Result |
+|---|---|---|
+| Claude Opus 5.5 | 1 | Passed all 34 checks |
+| Nemotron 3 Ultra (free) | 1 | Ran out of output space (40,000-token limit) before finishing its answer |
+
+Opus passing is a valid result: the task was not changed to force a failure. One trial cannot show how reliably it passes. Validation details: [results/additional/t13_validation_report.md](results/additional/t13_validation_report.md).
+
+### Running only free models
+
+`--free-only` checks OpenRouter's live pricing before any call and stops if a response ever reports a cost:
+
+```sh
+python run_eval.py run --run-id my-free-run --models free-nemotron-ultra --trials 1 --workers 1 --free-only --dry-run
+```
+
+Remove `--dry-run` to run it. To run the experimental task, name it: `--tasks t13_treasury_close_recovery`.
+
+---
+
 ## Running Ledger-Eval Locally
 
 If you’d like to explore the project or run the evaluations yourself, you can get started with Python 3.10 or later.
@@ -424,7 +471,7 @@ For reference, the CLI reported approximately $11.63 in equivalent API usage:
 
 I want to be clear about what this evaluation does and doesn’t demonstrate.
 
-* Only Claude models were tested. The results shouldn’t be used to rank Claude against other providers.
+* Only Claude models were tested in the main benchmark. One free NVIDIA model was later tested separately, with one attempt per task (see Additional Experiments). The results shouldn’t be used to rank Claude against other providers.
 * The evaluation is limited to 12 tasks. These scenarios cover important areas, but they don’t represent every possible financial engineering or compliance problem.
 * Opus passed all final trials. The results don’t demonstrate a failure in the strongest model tested.
 * The tax evaluation is specific to the Nigeria Tax Act 2025. It shouldn’t be treated as a complete test of Nigerian tax compliance.
@@ -447,9 +494,15 @@ ledger-eval/
 ├── graders/                # Deterministic grading logic
 ├── mutants/                # Deliberately incorrect solutions
 ├── results/
-│   └── final/               # Final evaluation results
+│   ├── final/               # Final evaluation results
+│   ├── additional/          # Reports for the additional experiments
+│   └── runs.json            # Which run is the headline and which are additional
 ├── transcripts/
 │   └── final/               # Model response transcripts
+│
+├── frontend/                # Ledger-Eval Explorer website (read-only)
+├── scripts/                 # Explorer data extraction and result verification
+├── .github/workflows/       # Rebuilds and deploys the explorer on every push
 │
 ├── validate_graders.py      # Validate the grading system
 ├── run_eval.py              # Run and re-grade evaluations

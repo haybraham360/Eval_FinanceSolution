@@ -1,0 +1,1351 @@
+[
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t10_pg_money_time",
+  "trial": 1,
+  "utc": "2026-11-06T19:36:36+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1684,
+  "tokens_out": 32076,
+  "score": 0.6551724137931034,
+  "passed": false,
+  "checks": [
+   {
+    "check": "E1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E5",
+    "passed": false,
+    "detail": "AssertionError: E5: expected '2.68', got '2.67'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E5: expected '2.68', got '2.67'\n"
+   },
+   {
+    "check": "E6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E7",
+    "passed": false,
+    "detail": "AssertionError: E7: expected '1.01', got '1.00'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E7: expected '1.01', got '1.00'\n"
+   },
+   {
+    "check": "E8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E9",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E13",
+    "passed": false,
+    "detail": "AssertionError: E13: expected '7.0000000000000000', got '7.0'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E13: expected '7.0000000000000000', got '7.0'\n"
+   },
+   {
+    "check": "E14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E18",
+    "passed": false,
+    "detail": "AssertionError: E18: expected '1.5000000000000000', got '1.5'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E18: expected '1.5000000000000000', got '1.5'\n"
+   },
+   {
+    "check": "E19",
+    "passed": false,
+    "detail": "AssertionError: E19: expected '3', got '2'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E19: expected '3', got '2'\n"
+   },
+   {
+    "check": "E20",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E21",
+    "passed": false,
+    "detail": "AssertionError: E21: expected '4', got '3'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E21: expected '4', got '3'\n"
+   },
+   {
+    "check": "E22",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E23",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E24",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E25",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E26",
+    "passed": false,
+    "detail": "AssertionError: E26: expected 'true', got 'false'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E26: expected 'true', got 'false'\n"
+   },
+   {
+    "check": "E27",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E28",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E29",
+    "passed": false,
+    "detail": "AssertionError: E29: expected '2024-02-29 00:00:00', got '2024-02-29'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E29: expected '2024-02-29 00:00:00', got '2024-02-29'\n"
+   },
+   {
+    "check": "E30",
+    "passed": false,
+    "detail": "AssertionError: E30: expected '2024-03-29 00:00:00', got '2024-03-29'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E30: expected '2024-03-29 00:00:00', got '2024-03-29'\n"
+   },
+   {
+    "check": "E31",
+    "passed": false,
+    "detail": "AssertionError: E31: expected '2024-03-31 00:00:00', got '2024-03-31'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E31: expected '2024-03-31 00:00:00', got '2024-03-31'\n"
+   },
+   {
+    "check": "E32",
+    "passed": false,
+    "detail": "AssertionError: E32: expected '2024-02-29 00:00:00', got '2024-02-29'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E32: expected '2024-02-29 00:00:00', got '2024-02-29'\n"
+   },
+   {
+    "check": "E33",
+    "passed": false,
+    "detail": "AssertionError: E33: expected '2024-01-31 2024-02-29 2024-03-29 2024-04-29 2024-05-29', got '2024-01-31 2024-02-29 2024-03-31 2024-04-30 2024-05-31'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E33: expected '2024-01-31 2024-02-29 2024-03-29 2024-04-29 2024-05-29', got '2024-01-31 2024-02-29 2024-03-31 2024-04-30 2024-05-31'\n"
+   },
+   {
+    "check": "E34",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E35",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E36",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E37",
+    "passed": false,
+    "detail": "AssertionError: E37: expected '2592000.000000', got '2592000'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E37: expected '2592000.000000', got '2592000'\n"
+   },
+   {
+    "check": "E38",
+    "passed": false,
+    "detail": "AssertionError: E38: expected 'true', got 'false'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E38: expected 'true', got 'false'\n"
+   },
+   {
+    "check": "E39",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E40",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E41",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E42",
+    "passed": false,
+    "detail": "AssertionError: E42: expected '2026-11-01 01:30:00-05', got '2026-11-01 01:30:00-04'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E42: expected '2026-11-01 01:30:00-05', got '2026-11-01 01:30:00-04'\n"
+   },
+   {
+    "check": "E43",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E44",
+    "passed": false,
+    "detail": "AssertionError: E44: expected '2026-03-08 00:00:00-05', got '2026-03-08 00:00:00-04'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E44: expected '2026-03-08 00:00:00-05', got '2026-03-08 00:00:00-04'\n"
+   },
+   {
+    "check": "E45",
+    "passed": false,
+    "detail": "AssertionError: E45: expected '2026-03-09 01:00:00-04', got '2026-03-09 00:00:00-04'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E45: expected '2026-03-09 01:00:00-04', got '2026-03-09 00:00:00-04'\n"
+   },
+   {
+    "check": "E46",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E47",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E48",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E49",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E50",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E51",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E52",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E53",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E54",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E55",
+    "passed": false,
+    "detail": "AssertionError: E55: expected '###.##', got '#######'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E55: expected '###.##', got '#######'\n"
+   },
+   {
+    "check": "E56",
+    "passed": false,
+    "detail": "AssertionError: E56: expected '2025-02-28 00:00:00', got '2025-02-28'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E56: expected '2025-02-28 00:00:00', got '2025-02-28'\n"
+   },
+   {
+    "check": "E57",
+    "passed": false,
+    "detail": "AssertionError: E57: expected '2024-02-29 00:00:00', got '2024-02-29'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 27, in check\n    same(got, want, name)\n    ~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: E57: expected '2024-02-29 00:00:00', got '2024-02-29'\n"
+   },
+   {
+    "check": "E58",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t11_ng_tax_rules",
+  "trial": 1,
+  "utc": "2026-11-06T19:39:52+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1261,
+  "tokens_out": 9654,
+  "score": 0.47619047619047616,
+  "passed": false,
+  "checks": [
+   {
+    "check": "ST1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ST6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "P1",
+    "passed": false,
+    "detail": "AssertionError: P1.tax: expected 570750, got 593000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P1.tax: expected 570750, got 593000\n"
+   },
+   {
+    "check": "P2",
+    "passed": false,
+    "detail": "AssertionError: P2.tax: expected 1687200, got 1817600\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P2.tax: expected 1687200, got 1817600\n"
+   },
+   {
+    "check": "P3",
+    "passed": false,
+    "detail": "AssertionError: P3.tax: expected 12930000, got 14192000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P3.tax: expected 12930000, got 14192000\n"
+   },
+   {
+    "check": "P4",
+    "passed": false,
+    "detail": "AssertionError: P4.tax: expected 0, got 84000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: P4.tax: expected 0, got 84000\n"
+   },
+   {
+    "check": "P5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "C1",
+    "passed": false,
+    "detail": "AssertionError: C1.cit: expected 0, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C1.cit: expected 0, got 2000000\n"
+   },
+   {
+    "check": "C2",
+    "passed": false,
+    "detail": "AssertionError: C2.cit: expected 3000000, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C2.cit: expected 3000000, got 2000000\n"
+   },
+   {
+    "check": "C3",
+    "passed": false,
+    "detail": "AssertionError: C3.levy: expected 400000, got 200000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C3.levy: expected 400000, got 200000\n"
+   },
+   {
+    "check": "C4",
+    "passed": false,
+    "detail": "AssertionError: C4.cit: expected 0, got 2000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: C4.cit: expected 0, got 2000000\n"
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G2",
+    "passed": false,
+    "detail": "AssertionError: G2.chargeable_gain: expected 12000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G2.chargeable_gain: expected 12000000, got 0\n"
+   },
+   {
+    "check": "G3",
+    "passed": false,
+    "detail": "AssertionError: G3.chargeable_gain: expected 1250000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G3.chargeable_gain: expected 1250000, got 0\n"
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 20000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t11_ng_tax_rules.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 20000000, got 0\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t12_ng_tax_interactions",
+  "trial": 1,
+  "utc": "2026-11-06T19:43:45+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1181,
+  "tokens_out": 15255,
+  "score": 0.3888888888888889,
+  "passed": false,
+  "checks": [
+   {
+    "check": "M1",
+    "passed": false,
+    "detail": "AssertionError: M1.tax: expected 1950000.0, got 2230000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M1.tax: expected 1950000.0, got 2230000\n"
+   },
+   {
+    "check": "M2",
+    "passed": false,
+    "detail": "AssertionError: M2.tax: expected 996000.0, got 1020400\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M2.tax: expected 996000.0, got 1020400\n"
+   },
+   {
+    "check": "M3",
+    "passed": false,
+    "detail": "AssertionError: M3.tax: expected 679200.0, got 670000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M3.tax: expected 679200.0, got 670000\n"
+   },
+   {
+    "check": "M4",
+    "passed": false,
+    "detail": "AssertionError: M4.tax: expected 3057750.0, got 2920000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M4.tax: expected 3057750.0, got 2920000\n"
+   },
+   {
+    "check": "M5",
+    "passed": false,
+    "detail": "AssertionError: M5.tax: expected 1323600.0, got 1462000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M5.tax: expected 1323600.0, got 1462000\n"
+   },
+   {
+    "check": "M6",
+    "passed": false,
+    "detail": "AssertionError: M6.tax: expected 870000.0, got 886000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M6.tax: expected 870000.0, got 886000\n"
+   },
+   {
+    "check": "M7",
+    "passed": false,
+    "detail": "AssertionError: M7.tax: expected 1050000.0, got 1078000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: M7.tax: expected 1050000.0, got 1078000\n"
+   },
+   {
+    "check": "E1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "E3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "V4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G5",
+    "passed": false,
+    "detail": "AssertionError: G5.chargeable_gain: expected 2000000, got 1000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G5.chargeable_gain: expected 2000000, got 1000000\n"
+   },
+   {
+    "check": "G6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G8",
+    "passed": false,
+    "detail": "AssertionError: G8.chargeable_gain: expected 5000000, got 4000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G8.chargeable_gain: expected 5000000, got 4000000\n"
+   },
+   {
+    "check": "G9",
+    "passed": false,
+    "detail": "AssertionError: G9.chargeable_gain: expected 0, got 19000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G9.chargeable_gain: expected 0, got 19000000\n"
+   },
+   {
+    "check": "G10",
+    "passed": false,
+    "detail": "AssertionError: G10.chargeable_gain: expected 15000000, got 54000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t12_ng_tax_interactions.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G10.chargeable_gain: expected 15000000, got 54000000\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t1_payout_executor",
+  "trial": 1,
+  "utc": "2026-11-06T19:51:45+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1069,
+  "tokens_out": 19971,
+  "score": 0.0,
+  "passed": false,
+  "checks": [
+   {
+    "check": "happy_path",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 178, in happy_path\n    eq(call(mod, w), \"PAID\", \"status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "insufficient_sends_nothing_and_is_not_sticky",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 189, in insufficient_sends_nothing_and_is_not_sticky\n    eq(call(mod, w), \"PAID\", \"after funds arrive\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "rejected_releases_funds_and_stays_failed",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 195, in rejected_releases_funds_and_stays_failed\n    eq(call(mod, w), \"FAILED\", \"status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "finished_payout_makes_no_money_moving_calls",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 204, in finished_payout_makes_no_money_moving_calls\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "timeout_keeps_funds_held",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 214, in timeout_keeps_funds_held\n    eq(call(mod, w), \"PENDING\", \"status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "lookup_timeout_is_pending",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 221, in lookup_timeout_is_pending\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "lagging_landed_transfer_is_not_failed",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 231, in lagging_landed_transfer_is_not_failed\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "never_landed_fails_after_window_and_releases",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 243, in never_landed_fails_after_window_and_releases\n    eq(call(mod, w), \"PENDING\", \"first\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "window_runs_from_most_recent_send",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 257, in window_runs_from_most_recent_send\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "landed_then_retry_after_provider_forgot",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 269, in landed_then_retry_after_provider_forgot\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "kill_at_every_operation_retry_soon",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 151, in op_count\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "kill_at_every_operation_retry_after_24h",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 151, in op_count\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "duplicate_invocation_at_every_operation",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 151, in op_count\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   },
+   {
+    "check": "returns_stored_truth_when_another_worker_wins",
+    "passed": false,
+    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 316, in returns_stored_truth_when_another_worker_wins\n    eq(call(mod, w), \"FAILED\", \"returned status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t2_webhook_convergence",
+  "trial": 1,
+  "utc": "2026-11-06T20:00:46+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1110,
+  "tokens_out": 24991,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_values",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_delivery_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "reissued_fact_under_new_event_id",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_failed_either_order",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_before_capture_converges",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "unapplied_refund_reported_then_absorbed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "late_refund_shrinks_open_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "failed_refund_regrows_dispute",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lost_dispute_with_late_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "decision_before_open_has_no_effect",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "latest_instant_wins_across_offsets",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "arbitration_flip_restores_fee_position",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "big_mixed_scenario_random_orders",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t3_fx_refund",
+  "trial": 1,
+  "utc": "2026-11-06T20:04:23+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 961,
+  "tokens_out": 10438,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_eur_base_pair",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_jpy_inverted_pair_zero_decimals",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_kwd_three_decimals_fee_tie",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "quote_side_per_pair_direction",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rounding_is_cumulative_not_per_refund",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "many_partials_drain_exactly",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "exact_above_float_precision",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ties_use_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "zero_lines_are_omitted",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "rejects_invalid_refunds",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t4_interest_backvalue",
+  "trial": 1,
+  "utc": "2026-11-06T20:11:17+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 913,
+  "tokens_out": 20501,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "anchor_leap_january",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_common_year_march",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "anchor_marginal_tier",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "year_boundary_changes_denominator",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capitalised_interest_compounds_from_next_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sub_minor_residue_is_never_lost",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "midmonth_rate_change_and_tx",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "overdrawn_days_earn_nothing",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "month_end_value_date_counts_that_day",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_posts_only_in_later_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_correction_compounds_through_corrected_history",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "back_value_withdrawal_gives_negative_posting",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "posted_on_month_end_is_known_that_month",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "partial_final_month_has_no_row",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t5_wallet_repair",
+  "trial": 1,
+  "utc": "2026-11-06T20:14:55+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1531,
+  "tokens_out": 11387,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "happy_path_fee_and_balances",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "minimum_fee",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "final_capture_releases_the_rest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "second_partial_capture_is_not_a_replay",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "capture_replay_is_inert_even_after_close",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sweep_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "void_after_partial_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "hold_valid_through_expiry_instant",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "expired_hold_rejects_capture",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_ties_round_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cumulative_refund_limit",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "refund_replay_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_returned_cumulatively",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_return_matches_formula_at_every_step",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "random_operations_conserve_money",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t6_settlement_recon",
+  "trial": 1,
+  "utc": "2026-11-06T20:17:01+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 885,
+  "tokens_out": 5698,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "clean_match_is_silent",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_formats",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "amount_precision_is_exact",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "corrected_file_replaces_whole_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "file_seq_compares_as_number",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "seq_is_per_batch",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_before_and_at_17_est",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "cutoff_during_daylight_time",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "utc_date_differs_from_local_date",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "weekend_and_holiday_roll",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_lines_ignored_on_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "split_tender_sums_both_sides",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "group_date_is_latest",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_nets_out",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_ledger_has_one",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "chargeback_pair_not_netted_if_amounts_differ",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "every_break_type_sorted",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t7_pg_concurrency",
+  "trial": 1,
+  "utc": "2026-11-06T20:22:34+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1817,
+  "tokens_out": 14897,
+  "score": 0.6153846153846154,
+  "passed": false,
+  "checks": [
+   {
+    "check": "S1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S2",
+    "passed": false,
+    "detail": "AssertionError: S2.final_balance: expected 110, got 120\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t7_pg_concurrency.py\", line 19, in check\n    eq(value, want, f\"{name}.{field}\")\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: S2.final_balance: expected 110, got 120\n"
+   },
+   {
+    "check": "S3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S5",
+    "passed": false,
+    "detail": "AssertionError: S5.from_table: expected 100, got 70\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t7_pg_concurrency.py\", line 19, in check\n    eq(value, want, f\"{name}.{field}\")\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: S5.from_table: expected 100, got 70\n"
+   },
+   {
+    "check": "S6",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S8",
+    "passed": false,
+    "detail": "AssertionError: S8.a_commit_sqlstate: expected None, got '40001'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t7_pg_concurrency.py\", line 19, in check\n    eq(value, want, f\"{name}.{field}\")\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: S8.a_commit_sqlstate: expected None, got '40001'\n"
+   },
+   {
+    "check": "S9",
+    "passed": false,
+    "detail": "AssertionError: S9.balance_update: expected False, got True\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t7_pg_concurrency.py\", line 19, in check\n    eq(value, want, f\"{name}.{field}\")\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: S9.balance_update: expected False, got True\n"
+   },
+   {
+    "check": "S10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S11",
+    "passed": false,
+    "detail": "AssertionError: S11.commit_sqlstate: expected None, got '25P02'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t7_pg_concurrency.py\", line 19, in check\n    eq(value, want, f\"{name}.{field}\")\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: S11.commit_sqlstate: expected None, got '25P02'\n"
+   },
+   {
+    "check": "S12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "S13",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t8_pg_locks",
+  "trial": 1,
+  "utc": "2026-11-06T20:33:32+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 3835,
+  "tokens_out": 23115,
+  "score": 0.5789473684210527,
+  "passed": false,
+  "checks": [
+   {
+    "check": "L1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L5",
+    "passed": false,
+    "detail": "AssertionError: L5.balance_seen_by_c_before_a_commits: expected '1', got '100'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L5.balance_seen_by_c_before_a_commits: expected '1', got '100'\n"
+   },
+   {
+    "check": "L6",
+    "passed": false,
+    "detail": "AssertionError: L6.a_sqlstate: expected '40P01', got 'None'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L6.a_sqlstate: expected '40P01', got 'None'\n"
+   },
+   {
+    "check": "L7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L9",
+    "passed": false,
+    "detail": "AssertionError: L9.b_sqlstate: expected '40001', got 'None'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L9.b_sqlstate: expected '40001', got 'None'\n"
+   },
+   {
+    "check": "L10",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L11",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L12",
+    "passed": false,
+    "detail": "AssertionError: L12.do_update_sqlstate: expected '21000', got '23505'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L12.do_update_sqlstate: expected '21000', got '23505'\n"
+   },
+   {
+    "check": "L13",
+    "passed": false,
+    "detail": "AssertionError: L13.id_of_y: expected '4', got '2'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L13.id_of_y: expected '4', got '2'\n"
+   },
+   {
+    "check": "L14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L15",
+    "passed": false,
+    "detail": "AssertionError: L15.b_first_sqlstate: expected None, got '55P03'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 10, in same\n    eq(got, want, label)\n    ~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L15.b_first_sqlstate: expected None, got '55P03'\n"
+   },
+   {
+    "check": "L16",
+    "passed": false,
+    "detail": "AssertionError: L16.final_balance: expected '101', got '111'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L16.final_balance: expected '101', got '111'\n"
+   },
+   {
+    "check": "L17",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L18",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "L19",
+    "passed": false,
+    "detail": "AssertionError: L19.fetched: expected '100', got '5'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: L19.fetched: expected '100', got '5'\n"
+   }
+  ],
+  "error": null
+ },
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t9_pg_isolation",
+  "trial": 1,
+  "utc": "2026-11-06T20:39:10+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 3892,
+  "tokens_out": 20458,
+  "score": 0.7058823529411765,
+  "passed": false,
+  "checks": [
+   {
+    "check": "I1",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I2",
+    "passed": false,
+    "detail": "AssertionError: I2.a_saw: expected '100', got '7'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: I2.a_saw: expected '100', got '7'\n"
+   },
+   {
+    "check": "I3",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I4",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I5",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I6",
+    "passed": false,
+    "detail": "AssertionError: I6.b_sqlstate: expected '40001', got '23505'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: I6.b_sqlstate: expected '40001', got '23505'\n"
+   },
+   {
+    "check": "I7",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I8",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I9",
+    "passed": false,
+    "detail": "AssertionError: I9.a_commit_sqlstate: expected None, got '40001'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 10, in same\n    eq(got, want, label)\n    ~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: I9.a_commit_sqlstate: expected None, got '40001'\n"
+   },
+   {
+    "check": "I10",
+    "passed": false,
+    "detail": "AssertionError: I10.a_commit_sqlstate: expected None, got '40001'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 10, in same\n    eq(got, want, label)\n    ~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: I10.a_commit_sqlstate: expected None, got '40001'\n"
+   },
+   {
+    "check": "I11",
+    "passed": false,
+    "detail": "AssertionError: I11.a_insert_sqlstate: expected '40001', got 'None'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 25, in check\n    same(got[field], value, f\"{name}.{field}\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/pg_answers.py\", line 13, in same\n    eq(text.strip(), str(want), label)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 43, in eq\n    raise AssertionError(f\"{label}: expected {expected!r}, got {actual!r}\")\nAssertionError: I11.a_insert_sqlstate: expected '40001', got 'None'\n"
+   },
+   {
+    "check": "I12",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I13",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I14",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I15",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I16",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "I17",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ }
+]

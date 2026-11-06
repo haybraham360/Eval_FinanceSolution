@@ -9,10 +9,10 @@ import sys
 from pathlib import Path
 
 import evalcore
-from evalcore import ROOT, TASKS
+from evalcore import ALL_TASKS, ROOT
 
 bad = 0
-only = sys.argv[1:] or TASKS
+only = sys.argv[1:] or ALL_TASKS
 mutant_total = 0
 
 

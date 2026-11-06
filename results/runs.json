@@ -1,0 +1,25 @@
+{
+  "final": {
+    "role": "headline",
+    "title": "Main benchmark: 3 Claude models, 12 tasks, 3 attempts each (31 Oct 2026)"
+  },
+  "free-cross-provider-2026-11-06": {
+    "role": "cross-provider",
+    "title": "Cross-provider check: a free NVIDIA model on the same 12 tasks (6 Nov 2026)",
+    "notes": [
+      "Exploratory: one attempt per task, against three per task in the main benchmark.",
+      "The t1_payout_executor score of 0% comes from a known grader defect, not from the model: the checker's fake store names its parameters differently from the task prompt, so the model's correctly named call crashed. See results/additional/free_cross_provider_report.md."
+    ]
+  },
+  "t13-opus-2026-11-06": {
+    "role": "advanced",
+    "title": "Advanced scenario t13: Claude Opus 5.5, one attempt (6 Nov 2026)"
+  },
+  "t13-free-2026-11-06": {
+    "role": "advanced",
+    "title": "Advanced scenario t13: free NVIDIA model, one attempt (6 Nov 2026)",
+    "notes": [
+      "The model reached the 40,000-token output limit before finishing its code, so there was no answer to grade."
+    ]
+  }
+}

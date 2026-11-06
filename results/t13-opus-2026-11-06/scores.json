@@ -1,0 +1,189 @@
+[
+ {
+  "model": "cli-opus",
+  "resolved_model": "claude-haiku-5-5,claude-opus-5-5",
+  "provider": "claude-cli",
+  "task": "t13_treasury_close_recovery",
+  "trial": 1,
+  "utc": "2026-11-06T19:15:11+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 2,
+  "tokens_out": 47127,
+  "score": 1.0,
+  "passed": true,
+  "checks": [
+   {
+    "check": "sample_final_balances",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_statuses",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_reconciliation",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_fee_and_fx_totals",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_period_totals",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_exceptions",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_commands",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_full_replay_is_inert",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "sample_result_stated_correctly",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "duplicate_and_reissued_facts_count_once",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "payin_timeout_is_pending_not_failed",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "unmatched_settlement_line_never_credits",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "orphan_reversal_links_when_payin_arrives",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "reversals_cap_in_occurrence_order",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "negative_balance_reported_and_blocks_payouts",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fx_uses_payin_snapshot_half_even",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fx_reversals_round_cumulatively",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fx_difference_posted_from_settlement",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_refund_is_cumulative_floor",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "fee_refund_follows_corrected_fee",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "corrected_file_posts_only_the_difference",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "operational_correction_posts_nothing",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "stale_file_seq_is_ignored_in_any_order",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "payout_timeout_keeps_funds_held",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "retry_inside_window_resends_same_reference",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "retry_after_window_looks_up_never_sends",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "lookup_respects_visibility_delay",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "settlement_line_resolves_unknown_payout",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "contradictory_payout_evidence_is_a_conflict",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "insufficient_payout_is_rejected",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "accounting_date_is_lagos_time",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "period_close_moves_late_lines_forward",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "ngn_mismatch_is_reported_not_forced",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "random_orders_converge",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ }
+]
