@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ExplorerData } from "./types";
 import { Masthead } from "./components/Masthead";
-import { Advanced, CrossProvider, Details, Fairness, Hero, HowItWorks, Mistakes, Scoreboard, WhatWeTest } from "./components/Story";
+import { Advanced, Findings, Hero, HowItWorks, Mistakes, Scoreboard, Trust } from "./components/Story";
 
 export function Explorer({ data }: { data: ExplorerData }) {
   const run = data.runs.find((r) => r.id === data.defaultRunId);
@@ -11,14 +11,12 @@ export function Explorer({ data }: { data: ExplorerData }) {
       <Masthead data={data} />
       <main>
         <Hero data={data} run={run} />
-        <WhatWeTest data={data} />
-        <HowItWorks />
+        <Findings data={data} run={run} />
+        <HowItWorks data={data} />
         <Scoreboard data={data} run={run} />
         <Mistakes data={data} run={run} />
-        <CrossProvider data={data} headline={run} />
-        <Advanced data={data} />
-        <Fairness data={data} />
-        <Details data={data} />
+        <Advanced data={data} run={run} />
+        <Trust data={data} />
       </main>
       <footer>
         <p>

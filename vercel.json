@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "cd frontend && npm ci",
+  "buildCommand": "python3 scripts/export_explorer_data.py --out frontend/public/explorer-data.json && cd frontend && npm run build",
+  "outputDirectory": "frontend/dist",
+  "git": { "deploymentEnabled": { "main": true } },
+  "headers": [
+    { "source": "/explorer-data.json", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+  ]
+}

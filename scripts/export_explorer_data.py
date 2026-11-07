@@ -6,7 +6,7 @@
 Everything the website shows comes from here, and every value records the repository file it came from.
 Nothing is typed in by hand: tasks come from tasks/*, results from results/<run>/scores.json (cross-checked
 against results/<run>/raw), task descriptions and limitations from README.md, statutory references from
-reference/t11_sources.md, and the commit from git or the GitHub Actions environment.
+reference/t11_sources.md, and the commit from git or the GitHub Actions or Vercel build environment.
 
 Exits with status 1, writing nothing, if the data is malformed or contradictory, so a broken push can
 never replace the last good deployment with misleading figures. Standard library only.
@@ -40,22 +40,24 @@ def _git(root, *args):
 
 
 def repo_identity(root):
-    """(owner/repo, branch) from GitHub Actions, else from the git remote."""
+    """(owner/repo, branch) from GitHub Actions or Vercel, else from the git remote."""
     repo = os.environ.get("GITHUB_REPOSITORY")
+    if not repo and os.environ.get("VERCEL_GIT_REPO_OWNER") and os.environ.get("VERCEL_GIT_REPO_SLUG"):
+        repo = f'{os.environ["VERCEL_GIT_REPO_OWNER"]}/{os.environ["VERCEL_GIT_REPO_SLUG"]}'
     if not repo:
         remote = _git(root, "remote", "get-url", "origin") or ""
         m = re.search(r"github\.com[:/]([^/]+/[^/.]+?)(?:\.git)?$", remote)
         repo = m.group(1) if m else None
-    branch = os.environ.get("GITHUB_REF_NAME") or _git(root, "rev-parse", "--abbrev-ref", "HEAD") or None
+    branch = os.environ.get("GITHUB_REF_NAME") or os.environ.get("VERCEL_GIT_COMMIT_REF") or _git(root, "rev-parse", "--abbrev-ref", "HEAD") or None
     if branch == "HEAD":  # detached checkout
         branch = None
     return repo, branch
 
 
 def commit_info(root, warnings):
-    sha = os.environ.get("EXPLORER_COMMIT_SHA") or os.environ.get("GITHUB_SHA") or _git(root, "rev-parse", "HEAD")
+    sha = os.environ.get("EXPLORER_COMMIT_SHA") or os.environ.get("GITHUB_SHA") or os.environ.get("VERCEL_GIT_COMMIT_SHA") or _git(root, "rev-parse", "HEAD")
     if not sha:
-        raise DataError("cannot determine the commit SHA: not a git checkout and GITHUB_SHA is not set")
+        raise DataError("cannot determine the commit SHA: not a git checkout and neither GITHUB_SHA nor VERCEL_GIT_COMMIT_SHA is set")
     date = _git(root, "log", "-1", "--format=%cI", sha)
     if not date:
         warnings.append(f"Commit date for {sha[:7]} is not available in this checkout.")

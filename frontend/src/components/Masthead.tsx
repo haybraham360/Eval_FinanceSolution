@@ -4,11 +4,12 @@ import { stamp } from "../lib/format";
 import { useFreshness } from "../lib/freshness";
 
 const SECTIONS = [
-  ["what", "What we test"],
+  ["findings", "Summary"],
   ["how", "How it works"],
   ["results", "Results"],
   ["mistakes", "Mistakes"],
-  ["others", "Other AI"],
+  ["hardest", "Harder tests"],
+  ["trust", "Trust"],
 ] as const;
 
 export function Masthead({ data }: { data: ExplorerData }) {

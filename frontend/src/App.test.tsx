@@ -43,9 +43,9 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 describe("the page follows the data bundle", () => {
   it("shows a model that only exists in the data, with no component change", () => {
     render(<Explorer data={fixture([model("m-a", 0.5), model("brand-new-model", 1)])} />);
-    const bars = screen.getByRole("list", { name: "Average score by model" });
-    expect(within(bars).getByText("Brand New Model 1")).toBeTruthy();
-    expect(within(bars).getByText("100.0%")).toBeTruthy();
+    const table = screen.getByRole("table", { name: "Scores by model" });
+    expect(within(table).getByText("Brand New Model 1")).toBeTruthy();
+    expect(within(table).getByText("100.0%")).toBeTruthy();
   });
 
   it("shows when the site was last updated and links the exact commit", () => {
@@ -69,6 +69,18 @@ describe("the page follows the data bundle", () => {
   it("says results are not published when there are no runs", () => {
     render(<Explorer data={fixture([], { runs: [], defaultRunId: null })} />);
     expect(screen.getAllByText(/not published yet/i).length).toBeGreaterThan(0);
+  });
+
+  it("derives the short-version findings from the scores, not from copy", () => {
+    const d = fixture([model("m-a", 0.5)]);
+    d.tasks.push({ ...d.tasks[0], id: "t2_beta", title: "Beta task", category: "Operations" });
+    d.runs[0].models[0].byTask.push({ task: "t2_beta", trials: 1, fullPasses: 0, meanScore: 0.2 });
+    render(<Explorer data={d} />);
+    expect(screen.getByText("Hardest area: Operations")).toBeTruthy();
+    cleanup();
+    d.runs[0].models[0].byTask[1].meanScore = 0.9;
+    render(<Explorer data={d} />);
+    expect(screen.getByText("Hardest area: Engineering")).toBeTruthy();
   });
 
   it("flags a local build from uncommitted files", () => {

@@ -1,4 +1,5 @@
-import type { ExplorerData, Run } from "../types";
+import { useState } from "react";
+import type { ExplorerData, ModelResult, Run } from "../types";
 import site from "../content/site.json";
 import { bucket, bucketWord, families, familyAverages, familyScore, figure, nameOf, sharedMistakes, topMistakes } from "../lib/insights";
 import { day, pct, plural } from "../lib/format";
@@ -10,6 +11,12 @@ function Gh({ data, path, children, dir = false }: { data: ExplorerData; path: s
   return url ? <a href={url} target="_blank" rel="noreferrer">{children}<span className="visually-hidden"> (opens GitHub)</span></a> : <>{children}</>;
 }
 
+const crossRuns = (data: ExplorerData) => data.runs.filter((r) => r.role === "cross-provider");
+const advancedRuns = (data: ExplorerData) => data.runs.filter((r) => r.role === "advanced");
+const listNames = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+
+/* ---------- hero ---------- */
+
 export function Hero({ data, run }: { data: ExplorerData; run: Run | undefined }) {
   const core = data.tasks.filter((t) => !t.experimental).length;
   return (
@@ -17,7 +24,7 @@ export function Hero({ data, run }: { data: ExplorerData; run: Run | undefined }
       <div className="hero-copy">
         <h1 id="headline">{site.headline}</h1>
         <p className="lede">{site.description}</p>
-        <a className="cta" href="#results">See how the AI models did</a>
+        <a className="cta" href="#findings">Read the short version</a>
       </div>
       <aside className="receipt" aria-label="What this test covered">
         <p className="receipt-title">The test, in numbers</p>
@@ -27,7 +34,7 @@ export function Hero({ data, run }: { data: ExplorerData; run: Run | undefined }
             <>
               <div><dt>AI models tested</dt><dd>{run.models.length}</dd></div>
               <div><dt>Answers checked</dt><dd>{run.trials}</dd></div>
-              <div><dt>Individual checks run on those answers</dt><dd>{run.checksRun.toLocaleString("en-GB")}</dd></div>
+              <div><dt>Individual checks run</dt><dd>{run.checksRun.toLocaleString("en-GB")}</dd></div>
             </>
           ) : (
             <div><dt>Results</dt><dd className="small">Not published yet</dd></div>
@@ -39,20 +46,107 @@ export function Hero({ data, run }: { data: ExplorerData; run: Run | undefined }
   );
 }
 
-export function WhatWeTest({ data }: { data: ExplorerData }) {
+/* ---------- the short version: three findings, each computed from the data ---------- */
+
+type Finding = { key: string; tone: "good" | "bad"; title: string; body: React.ReactNode; href: string; link: string };
+
+function findings(data: ExplorerData, run: Run | undefined): Finding[] {
+  if (!run) return [];
+  const out: Finding[] = [];
+  const fams = families(data);
+  const avgs = familyAverages(run, fams);
+  if (avgs.length > 1) {
+    const lo = avgs.reduce((a, b) => (b.mean < a.mean ? b : a));
+    const hi = avgs.reduce((a, b) => (b.mean > a.mean ? b : a));
+    if (lo.family.key !== hi.family.key)
+      out.push({
+        key: "hardest-area", tone: "bad", title: `Hardest area: ${lo.family.name}`,
+        body: <>The models averaged <strong>{pct(hi.mean, 0)}</strong> on “{hi.family.name}”, but only <strong>{pct(lo.mean, 0)}</strong> on “{lo.family.name}”.</>,
+        href: "#results", link: "See the scores",
+      });
+  }
+  const cross = crossRuns(data);
+  const shared = cross.flatMap((r) => sharedMistakes(run, r));
+  if (shared.length > 0) {
+    const newNames = [...new Set(cross.flatMap((r) => r.models.map(nameOf)))];
+    out.push({
+      key: "not-one-company", tone: "bad", title: "Not just one company's AI",
+      body: <>{listNames(newNames)}, from another company, made <strong>{plural(shared.length, "of the same mistakes", "of the same mistakes")}</strong>.</>,
+      href: "#others", link: "See which ones",
+    });
+  }
+  const best = [...run.models].sort((a, b) => b.meanScore - a.meanScore)[0];
+  if (best) {
+    const adv = advancedRuns(data);
+    const tasks = data.tasks.filter((t) => t.experimental);
+    const results = tasks.flatMap((t) =>
+      adv.flatMap((r) => r.models.filter((m) => nameOf(m) === nameOf(best)).map((m) => ({ t, res: m.byTask.find((x) => x.task === t.id) }))).filter((x) => x.res),
+    );
+    const failed = results.find((x) => x.res!.fullPasses === 0);
+    if (failed)
+      out.push({
+        key: "best-has-limit", tone: "bad", title: "Even the best model has a limit",
+        body: <>{nameOf(best)} scored <strong>{pct(best.meanScore, 0)}</strong> on the main test, but failed a harder one, “{failed.t.tests ?? failed.t.title}”, in <strong>{failed.res!.trials} of {plural(failed.res!.trials, "attempt")}</strong>.</>,
+        href: "#hardest", link: "See the harder tests",
+      });
+    else if (results.length > 0 && results.every((x) => x.res!.fullPasses === x.res!.trials))
+      out.push({
+        key: "best-passes", tone: "good", title: "The best model passed the harder tests too",
+        body: <>{nameOf(best)} got every check right on {plural(results.length, "harder test")}.</>,
+        href: "#hardest", link: "See the harder tests",
+      });
+  }
+  return out;
+}
+
+export function Findings({ data, run }: { data: ExplorerData; run: Run | undefined }) {
+  const list = findings(data, run);
+  if (list.length === 0) return null;
+  return (
+    <section id="findings" aria-labelledby="findings-h">
+      <h2 id="findings-h">The short version</h2>
+      <ol className="findings">
+        {list.map((f, i) => (
+          <li key={f.key} className={`finding ${f.tone}`}>
+            <span className="finding-n" aria-hidden="true">{i + 1}</span>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+            <a href={f.href}>{f.link} ↓</a>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+/* ---------- how it works: the three steps and the three kinds of problem ---------- */
+
+export function HowItWorks({ data }: { data: ExplorerData }) {
   const fams = families(data);
   return (
-    <section id="what" aria-labelledby="what-h">
-      <h2 id="what-h">What we test</h2>
-      <p className="section-lede">Three kinds of problems where being almost right is still wrong.</p>
+    <section id="how" aria-labelledby="how-h">
+      <h2 id="how-h">How the test works</h2>
+      <ol className="flow">
+        {site.steps.map((s, i) => (
+          <li key={s.title}>
+            <div className="flow-icon"><Icon name={s.icon} size={44} /></div>
+            <p className="flow-step">Step {i + 1}</p>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+      <h3 className="sub-h">Three kinds of problem, where almost right is still wrong</h3>
       <div className="families">
         {fams.map((f) => (
           <article key={f.key} className={`family family-${f.icon}`}>
-            <div className="family-icon"><Icon name={f.icon} size={56} /></div>
-            <h3>{f.name}</h3>
+            <div className="family-head">
+              <Icon name={f.icon} size={34} />
+              <h4>{f.name}</h4>
+            </div>
             <p>{f.plain}</p>
             <details>
-              <summary>{plural(f.tasks.length, "problem")} in this group</summary>
+              <summary>{plural(f.tasks.length, "problem")}</summary>
               <ul>
                 {f.tasks.map((t) => <li key={t.id}><Gh data={data} path={t.sourcePath}>{t.title}</Gh></li>)}
               </ul>
@@ -64,21 +158,16 @@ export function WhatWeTest({ data }: { data: ExplorerData }) {
   );
 }
 
-export function HowItWorks() {
+/* ---------- results: one table for every model, including other companies ---------- */
+
+function ScoreCell({ v, label }: { v: number | null; label: string }) {
+  if (v === null) return <td data-label={label} className="cell none">Not tested</td>;
+  const b = bucket(v);
   return (
-    <section id="how" aria-labelledby="how-h">
-      <h2 id="how-h">How it works</h2>
-      <ol className="flow">
-        {site.steps.map((s, i) => (
-          <li key={s.title}>
-            <div className="flow-icon"><Icon name={s.icon} size={52} /></div>
-            <p className="flow-step">Step {i + 1}</p>
-            <h3>{s.title}</h3>
-            <p>{s.body}</p>
-          </li>
-        ))}
-      </ol>
-    </section>
+    <td data-label={label} className={`cell ${b}`}>
+      <strong>{pct(v, 0)}</strong>
+      <small>{bucketWord[b]}</small>
+    </td>
   );
 }
 
@@ -92,88 +181,116 @@ export function Scoreboard({ data, run }: { data: ExplorerData; run: Run | undef
     );
   }
   const fams = families(data);
-  const models = [...run.models].sort((a, b) => b.meanScore - a.meanScore);
-  const avgs = familyAverages(run, fams);
-  const lo = avgs.length > 1 ? avgs.reduce((a, b) => (b.mean < a.mean ? b : a)) : null;
-  const hi = avgs.length > 1 ? avgs.reduce((a, b) => (b.mean > a.mean ? b : a)) : null;
+  const cross = crossRuns(data);
+  const groups: { title: string | null; run: Run; models: ModelResult[] }[] = [
+    { title: null, run, models: [...run.models].sort((a, b) => b.meanScore - a.meanScore) },
+    ...cross.map((r) => ({ title: "Another company’s model, for comparison", run: r, models: [...r.models].sort((a, b) => b.meanScore - a.meanScore) })),
+  ];
+  const shared = cross.flatMap((r) => sharedMistakes(run, r)).slice(0, 3);
+  const names = Object.fromEntries(groups.flatMap((g) => g.models.map((m) => [m.label, nameOf(m)])));
+  const attempts = run.models[0]?.trialsPerTask[0] ?? 1;
   return (
     <section id="results" aria-labelledby="results-h">
       <h2 id="results-h">How the AI models did</h2>
       <p className="section-lede">
-        Each model tried every problem {plural(models[0]?.trialsPerTask[0] ?? 1, "time")}. A score is the share of checks the answer got right; a perfect answer gets every check right.
+        A score is the share of checks an answer got right. Each Claude model tried every problem {plural(attempts, "time")}.
       </p>
 
-      <ul className="bars" aria-label="Average score by model">
-        {models.map((m) => (
-          <li key={m.label}>
-            <div className="bar-head">
-              <span className="bar-name">{nameOf(m)}</span>
-              <span className="bar-value">{pct(m.meanScore)}</span>
-            </div>
-            <div className="bar-track" aria-hidden="true">
-              <div className={`bar-fill ${bucket(m.meanScore)}`} style={{ width: `${m.meanScore * 100}%` }} />
-            </div>
-            <p className="bar-note">
-              Perfect answers: <strong>{m.fullPasses} of {m.trials}</strong>
-            </p>
-          </li>
-        ))}
-      </ul>
-
-      {fams.length > 1 && (
-        <>
-          <h3 className="grid-title">By kind of problem</h3>
-          <div className="heat" role="table" aria-label="Average score by model and kind of problem" style={{ gridTemplateColumns: `minmax(130px, 1.2fr) repeat(${fams.length}, minmax(96px, 1fr))` }}>
-            <div role="row" className="heat-row heat-head">
-              <span role="columnheader" />
+      <div className="table-wrap">
+        <table className="scores" aria-label="Scores by model">
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              <th scope="col">Overall</th>
               {fams.map((f) => (
-                <span role="columnheader" key={f.key}><Icon name={f.icon} size={26} /> {f.name}</span>
+                <th scope="col" key={f.key}><span className="th-icon"><Icon name={f.icon} size={20} /></span>{f.name}</th>
               ))}
-            </div>
-            {models.map((m) => (
-              <div role="row" className="heat-row" key={m.label}>
-                <span role="rowheader" className="heat-model">{nameOf(m)}</span>
-                {fams.map((f) => {
-                  const rs = m.byTask.filter((r) => f.tasks.some((t) => t.id === r.task));
-                  const n = rs.reduce((a, r) => a + r.trials, 0);
-                  if (!n) return <span role="cell" key={f.key} className="heat-cell none">Not tested</span>;
-                  const v = rs.reduce((a, r) => a + r.meanScore * r.trials, 0) / n;
-                  const b = bucket(v);
-                  return (
-                    <span role="cell" key={f.key} className={`heat-cell ${b}`}>
-                      <strong>{pct(v, 0)}</strong>
-                      <small>{bucketWord[b]}</small>
-                    </span>
-                  );
-                })}
-              </div>
+            </tr>
+          </thead>
+          {groups.map((g) => (
+            <tbody key={g.run.id} className={g.title ? "group-other" : undefined}>
+              {g.title && (
+                <tr className="group-row">
+                  <th colSpan={2 + fams.length} scope="rowgroup">
+                    {g.title} · {plural(g.models[0]?.trialsPerTask[0] ?? 1, "attempt")} per problem, a quick check
+                  </th>
+                </tr>
+              )}
+              {g.models.map((m) => (
+                <tr key={`${g.run.id}/${m.label}`}>
+                  <th scope="row" className="model">
+                    {nameOf(m)}
+                    <small>Perfect answers: {m.fullPasses} of {m.trials}</small>
+                  </th>
+                  <td data-label="Overall" className="overall">
+                    <span className="overall-num">{pct(m.meanScore)}</span>
+                    <span className="meter" aria-hidden="true"><span className={bucket(m.meanScore)} style={{ width: `${m.meanScore * 100}%` }} /></span>
+                  </td>
+                  {fams.map((f) => <ScoreCell key={f.key} v={familyScore(m, f)} label={f.name} />)}
+                </tr>
+              ))}
+            </tbody>
+          ))}
+        </table>
+      </div>
+      <p className="legend" aria-label="Colour key">
+        <span><i className="sw strong" /> Strong: 95% or more</span>
+        <span><i className="sw mixed" /> Some slips: 85–95%</span>
+        <span><i className="sw weak" /> Struggled: under 85%</span>
+      </p>
+
+      {shared.length > 0 && (
+        <div className="callout" id="others">
+          <h3>Does this only happen with Claude?</h3>
+          <p>No. The model from another company missed the same rules the Claude models did:</p>
+          <ul className="xlist">
+            {shared.map((x) => (
+              <li key={`${x.task}/${x.check}`}>
+                <span className="x" aria-hidden="true">✗</span>
+                <span>
+                  {x.rule}
+                  <small>Missed by {[...x.newModels, ...x.others].map((l) => names[l] ?? l).join(", ")}</small>
+                </span>
+              </li>
             ))}
-          </div>
-        </>
+          </ul>
+        </div>
       )}
 
-      {lo && hi && lo.family.key !== hi.family.key && (
-        <p className="takeaway">
-          <span className="takeaway-mark" aria-hidden="true">!</span>
-          <span>
-            On average, the models scored <strong>{pct(hi.mean)}</strong> on “{hi.family.name}”, but <strong>{pct(lo.mean)}</strong> on “{lo.family.name}”.
-          </span>
-        </p>
-      )}
-      <p className="fine">
-        Every score here comes from <Gh data={data} path={run.sourcePath}>the saved results on GitHub</Gh>, run{" "}
-        <code>{run.id}</code>.
-      </p>
+      <details className="more">
+        <summary>Where these numbers come from</summary>
+        <ul className="notes">
+          <li>Main test: <Gh data={data} path={run.sourcePath}>saved results on GitHub</Gh> (run <code>{run.id}</code>).</li>
+          {cross.map((r) => (
+            <li key={r.id}>Comparison: <Gh data={data} path={r.sourcePath}>saved results</Gh> (run <code>{r.id}</code>). One attempt per problem is weaker evidence than the main test.</li>
+          ))}
+          {cross.flatMap((r) => r.notes).map((n) => <li key={n}>{n}</li>)}
+        </ul>
+      </details>
     </section>
   );
 }
 
+/* ---------- mistakes ---------- */
+
+function Explain({ label, text }: { label: string; text: string }) {
+  const [open, setOpen] = useState(false);
+  const long = text.length > 170;
+  return (
+    <div className="explain">
+      <p className={long && !open ? "clamp" : undefined}><strong>{label}</strong> {text}</p>
+      {long && <button type="button" className="linkish" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>}
+    </div>
+  );
+}
+
 export function Mistakes({ data, run }: { data: ExplorerData; run: Run | undefined }) {
-  const order = data.tasks.map((t) => t.id);
-  const list = topMistakes(run, order);
+  const [all, setAll] = useState(false);
   if (!run) return null;
+  const list = topMistakes(run, data.tasks.map((t) => t.id));
   const names = Object.fromEntries(run.models.map((m) => [m.label, nameOf(m)]));
   const fams = families(data);
+  const shown = all ? list : list.slice(0, 3);
   return (
     <section id="mistakes" aria-labelledby="mistakes-h">
       <h2 id="mistakes-h">Where the AI slipped</h2>
@@ -181,72 +298,157 @@ export function Mistakes({ data, run }: { data: ExplorerData; run: Run | undefin
         <p className="empty">No model made a checkable mistake in this run.</p>
       ) : (
         <>
-          <p className="section-lede">Real mistakes from this run, picked automatically: mistakes we can explain in plain words, from as many different problems as possible.</p>
+          <p className="section-lede">Real mistakes from the main test, each with the rule it broke.</p>
           <div className="mistakes">
-            {list.map((m) => {
+            {shown.map((m) => {
               const task = data.tasks.find((t) => t.id === m.task);
               const fam = fams.find((f) => f.tasks.some((t) => t.id === m.task));
-              const rule = m.example.reference;
+              const ref = m.example.reference;
+              const long = figure(m.got).length > 12 || figure(m.expected).length > 12;
               return (
                 <article key={`${m.task}/${m.check}`} className="mistake">
-                  <p className="mistake-topic"><Icon name={fam?.icon ?? "ticket"} size={22} /> {fam?.name ?? task?.category}</p>
+                  <p className="mistake-topic"><Icon name={fam?.icon ?? "ticket"} size={18} /> {fam?.name ?? task?.category}</p>
                   <h3>{task?.title ?? m.task}</h3>
-                  <div className={`answer ${figure(m.got).length > 12 || figure(m.expected).length > 12 ? "stack" : ""}`}>
+                  <div className={`answer ${long ? "stack" : ""}`}>
                     <div className="answer-wrong">
                       <span className="answer-label">AI answered</span>
-                      <span className={`answer-value ${figure(m.got).length > 12 ? "long" : ""}`}><s>{figure(m.got)}</s></span>
+                      <span className={`answer-value ${long ? "long" : ""}`}><s>{figure(m.got)}</s></span>
                     </div>
                     <div className="answer-right">
-                      <span className="answer-label">Correct answer</span>
-                      <span className={`answer-value ${figure(m.expected).length > 12 ? "long" : ""}`}>{figure(m.expected)}</span>
+                      <span className="answer-label">Correct</span>
+                      <span className={`answer-value ${long ? "long" : ""}`}>{figure(m.expected)}</span>
                     </div>
                   </div>
-                  {rule?.rule && <p className="mistake-rule"><strong>{rule.kind === "explanation" ? "Why:" : "The rule:"}</strong> {rule.rule}</p>}
+                  {ref?.rule && <Explain label={ref.kind === "explanation" ? "Why:" : "The rule:"} text={ref.rule} />}
                   <p className="mistake-who">
-                    {m.models.map((x) => names[x] ?? x).join(" and ")} got this wrong in {m.failedTrials} of {plural(m.trialsRun, "attempt")}.
+                    {m.models.map((x) => names[x] ?? x).join(" and ")} · wrong in {m.failedTrials} of {plural(m.trialsRun, "attempt")}
                   </p>
-                  <p className="mistake-link">
-                    <Gh data={data} path={m.example.transcriptPath ?? m.example.sourcePath}>Read the AI's full answer</Gh>
-                  </p>
+                  <p className="mistake-link"><Gh data={data} path={m.example.transcriptPath ?? m.example.sourcePath}>Read the AI's answer</Gh></p>
                 </article>
               );
             })}
           </div>
-          <p className="fine">
-            See all {plural(run.failures.length, "recorded mistake")} in <Gh data={data} path={run.summaryPath ?? run.sourcePath}>the full results on GitHub</Gh>.
-          </p>
+          <div className="mistakes-foot">
+            {list.length > 3 && (
+              <button type="button" className="ghost" aria-expanded={all} onClick={() => setAll(!all)}>
+                {all ? "Show fewer" : `Show ${list.length - 3} more`}
+              </button>
+            )}
+            <p className="fine">
+              All {plural(run.failures.length, "recorded mistake")} are in <Gh data={data} path={run.summaryPath ?? run.sourcePath}>the full results</Gh>.
+            </p>
+          </div>
         </>
       )}
     </section>
   );
 }
 
-export function Fairness({ data }: { data: ExplorerData }) {
-  const wrong = data.tasks.reduce((n, t) => n + t.mutantCount, 0);
+/* ---------- harder tests: one pass/fail grid ---------- */
+
+export function Advanced({ data, run }: { data: ExplorerData; run: Run | undefined }) {
+  const runs = advancedRuns(data);
+  const tasks = data.tasks.filter((t) => t.experimental && runs.some((r) => r.tasks.includes(t.id)));
+  if (tasks.length === 0) return null;
+  // Strongest model of the main test first, then the rest in the order their runs appear.
+  const ranked = run ? [...run.models].sort((a, b) => b.meanScore - a.meanScore).map(nameOf) : [];
+  const seen = new Set(runs.flatMap((r) => r.models.map(nameOf)));
+  const modelNames = [...ranked.filter((n) => seen.has(n)), ...[...seen].filter((n) => !ranked.includes(n))];
+  const cell = (taskId: string, name: string) => {
+    for (const r of runs) {
+      const m = r.models.find((x) => nameOf(x) === name);
+      const res = m?.byTask.find((x) => x.task === taskId);
+      if (m && res) return { r, m, res, err: r.errors.find((e) => e.model === m.label && e.task === taskId) };
+    }
+    return null;
+  };
   return (
-    <section id="fair" aria-labelledby="fair-h">
-      <h2 id="fair-h">Why you can trust these scores</h2>
-      <ul className="fair">
-        {site.fairness.map((f, i) => (
-          <li key={f}>
-            <span className="fair-tick" aria-hidden="true">✓</span>
-            <span>
-              {f}
-              {i === 1 && wrong > 0 && <> Right now they reject all {wrong} deliberately wrong answers kept in the repository.</>}
-            </span>
-          </li>
-        ))}
-      </ul>
-      {data.limitations.items.length > 0 && (
-        <p className="fine">
-          What this test does not show is listed under <Gh data={data} path={data.limitations.sourcePath}>limitations in the README</Gh>.
-        </p>
+    <section id="hardest" aria-labelledby="hardest-h">
+      <h2 id="hardest-h">The harder tests</h2>
+      <p className="section-lede">Two extra problems built to find the limits of the strongest model. They are experimental and not part of the scores above.</p>
+      <div className="table-wrap">
+        <table className="hard" aria-label="Harder tests: pass or fail by model">
+          <thead>
+            <tr>
+              <th scope="col">Problem</th>
+              {modelNames.map((n) => <th scope="col" key={n}>{n}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((t) => (
+              <tr key={t.id}>
+                <th scope="row" className="hard-task">
+                  <Gh data={data} path={t.sourcePath}>{t.tests ?? t.title}</Gh>
+                  {t.challenge && <small>{t.challenge}</small>}
+                </th>
+                {modelNames.map((n) => {
+                  const c = cell(t.id, n);
+                  if (!c) return <td key={n} data-label={n} className="verdict none">Not tried</td>;
+                  const passed = c.res.fullPasses === c.res.trials;
+                  const line = passed
+                    ? `Passed ${c.res.fullPasses} of ${c.res.trials}`
+                    : c.err?.finishReason === "length"
+                      ? "Ran out of space"
+                      : c.err
+                        ? "No checkable answer"
+                        : `Failed ${c.res.trials - c.res.fullPasses} of ${c.res.trials}`;
+                  return (
+                    <td key={n} data-label={n} className={`verdict ${passed ? "ok" : "no"}`}>
+                      <span className="mark" aria-hidden="true">{passed ? "✓" : "✗"}</span>
+                      <span>
+                        <strong>{line}</strong>
+                        <small>{c.err?.finishReason === "length" ? "before finishing its answer" : `score ${pct(c.res.meanScore, 0)}`}</small>
+                      </span>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {tasks.map((t) => {
+        const pool = runs.flatMap((r) => r.failures.filter((f) => f.task === t.id));
+        const slips = topMistakes({ failures: pool } as Run, [t.id], 3, 3);
+        if (slips.length === 0) return null;
+        const names = Object.fromEntries(runs.flatMap((r) => r.models.map((m) => [m.label, nameOf(m)])));
+        return (
+          <details key={t.id} className="more">
+            <summary>Where the models slipped on “{t.tests ?? t.title}”</summary>
+            <ul className="xlist">
+              {slips.map((x) => (
+                <li key={x.check}>
+                  <span className="x" aria-hidden="true">✗</span>
+                  <span>
+                    {x.example.reference?.rule ?? x.check}
+                    <small>
+                      Answered {figure(x.got)} instead of {figure(x.expected)} · {x.models.map((l) => names[l] ?? l).join(", ")}, {x.failedTrials} of {plural(x.trialsRun, "attempt")}
+                    </small>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </details>
+        );
+      })}
+      {runs.some((r) => r.notes.length > 0) && (
+        <details className="more">
+          <summary>Notes on these runs</summary>
+          <ul className="notes">
+            {runs.flatMap((r) => r.notes.map((n) => (
+              <li key={`${r.id}/${n}`}><strong>{r.title ?? r.id}:</strong> {n} <Gh data={data} path={r.sourcePath}>Results</Gh></li>
+            )))}
+          </ul>
+        </details>
       )}
     </section>
   );
 }
 
-export function Details({ data }: { data: ExplorerData }) {
+/* ---------- trust and sources ---------- */
+
+export function Trust({ data }: { data: ExplorerData }) {
+  const wrong = data.tasks.reduce((n, t) => n + t.mutantCount, 0);
   const links: [string, string, boolean][] = [
     ["Every problem, word for word", "tasks", true],
     ["The checkers that mark each answer", "graders", true],
@@ -255,148 +457,25 @@ export function Details({ data }: { data: ExplorerData }) {
     ["Full write-up and limitations", "README.md", false],
   ];
   return (
-    <section id="details" aria-labelledby="details-h" className="details">
-      <h2 id="details-h">Want the details?</h2>
-      <p className="section-lede">Everything behind this page is public on GitHub.</p>
-      <ul className="detail-links">
-        {links.map(([label, path, dir]) => (
-          <li key={path}><Gh data={data} path={path} dir={dir}>{label}</Gh></li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-export function CrossProvider({ data, headline }: { data: ExplorerData; headline: Run | undefined }) {
-  const runs = data.runs.filter((r) => r.role === "cross-provider");
-  if (!headline || runs.length === 0) return null;
-  const fams = families(data);
-  const rows = [
-    ...[...headline.models].sort((a, b) => b.meanScore - a.meanScore).map((m) => ({ m, attempts: m.trialsPerTask[0] ?? 1, run: headline })),
-    ...runs.flatMap((r) => r.models.map((m) => ({ m, attempts: m.trialsPerTask[0] ?? 1, run: r }))),
-  ];
-  const names = Object.fromEntries(rows.map(({ m }) => [m.label, nameOf(m)]));
-  const shared = runs.flatMap((r) => sharedMistakes(headline, r)).slice(0, 3);
-  return (
-    <section id="others" aria-labelledby="others-h">
-      <h2 id="others-h">Does this only happen with Claude?</h2>
-      <p className="section-lede">We gave the same problems to a free model from another company, NVIDIA, to see whether the same weak spots appear.</p>
-      <div className="heat" role="table" aria-label="Average score by model and kind of problem, across companies" style={{ gridTemplateColumns: `minmax(150px, 1.3fr) repeat(${fams.length}, minmax(96px, 1fr))` }}>
-        <div role="row" className="heat-row heat-head">
-          <span role="columnheader" />
-          {fams.map((f) => <span role="columnheader" key={f.key}><Icon name={f.icon} size={26} /> {f.name}</span>)}
-        </div>
-        {rows.map(({ m, attempts, run }) => (
-          <div role="row" className={`heat-row ${run.role === "cross-provider" ? "heat-new" : ""}`} key={`${run.id}/${m.label}`}>
-            <span role="rowheader" className="heat-model">
-              <span>{nameOf(m)}<small className="heat-sub">{plural(attempts, "attempt")} per problem</small></span>
-            </span>
-            {fams.map((f) => {
-              const v = familyScore(m, f);
-              if (v === null) return <span role="cell" key={f.key} className="heat-cell none">Not tested</span>;
-              const b = bucket(v);
-              return <span role="cell" key={f.key} className={`heat-cell ${b}`}><strong>{pct(v, 0)}</strong><small>{bucketWord[b]}</small></span>;
-            })}
-          </div>
-        ))}
-      </div>
-      {shared.length > 0 && (
-        <div className="shared">
-          <h3>The same mistakes, from a different company</h3>
-          <ul>
-            {shared.map((x) => (
-              <li key={`${x.task}/${x.check}`}>
-                <span className="shared-x" aria-hidden="true">✗</span>
-                <span>
-                  <strong>{x.rule}</strong>
-                  <small>Missed by {[...x.newModels, ...x.others].map((l) => names[l] ?? l).join(", ")}.</small>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {runs.flatMap((r) => r.notes).length > 0 && (
-        <ul className="notes">
-          {runs.flatMap((r) => r.notes.map((n) => <li key={n}>{n}</li>))}
+    <section id="trust" aria-labelledby="trust-h">
+      <h2 id="trust-h">Why you can trust these scores</h2>
+      <div className="trust">
+        <ul className="fair">
+          {site.fairness.map((f, i) => (
+            <li key={f}>
+              <span className="fair-tick" aria-hidden="true">✓</span>
+              <span>
+                {f}
+                {i === 1 && wrong > 0 && <> Right now they reject all {wrong} deliberately wrong answers kept in the repository.</>}
+              </span>
+            </li>
+          ))}
         </ul>
-      )}
-      <p className="fine">
-        {runs.map((r) => <span key={r.id}>Results: <Gh data={data} path={r.sourcePath}>{r.id}</Gh>. </span>)}
-        One attempt per problem is a quick check, not as strong as the three attempts in the main test.
-      </p>
-    </section>
-  );
-}
-
-export function Advanced({ data }: { data: ExplorerData }) {
-  const runs = data.runs.filter((r) => r.role === "advanced");
-  const tasks = data.tasks.filter((t) => t.experimental && runs.some((r) => r.tasks.includes(t.id)));
-  if (tasks.length === 0) return null;
-  return (
-    <section id="hardest" aria-labelledby="hardest-h">
-      <h2 id="hardest-h">The hardest test</h2>
-      {tasks.map((t) => {
-        const results = runs.flatMap((r) => r.models.map((m) => ({ r, m, res: m.byTask.find((x) => x.task === t.id) })).filter((x) => x.res));
-        return (
-          <div key={t.id} className="hard-task">
-            <h3 className="hard-title">{t.title}</h3>
-            <p className="section-lede">{t.challenge ?? t.tests ?? t.title}</p>
-            <div className="verdicts">
-              {results.map(({ r, m, res }) => {
-                const err = r.errors.find((e) => e.model === m.label && e.task === t.id);
-                const failures = r.failures.filter((f) => f.model === m.label && f.task === t.id).length;
-                const passed = res!.fullPasses === res!.trials;
-                return (
-                  <article key={`${r.id}/${m.label}`} className={`verdict ${passed ? "ok" : "no"}`}>
-                    <span className="verdict-mark" aria-hidden="true">{passed ? "✓" : "✗"}</span>
-                    <h3>{nameOf(m)}</h3>
-                    <p className="verdict-line">
-                      {passed
-                        ? "Passed every check"
-                        : err?.finishReason === "length"
-                          ? "Ran out of space before finishing its answer"
-                          : err
-                            ? "Gave no answer that could be checked"
-                            : `Got ${failures} check${failures === 1 ? "" : "s"} wrong`}
-                    </p>
-                    <p className="verdict-sub">{plural(res!.trials, "attempt")}, score {pct(res!.meanScore, 0)}</p>
-                    <p className="verdict-link"><Gh data={data} path={r.sourcePath}>Result on GitHub</Gh></p>
-                  </article>
-                );
-              })}
-            </div>
-            {(() => {
-              const pool = runs.flatMap((r) => r.failures.filter((f) => f.task === t.id));
-              const slips = topMistakes({ failures: pool } as Run, [t.id], 3, 3);
-              const names = Object.fromEntries(runs.flatMap((r) => r.models.map((m) => [m.label, nameOf(m)])));
-              if (slips.length === 0) return null;
-              return (
-                <div className="shared">
-                  <h3>Where it slipped</h3>
-                  <ul>
-                    {slips.map((x) => (
-                      <li key={x.check}>
-                        <span className="shared-x" aria-hidden="true">✗</span>
-                        <span>
-                          <strong>{x.example.reference?.rule ?? x.check}</strong>
-                          <small>
-                            Answered {figure(x.got)} instead of {figure(x.expected)}, in {x.failedTrials} of {plural(x.trialsRun, "attempt")}
-                            {" "}({x.models.map((l) => names[l] ?? l).join(", ")}).
-                          </small>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })()}
-            <p className="fine">
-              {t.tests ? `${t.tests}. ` : ""}An experimental problem, not part of the main scores. <Gh data={data} path={t.sourcePath}>Read the problem</Gh>
-            </p>
-          </div>
-        );
-      })}
+        <nav className="detail-links" aria-label="Sources on GitHub">
+          <p className="detail-title">Check it yourself on GitHub</p>
+          {links.map(([label, path, dir]) => <Gh key={path} data={data} path={path} dir={dir}>{label} →</Gh>)}
+        </nav>
+      </div>
     </section>
   );
 }
