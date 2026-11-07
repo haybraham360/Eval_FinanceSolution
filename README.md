@@ -10,6 +10,11 @@ It focuses on areas where getting something slightly wrong can have serious cons
 
 The goal wasn’t just to see whether AI could generate working code or produce convincing answers. I wanted to find out whether those answers were actually correct.
 
+> **Two ways to review this project**
+>
+> 1. **View the results online, with nothing to install:** **[ledger-eval.vercel.app](https://ledger-eval.vercel.app)**. The Ledger-Eval Explorer explains the evaluation in plain language and shows every score, mistake and harder test, with links to the source files. It is rebuilt from this repository on every push, so it always matches the committed results.
+> 2. **Run the evaluation yourself:** follow [Running Ledger-Eval Locally](#running-ledger-eval-locally) below.
+
 ---
 
 ## Why I Built This
@@ -40,6 +45,7 @@ That became the central focus of Ledger-Eval.
 | Grading | Deterministic, code-based grading |
 | PostgreSQL Testing | Real PostgreSQL server |
 | Tax Reference | Nigeria Tax Act 2025 |
+| Live Results | [ledger-eval.vercel.app](https://ledger-eval.vercel.app) |
 
 ## Key Results
 
@@ -308,7 +314,7 @@ These experiments were added after the main evaluation. **They are kept separate
 
 ### Explore the results visually
 
-**[Ledger-Eval Explorer](https://haybraham360.github.io/Eval_FinanceSolution/)** is a plain-language website that explains the evaluation and shows the latest committed results. It is rebuilt from this repository on every push, so it never shows numbers typed in by hand. See [frontend/README.md](frontend/README.md).
+**[Ledger-Eval Explorer](https://ledger-eval.vercel.app)** is a plain-language website that explains the evaluation and shows the latest committed results. It is rebuilt from this repository on every push, so it never shows numbers typed in by hand. It is hosted on Vercel, with a mirror on [GitHub Pages](https://haybraham360.github.io/Eval_FinanceSolution/). See [frontend/README.md](frontend/README.md).
 
 ### Cross-provider check (exploratory)
 
@@ -354,7 +360,7 @@ Remove `--dry-run` to run it. To run an experimental task, name it, for example 
 
 ## Running Ledger-Eval Locally
 
-If you’d like to explore the project or run the evaluations yourself, you can get started with Python 3.10 or later.
+If you’d like to explore the project or run the evaluations yourself, you can get started with Python 3.10 or later. To view the results without installing anything, use the [live explorer](https://ledger-eval.vercel.app) instead.
 
 No Docker installation is required.
 
