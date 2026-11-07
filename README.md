@@ -71,7 +71,7 @@ These results suggest that strong general engineering ability doesn’t always t
 
 ## Video Walkthrough
 
-[Watch the project demonstration](https://youtu.be/CDFkwNtp4zE)
+[Watch the project demonstration](https://youtu.be/ilMA_LuyRyU)
 
 The walkthrough covers the evaluation process, grading system, model comparisons, and some of the mistakes discovered during testing.
 
