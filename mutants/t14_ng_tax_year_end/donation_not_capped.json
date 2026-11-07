@@ -1,0 +1,43 @@
+{
+ "_expect_fail": "KR1",
+ "_why": "Deducts all \u20a675m of donations, ignoring the 10% cap.",
+ "KR1": {
+  "donation_deduction": 75000000
+ },
+ "KR2": {
+  "assessable_profit": 767000000
+ },
+ "KR3": {
+  "capital_allowance": 40000000
+ },
+ "KR4": {
+  "total_profit": 627000000
+ },
+ "KR5": {
+  "company_income_tax": 188100000
+ },
+ "KR6": {
+  "development_levy": 30680000
+ },
+ "D2": {
+  "donation_deduction": 12000000
+ },
+ "G1": {
+  "chargeable_gain": 1500000
+ },
+ "G2": {
+  "chargeable_gain": 15000000
+ },
+ "G3": {
+  "chargeable_gain": 2000000
+ },
+ "G4": {
+  "chargeable_gain": 25000000
+ },
+ "G5": {
+  "chargeable_gain": 0
+ },
+ "V1": {
+  "vat_payable": 5400000
+ }
+}

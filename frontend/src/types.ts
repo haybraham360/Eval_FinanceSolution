@@ -64,8 +64,9 @@ export interface ModelResult {
 }
 
 export interface StatutoryReference {
-  provision: string | null;
-  rule: string | null;
+  provision: string | null; // the statutory provision, or the topic of a plain explanation
+  rule: string | null; // the rule, or the plain-language explanation
+  kind?: "statute" | "explanation"; // reference/t11_sources.md or reference/plain_explanations.md
   sourcePath: string;
 }
 

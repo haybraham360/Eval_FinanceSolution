@@ -2,13 +2,13 @@
 
 | Model | Tier | Trials | Full pass rate | pass^k (tasks passed every trial) | pass@k (tasks passed once) | Mean score | Trial score SD (per task, mean) | Cost |
 |---|---|---|---|---|---|---|---|---|
-| cli-opus | frontier | 1 | 100% | 1/1 | 1/1 | 100.0% | 0.000 | $0.00 |
+| cli-opus | frontier | 3 | 100% | 1/1 | 1/1 | 100.0% | 0.000 | $0.00 |
 
 ## Mean score by task (full passes / trials)
 
 | Task | cli-opus |
 |---|---|
-| t13_treasury_close_recovery | 100% (1/1) |
+| t13_treasury_close_recovery | 100% (3/3) |
 
 ## Failing checks, across all models and trials
 

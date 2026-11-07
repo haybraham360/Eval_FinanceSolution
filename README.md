@@ -304,7 +304,7 @@ The bigger goal is to make financial AI systems easier to evaluate before they a
 
 ## Additional Experiments
 
-These experiments were added after the main evaluation. **They are kept separate from the 108-trial results above, which are unchanged.** The details are in [results/additional/additional_evaluation_report.md](results/additional/additional_evaluation_report.md).
+These experiments were added after the main evaluation. **They are kept separate from the 108-trial results above, whose scores are unchanged.** The details are in [results/additional/additional_evaluation_report.md](results/additional/additional_evaluation_report.md).
 
 ### Explore the results visually
 
@@ -316,26 +316,29 @@ Do the weak spots only appear in Claude models? I ran one free model from anothe
 
 | Model | Trials | Average Score | Engineering | PostgreSQL | Nigerian Tax |
 |---|---|---|---|---|---|
-| Nemotron 3 Ultra (free) | 12 | 70.2% | 83.3% | 63.9% | 43.3% |
+| Nemotron 3 Ultra (free) | 12 | 78.5% | 100.0% | 63.9% | 43.3% |
 
-The same pattern appeared: payments engineering was easiest and Nigerian tax law hardest. The model also repeated the exact tax mistakes Sonnet and Haiku made: the ₦50m compensation limit, the accommodation cap, and the rule that the insurance deduction uses the *preceding* year's premium.
+It solved every payments task but lost marks on PostgreSQL and Nigerian tax law. It also repeated the exact tax mistakes Sonnet and Haiku made: the ₦50m compensation limit, the accommodation cap, and the rule that the insurance deduction uses the *preceding* year's premium.
 
-This run also found a defect in the t1 grader. Its fake payment store names its parameters differently from the task prompt, so a model that uses the documented names gets 0%. **The original Claude results are not affected**, because they passed those values by position. A fix is pending. A second free model, Gemma 4, could not be run because its free endpoint was rate-limited. Full report: [results/additional/free_cross_provider_report.md](results/additional/free_cross_provider_report.md).
+This run exposed a defect in the t1 grader, which is now fixed. Its fake payment store named its parameters differently from the task prompt, so a model that used the documented names scored 0%. The fix changed **no Claude result**, because those trials passed the values by position. It raised Nemotron's t1 score from 0% to 100%. A second free model, Gemma 4, could not be run because its free endpoint was rate-limited. Full report: [results/additional/free_cross_provider_report.md](results/additional/free_cross_provider_report.md).
 
-### Advanced scenario (experimental)
+### Harder scenarios (experimental)
 
 | Task | What It Tests | What Makes It Challenging |
 |---|---|---|
-| `t13_treasury_close_recovery` | Closing a month of payments for a wallet company | Timeouts, duplicate and late events, reversals, currency rates, fee refunds and corrected bank files all interact in one ledger, and every difference from the provider's statement must be explained. |
+| `t13_treasury_close_recovery` | Closing a month of payments for a wallet company | Timeouts, duplicate and late events, reversals, currency rates, fee refunds and corrected bank files all interact in one ledger, and every difference from the provider's statement must be explained. Every rule is given in the prompt. |
+| `t14_ng_tax_year_end` | A fintech's year-end tax position under the Nigeria Tax Act 2025 | No rules are given. Donation caps, disallowed expenses, capital allowances, ring-fenced losses, the development levy, capital gains reliefs and VAT credits all limit or override each other, and several of them changed from the laws the Act replaced. |
 
-The grader for t13 has 34 checks. A reference solution and an independently written solution both pass every check, and all 33 deliberately wrong variants fail the check they target. t13 is **not part of the main scores**, and the default run still covers the original 12 tasks.
+Neither task is part of the main scores, and the default run still covers the original 12 tasks.
 
-| Model | Trials | Result |
+| Model | t13 (rules given) | t14 (law the model must know) |
 |---|---|---|
-| Claude Opus 5.5 | 1 | Passed all 34 checks |
-| Nemotron 3 Ultra (free) | 1 | Ran out of output space (40,000-token limit) before finishing its answer |
+| Claude Opus 5.5 | **Passed 3 of 3 attempts** (34/34 each) | **Failed 3 of 3 attempts** (46%, 46%, 54%) |
+| Nemotron 3 Ultra (free) | Ran out of output space before finishing | 23% |
 
-Opus passing is a valid result: the task was not changed to force a failure. One trial cannot show how reliably it passes. Validation details: [results/additional/t13_validation_report.md](results/additional/t13_validation_report.md).
+**t14 is the first task in Ledger-Eval that Opus fails, and it fails the same way every time.** It capped company donations at 10% of *taxable* profit, the rule in the repealed Companies Income Tax Act, instead of 10% of profit before tax as the 2025 Act requires. It also measured a business asset's gain without using the residue left after capital allowances. When the rules are written down, as in t13, Opus applies them flawlessly. When it has to know a rule that recently changed, it falls back on the old law. The same pattern explains the original Sonnet and Haiku tax failures.
+
+t14's legal readings come from the Act's text and are listed with sections and workings in [reference/t14_sources.md](reference/t14_sources.md). They have **not yet been reviewed against the gazetted Act**, so treat t14 as provisional. Details: [results/additional/t13_validation_report.md](results/additional/t13_validation_report.md) and [results/additional/t14_report.md](results/additional/t14_report.md).
 
 ### Running only free models
 
@@ -345,7 +348,7 @@ Opus passing is a valid result: the task was not changed to force a failure. One
 python run_eval.py run --run-id my-free-run --models free-nemotron-ultra --trials 1 --workers 1 --free-only --dry-run
 ```
 
-Remove `--dry-run` to run it. To run the experimental task, name it: `--tasks t13_treasury_close_recovery`.
+Remove `--dry-run` to run it. To run an experimental task, name it, for example `--tasks t14_ng_tax_year_end`.
 
 ---
 

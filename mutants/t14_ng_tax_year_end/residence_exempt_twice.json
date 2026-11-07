@@ -1,0 +1,43 @@
+{
+ "_expect_fail": "G4",
+ "_why": "Grants the principal private residence exemption a second time.",
+ "KR1": {
+  "donation_deduction": 60000000
+ },
+ "KR2": {
+  "assessable_profit": 782000000
+ },
+ "KR3": {
+  "capital_allowance": 40000000
+ },
+ "KR4": {
+  "total_profit": 642000000
+ },
+ "KR5": {
+  "company_income_tax": 192600000
+ },
+ "KR6": {
+  "development_levy": 31280000
+ },
+ "D2": {
+  "donation_deduction": 12000000
+ },
+ "G1": {
+  "chargeable_gain": 1500000
+ },
+ "G2": {
+  "chargeable_gain": 15000000
+ },
+ "G3": {
+  "chargeable_gain": 2000000
+ },
+ "G4": {
+  "chargeable_gain": 0
+ },
+ "G5": {
+  "chargeable_gain": 0
+ },
+ "V1": {
+  "vat_payable": 5400000
+ }
+}

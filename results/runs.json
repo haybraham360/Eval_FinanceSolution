@@ -8,12 +8,12 @@
     "title": "Cross-provider check: a free NVIDIA model on the same 12 tasks (6 Nov 2026)",
     "notes": [
       "Exploratory: one attempt per task, against three per task in the main benchmark.",
-      "The t1_payout_executor score of 0% comes from a known grader defect, not from the model: the checker's fake store names its parameters differently from the task prompt, so the model's correctly named call crashed. See results/additional/free_cross_provider_report.md."
+      "Re-graded after a fix to the t1 grader, whose fake store had named its parameters differently from the task prompt. The fix changed this model's t1 score from 0% to 100% and did not change any result in the main benchmark. See results/additional/free_cross_provider_report.md."
     ]
   },
   "t13-opus-2026-11-06": {
     "role": "advanced",
-    "title": "Advanced scenario t13: Claude Opus 5.5, one attempt (6 Nov 2026)"
+    "title": "Advanced scenario t13: Claude Opus 5.5, three attempts (6 Nov 2026)"
   },
   "t13-free-2026-11-06": {
     "role": "advanced",
@@ -21,5 +21,16 @@
     "notes": [
       "The model reached the 40,000-token output limit before finishing its code, so there was no answer to grade."
     ]
+  },
+  "t14-opus-2026-11-06": {
+    "role": "advanced",
+    "title": "Advanced scenario t14: Claude Opus 5.5, three attempts (6 Nov 2026)",
+    "notes": [
+      "t14's expected answers follow the author-reviewed method of t11 and t12, but their section references have not yet been checked against the gazetted Act. See reference/t14_sources.md."
+    ]
+  },
+  "t14-free-2026-11-06": {
+    "role": "advanced",
+    "title": "Advanced scenario t14: free models, one attempt (6 Nov 2026)"
   }
 }

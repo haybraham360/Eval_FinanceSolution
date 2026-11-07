@@ -101,6 +101,13 @@ describe("mistake selection", () => {
     });
     const run = { failures: [mk("t1", "a", true), mk("t1", "b", true), mk("t1", "c", true), mk("t1", "d", true), mk("t2", "a", true), mk("t3", "a", false)] } as never;
     const got = topMistakes(run, ["t1", "t2", "t3"]).map((m) => `${m.task}/${m.check}`);
-    expect(got).toEqual(["t1/a", "t1/b", "t1/c", "t2/a"]);
+    expect(got).toEqual(["t1/a", "t2/a", "t1/b", "t1/c"]);
+  });
+
+  it("skips values that look identical once formatted", async () => {
+    const { topMistakes } = await import("./lib/insights");
+    const f = { model: "m", task: "t1", check: "E37", message: "AssertionError: E37: expected '2592000.000000', got '2592000'", failedTrials: [1], trialsRun: 1,
+      transcriptPath: null, transcriptTrial: null, rawPath: null, sourcePath: "s", reference: { provision: "x", rule: "y", kind: "explanation" as const, sourcePath: "r" } };
+    expect(topMistakes({ failures: [f] } as never, ["t1"])).toEqual([]);
   });
 });

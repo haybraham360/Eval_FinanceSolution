@@ -181,7 +181,7 @@ export function Mistakes({ data, run }: { data: ExplorerData; run: Run | undefin
         <p className="empty">No model made a checkable mistake in this run.</p>
       ) : (
         <>
-          <p className="section-lede">Real mistakes from this run, picked automatically: mistakes we can explain in plain words, and that the most models made.</p>
+          <p className="section-lede">Real mistakes from this run, picked automatically: mistakes we can explain in plain words, from as many different problems as possible.</p>
           <div className="mistakes">
             {list.map((m) => {
               const task = data.tasks.find((t) => t.id === m.task);
@@ -191,17 +191,17 @@ export function Mistakes({ data, run }: { data: ExplorerData; run: Run | undefin
                 <article key={`${m.task}/${m.check}`} className="mistake">
                   <p className="mistake-topic"><Icon name={fam?.icon ?? "ticket"} size={22} /> {fam?.name ?? task?.category}</p>
                   <h3>{task?.title ?? m.task}</h3>
-                  <div className="answer">
+                  <div className={`answer ${figure(m.got).length > 12 || figure(m.expected).length > 12 ? "stack" : ""}`}>
                     <div className="answer-wrong">
                       <span className="answer-label">AI answered</span>
-                      <span className="answer-value"><s>{figure(m.got)}</s></span>
+                      <span className={`answer-value ${figure(m.got).length > 12 ? "long" : ""}`}><s>{figure(m.got)}</s></span>
                     </div>
                     <div className="answer-right">
                       <span className="answer-label">Correct answer</span>
-                      <span className="answer-value">{figure(m.expected)}</span>
+                      <span className={`answer-value ${figure(m.expected).length > 12 ? "long" : ""}`}>{figure(m.expected)}</span>
                     </div>
                   </div>
-                  {rule?.rule && <p className="mistake-rule"><strong>The rule:</strong> {rule.rule}</p>}
+                  {rule?.rule && <p className="mistake-rule"><strong>{rule.kind === "explanation" ? "Why:" : "The rule:"}</strong> {rule.rule}</p>}
                   <p className="mistake-who">
                     {m.models.map((x) => names[x] ?? x).join(" and ")} got this wrong in {m.failedTrials} of {plural(m.trialsRun, "attempt")}.
                   </p>
@@ -272,7 +272,7 @@ export function CrossProvider({ data, headline }: { data: ExplorerData; headline
   if (!headline || runs.length === 0) return null;
   const fams = families(data);
   const rows = [
-    ...headline.models.map((m) => ({ m, attempts: m.trialsPerTask[0] ?? 1, run: headline })),
+    ...[...headline.models].sort((a, b) => b.meanScore - a.meanScore).map((m) => ({ m, attempts: m.trialsPerTask[0] ?? 1, run: headline })),
     ...runs.flatMap((r) => r.models.map((m) => ({ m, attempts: m.trialsPerTask[0] ?? 1, run: r }))),
   ];
   const names = Object.fromEntries(rows.map(({ m }) => [m.label, nameOf(m)]));
@@ -339,7 +339,8 @@ export function Advanced({ data }: { data: ExplorerData }) {
       {tasks.map((t) => {
         const results = runs.flatMap((r) => r.models.map((m) => ({ r, m, res: m.byTask.find((x) => x.task === t.id) })).filter((x) => x.res));
         return (
-          <div key={t.id}>
+          <div key={t.id} className="hard-task">
+            <h3 className="hard-title">{t.title}</h3>
             <p className="section-lede">{t.challenge ?? t.tests ?? t.title}</p>
             <div className="verdicts">
               {results.map(({ r, m, res }) => {
@@ -365,9 +366,33 @@ export function Advanced({ data }: { data: ExplorerData }) {
                 );
               })}
             </div>
+            {(() => {
+              const pool = runs.flatMap((r) => r.failures.filter((f) => f.task === t.id));
+              const slips = topMistakes({ failures: pool } as Run, [t.id], 3, 3);
+              const names = Object.fromEntries(runs.flatMap((r) => r.models.map((m) => [m.label, nameOf(m)])));
+              if (slips.length === 0) return null;
+              return (
+                <div className="shared">
+                  <h3>Where it slipped</h3>
+                  <ul>
+                    {slips.map((x) => (
+                      <li key={x.check}>
+                        <span className="shared-x" aria-hidden="true">✗</span>
+                        <span>
+                          <strong>{x.example.reference?.rule ?? x.check}</strong>
+                          <small>
+                            Answered {figure(x.got)} instead of {figure(x.expected)}, in {x.failedTrials} of {plural(x.trialsRun, "attempt")}
+                            {" "}({x.models.map((l) => names[l] ?? l).join(", ")}).
+                          </small>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })()}
             <p className="fine">
-              A new, experimental problem: a month-end close for a Nigerian wallet company, with timeouts, duplicates, reversals, corrected
-              bank files and currency rates all interacting. It is not part of the main scores. <Gh data={data} path={t.sourcePath}>Read the problem</Gh>
+              {t.tests ? `${t.tests}. ` : ""}An experimental problem, not part of the main scores. <Gh data={data} path={t.sourcePath}>Read the problem</Gh>
             </p>
           </div>
         );

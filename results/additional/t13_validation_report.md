@@ -125,14 +125,14 @@ A separate agent was given only `prompt.md`, with the reference, grader, mutants
 
 ## Model results
 
-These are single trials, using the same prompt and grader. They are not statistically conclusive.
+All runs used the same prompt and grader. Opus ran three trials, matching the original benchmark's three per task. Each free model ran one.
 
 | Model | Route | Result | Detail |
 |---|---|---|---|
-| Claude Opus 5.5 (`claude-opus-5-5`) | Claude Code CLI 2.1.294, claude.ai Pro subscription, `effort: high` | **Passed, 34/34** | Including `sample_result_stated_correctly`: the final position it worked out matched the hand arithmetic exactly. 392 s and 47,127 output tokens. CLI notional cost $1.03, covered by the subscription, with no API key and no extra charge. The CLI's usage report also lists `claude-haiku-5-5`, as in the original runs. [Result](../t13-opus-2026-11-06/scores.json) |
+| Claude Opus 5.5 (`claude-opus-5-5`) | Claude Code CLI 2.1.294, claude.ai Pro subscription, `effort: high` | **Passed in 3 of 3 trials, 34/34 each** | Every trial included `sample_result_stated_correctly`: the final position it worked out matched the hand arithmetic exactly. Output tokens were 47,127, 43,439 and 43,442. The usage was covered by the subscription, with no API key and no extra charge. The CLI's usage report also lists `claude-haiku-5-5`, as in the original runs. [Results](../t13-opus-2026-11-06/scores.json) |
 | Nemotron 3 Ultra (`nvidia/nemotron-3-ultra-550b-a55b:free`) | OpenRouter, free | **No answer, 0%** | It reached the harness's 40,000-token output cap (`finish_reason: length`) after about 113,000 characters of reasoning, partway through writing its module. There was no complete code block to grade. This shows the model did not finish within the budget. It does not show that it misunderstood the rules. [Result](../t13-free-2026-11-06/scores.json) |
 | Gemma 4 31B (`google/gemma-4-31b-it:free`) | OpenRouter, free | **Not run** | HTTP 429, "temporarily rate-limited upstream". |
 
-**Did t13 expose a limitation in Opus?** Not in this trial: Opus passed every check. The task was not weakened, and the grader was not changed after the run. A strong model passing is a valid outcome. One trial cannot show how reliably Opus passes. More trials would be needed to measure that.
+**Did t13 expose a limitation in Opus?** No. Opus passed every check in all three trials (pass^3). The task was not weakened, and the grader was not changed after the runs. When every rule is stated, Opus applies a long chain of interacting financial rules reliably. The harder test of law the model must know itself is t14: see [`t14_report.md`](t14_report.md).
 
-Note that the CLI route does not apply the harness's 40,000-token output cap. Opus used 47,127 output tokens, which is more than that cap, so the two routes did not have the same output budget.
+Note that the CLI route does not apply the harness's 40,000-token output cap. Opus used up to 47,127 output tokens, which is more than that cap, so the two routes did not have the same output budget.

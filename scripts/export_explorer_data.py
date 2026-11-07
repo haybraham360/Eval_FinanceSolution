@@ -145,30 +145,37 @@ def _expand_items(text):
     return items
 
 
-def statutory_sources(path):
-    """{task_id: {check_id: {"provision", "rule"}}} from the tables in reference/t11_sources.md."""
+def check_explanations(root):
+    """{task_id: {check_id: {"provision", "rule", "kind", "sourcePath"}}} from two reference files:
+    reference/t*_sources.md (statutory rules: Items | Provision | Rule) and reference/plain_explanations.md
+    (plain-language explanations: Items | Topic | Explanation). Each table belongs to the task in the heading
+    above it, "# Sources for tN" or "# Explanations for tN"."""
     out = {}
-    if not path.exists():
-        return out
-    task = None
-    header = None
-    for line in path.read_text().splitlines():
-        m = re.match(r"^#\s+Sources for (t\d+)", line)
-        if m:
-            task, header = m.group(1), None
+    statute_files = sorted(str(p.relative_to(root)) for p in (root / "reference").glob("t*_sources.md")) if (root / "reference").is_dir() else []
+    for rel, kind, cols in [(f, "statute", ("Provision", "Rule")) for f in statute_files] + [
+            ("reference/plain_explanations.md", "explanation", ("Topic", "Explanation"))]:
+        path = root / rel
+        if not path.exists():
             continue
-        if not line.strip().startswith("|") or task is None:
-            header = None
-            continue
-        cells = _md_cells(line)
-        if header is None:
-            header = cells
-            continue
-        if set("".join(cells)) <= set("-: "):
-            continue
-        row = dict(zip(header, cells))
-        for item in _expand_items(row.get("Items", "")):
-            out.setdefault(task, {})[item] = {"provision": row.get("Provision"), "rule": row.get("Rule")}
+        task = None
+        header = None
+        for line in path.read_text().splitlines():
+            m = re.match(r"^#\s+(?:Sources|Explanations) for (t\d+)", line)
+            if m:
+                task, header = m.group(1), None
+                continue
+            if not line.strip().startswith("|") or task is None:
+                header = None
+                continue
+            cells = _md_cells(line)
+            if header is None:
+                header = cells
+                continue
+            if set("".join(cells)) <= set("-: "):
+                continue
+            row = dict(zip(header, cells))
+            for item in _expand_items(row.get("Items", "")):
+                out.setdefault(task, {})[item] = {"provision": row.get(cols[0]), "rule": row.get(cols[1]), "kind": kind, "sourcePath": rel}
     return out
 
 
@@ -449,7 +456,7 @@ def _failures(root, run_dir, rows, raw_files, sources):
                     "transcriptPath": str(tpath.relative_to(root)) if ttrial in g["failedTrials"] else None,
                     "transcriptTrial": ttrial if ttrial in g["failedTrials"] else None,
                     "rawPath": str(raw.relative_to(root)) if raw else None,
-                    "reference": {**ref, "sourcePath": "reference/t11_sources.md"} if ref else None,
+                    "reference": dict(ref) if ref else None,
                     "sourcePath": str((run_dir / "scores.json").relative_to(root))})
     return out
 
@@ -495,7 +502,7 @@ def build(root):
         models_cfg = json.loads(models_path.read_text()) if models_path.exists() else []
     except ValueError as exc:
         raise DataError(f"models.json is not valid JSON: {exc}")
-    sources = statutory_sources(root / "reference" / "t11_sources.md")
+    sources = check_explanations(root)
     tasks = load_tasks(root, readme_tasks(readme), warnings)
     runs = load_runs(root, tasks, models_cfg, sources, warnings)
     meta = load_run_meta(root, warnings)

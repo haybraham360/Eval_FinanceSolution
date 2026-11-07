@@ -47,13 +47,14 @@ export const isPlainNumber = (x: string) => /^'?-?\d+(\.\d+)?'?$/.test(x.trim())
  *  most models failed, then the most failed attempts, then task order. If any mistake has a written rule, only
  *  those are shown.
  *  Only grader messages "expected X, got Y" where both X and Y are plain numbers qualify, so every card is
- *  readable without technical knowledge; at most `perTask` mistakes from one task and `limit` in all. */
+ *  readable without technical knowledge, and values that look the same once formatted are skipped. The best
+ *  mistake from each task is taken first, then the rest by rank, with at most `perTask` per task and `limit` in all. */
 export function topMistakes(run: Run | undefined, taskOrder: string[], limit = 6, perTask = 3): Mistake[] {
   if (!run) return [];
   const groups = new Map<string, Mistake>();
   for (const f of run.failures) {
     const m = /expected (.+?), got (.+)$/.exec(f.message);
-    if (!m || !isPlainNumber(m[1]) || !isPlainNumber(m[2])) continue;
+    if (!m || !isPlainNumber(m[1]) || !isPlainNumber(m[2]) || figure(m[1]) === figure(m[2])) continue;
     const key = `${f.task}/${f.check}`;
     const g = groups.get(key) ?? { task: f.task, check: f.check, expected: m[1], got: m[2], models: [], failedTrials: 0, trialsRun: 0, example: f };
     g.models.push(f.model);
@@ -67,15 +68,16 @@ export function topMistakes(run: Run | undefined, taskOrder: string[], limit = 6
   );
   // When some mistakes come with a written rule, show only those: a bare code or count means little to most readers.
   const pool = sorted.some(explained) ? sorted.filter(explained) : sorted;
+  // First the best mistake from each task (so the cards cover more than one topic), then fill by rank.
+  const picked: Mistake[] = [];
   const perTaskCount = new Map<string, number>();
-  return pool
-    .filter((g) => {
-      const n = perTaskCount.get(g.task) ?? 0;
-      if (n >= perTask) return false;
-      perTaskCount.set(g.task, n + 1);
-      return true;
-    })
-    .slice(0, limit);
+  const take = (g: Mistake) => {
+    picked.push(g);
+    perTaskCount.set(g.task, (perTaskCount.get(g.task) ?? 0) + 1);
+  };
+  for (const g of pool) if (picked.length < limit && !perTaskCount.has(g.task)) take(g);
+  for (const g of pool) if (picked.length < limit && !picked.includes(g) && (perTaskCount.get(g.task) ?? 0) < perTask) take(g);
+  return picked;
 }
 
 /** Average score per family across all models in the run, for the one-line takeaway. */

@@ -40,10 +40,13 @@ class World:
         return result
 
     # store
-    def get_payout(self, pid):
+    # Parameter names match the task prompt exactly, so solutions may pass them by keyword.
+    def get_payout(self, payout_id):
+        pid = payout_id
         return self._op("get", lambda: dict(self.rows[pid]) if pid in self.rows else None)
 
-    def reserve(self, pid, account, amount, dest):
+    def reserve(self, payout_id, account, amount_minor, dest):
+        pid, amount = payout_id, amount_minor
         def go():
             if pid in self.rows:
                 return "EXISTS"
@@ -55,7 +58,8 @@ class World:
             return "CREATED"
         return self._op("reserve", go)
 
-    def update(self, pid, expected, new, **fields):
+    def update(self, payout_id, expected_status, new_status, **fields):
+        pid, expected, new = payout_id, expected_status, new_status
         assert new in ("RESERVED", "SENDING"), f"update to illegal status {new}"
         def go():
             if self.rows.get(pid, {}).get("status") != expected:
@@ -64,7 +68,8 @@ class World:
             return True
         return self._op("update", go)
 
-    def finish(self, pid, expected, outcome, **fields):
+    def finish(self, payout_id, expected_status, outcome, **fields):
+        pid, expected = payout_id, expected_status
         assert outcome in ("PAID", "FAILED"), outcome
         def go():
             row = self.rows.get(pid)
@@ -86,7 +91,8 @@ class World:
             self.moved.append((ref, dest, amount, self.now))
         return res
 
-    def send(self, ref, dest, amount):
+    def send(self, reference, dest, amount_minor):
+        ref, amount = reference, amount_minor
         def go():
             known = self.refs.get(ref)
             if known and self.now - known["first"] < 24 * HOUR:
@@ -103,7 +109,8 @@ class World:
             return dict(self._land(ref, dest, amount, rejected=behaviour == "reject"))
         return self._op("send", go)
 
-    def lookup(self, ref):
+    def lookup(self, reference):
+        ref = reference
         def go():
             if self.lookup_script and self.lookup_script.popleft() == "timeout":
                 raise Timeout()

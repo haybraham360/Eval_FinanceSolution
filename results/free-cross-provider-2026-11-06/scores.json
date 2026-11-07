@@ -546,78 +546,78 @@
   "cost_usd": 0,
   "tokens_in": 1069,
   "tokens_out": 19971,
-  "score": 0.0,
-  "passed": false,
+  "score": 1.0,
+  "passed": true,
   "checks": [
    {
     "check": "happy_path",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 178, in happy_path\n    eq(call(mod, w), \"PAID\", \"status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "insufficient_sends_nothing_and_is_not_sticky",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 189, in insufficient_sends_nothing_and_is_not_sticky\n    eq(call(mod, w), \"PAID\", \"after funds arrive\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "rejected_releases_funds_and_stays_failed",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 195, in rejected_releases_funds_and_stays_failed\n    eq(call(mod, w), \"FAILED\", \"status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "finished_payout_makes_no_money_moving_calls",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 204, in finished_payout_makes_no_money_moving_calls\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "timeout_keeps_funds_held",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 214, in timeout_keeps_funds_held\n    eq(call(mod, w), \"PENDING\", \"status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "lookup_timeout_is_pending",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 221, in lookup_timeout_is_pending\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "lagging_landed_transfer_is_not_failed",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 231, in lagging_landed_transfer_is_not_failed\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "never_landed_fails_after_window_and_releases",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 243, in never_landed_fails_after_window_and_releases\n    eq(call(mod, w), \"PENDING\", \"first\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "window_runs_from_most_recent_send",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 257, in window_runs_from_most_recent_send\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "landed_then_retry_after_provider_forgot",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 269, in landed_then_retry_after_provider_forgot\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "kill_at_every_operation_retry_soon",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 151, in op_count\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "kill_at_every_operation_retry_after_24h",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 151, in op_count\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "duplicate_invocation_at_every_operation",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 151, in op_count\n    call(mod, w)\n    ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    },
    {
     "check": "returns_stored_truth_when_another_worker_wins",
-    "passed": false,
-    "detail": "TypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 316, in returns_stored_truth_when_another_worker_wins\n    eq(call(mod, w), \"FAILED\", \"returned status\")\n       ~~~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t1_payout_executor.py\", line 120, in call\n    return mod.execute_payout(w, w, pid, \"acct\", amount, \"dest\", w.now)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/wt/_mv5vhb14bb8t2fdrh0lqm6r0000gn/T/tmpysc4v1pr.py\", line 21, in execute_payout\n    updated = store.update(\n        payout_id,\n    ...<3 lines>...\n        send_time=now\n    )\nTypeError: World.update() missing 2 required positional arguments: 'expected' and 'new'\n"
+    "passed": true,
+    "detail": ""
    }
   ],
   "error": null

@@ -141,6 +141,8 @@ h2 { font-size: clamp(2rem, 4.2vw, 2.9rem); line-height: 1.08; font-weight: 700;
 .answer-label { font-size: 0.9rem; color: var(--muted); }
 .answer-value { font: 700 1.5rem/1.15 var(--sans); white-space: nowrap; }
 .answer-wrong .answer-value { color: var(--ink-soft); }
+.answer.stack > div { flex-direction: column; align-items: flex-start; gap: 2px; }
+.answer-value.long, .answer-right .answer-value.long { font-size: 1.1rem; white-space: nowrap; letter-spacing: -0.01em; }
 .answer-wrong s { text-decoration: line-through 3px var(--pencil); }
 .answer-right .answer-value { font: italic 700 1.5rem/1.15 var(--serif); color: var(--pencil); }
 .mistake-rule { font: 400 1rem/1.5 var(--serif); margin-top: 14px; }
@@ -180,3 +182,6 @@ footer { padding-top: 56px; padding-bottom: 56px; color: var(--muted); font-size
 .verdict-line { font: 600 1.1rem/1.4 var(--serif); margin-top: 6px; }
 .verdict-sub { color: var(--muted); font-size: 0.92rem; margin-top: 6px; }
 .verdict-link { font-size: 0.92rem; margin-top: 12px; }
+
+.hard-task + .hard-task { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.hard-title { font-size: 1.5rem; margin-top: 24px; }

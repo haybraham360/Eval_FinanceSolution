@@ -25,11 +25,11 @@ This is an **exploratory run with one attempt per task**. The original benchmark
 
 ## Results
 
-**Overall:** mean score **70.2%**, with **5 of 12** tasks passed perfectly.
+**Overall:** mean score **78.5%**, with **6 of 12** tasks passed perfectly. These are the figures after the t1 grader fix described below; before the fix they were 70.2% and 5 of 12.
 
 | Task family | Mean score | Tasks |
 |---|---|---|
-| Financial engineering | 83.3% (100% on t2–t6; see the t1 note) | t1 0%, t2 100%, t3 100%, t4 100%, t5 100%, t6 100% |
+| Financial engineering | 100.0% | t1 100%, t2 100%, t3 100%, t4 100%, t5 100%, t6 100% |
 | PostgreSQL | 63.9% | t7 61.5%, t8 57.9%, t9 70.6%, t10 65.5% |
 | Nigerian tax | 43.3% | t11 47.6%, t12 38.9% |
 
@@ -50,15 +50,17 @@ The model repeated the same Nigerian tax mistakes that Claude Sonnet and Claude 
 | t12 M1 | s.14(6): rent-free accommodation is capped at 20% of employment income | Sonnet, Haiku |
 | t12 M3 | s.30(2)(a)(v): the life-insurance deduction uses the premium paid in the *preceding* year | Sonnet, Haiku |
 
-Ten of the model's failed checks match a check that a Claude model also failed in the original run. That count leaves out t1 (see below).
+Ten of the model's failed checks match a check that a Claude model also failed in the original run.
 
-### A grader defect found by this run (t1)
+### A grader defect found by this run, now fixed (t1)
 
-The t1 score of 0% is **not a model failure**. The task prompt documents the store methods as `update(payout_id, expected_status, new_status, **fields)` and so on. The grader's fake store names the same parameters differently (`pid`, `expected`, `new`, `amount`, `ref`). Nemotron called the methods with the documented keyword names, so every call crashed with `TypeError: World.update() missing 2 required positional arguments`, and all 14 checks failed on that one crash.
+Nemotron first scored 0% on t1, but that was **not a model failure**.
 
-- **Impact on the original results: none.** Every Claude trial passed these arguments by position, and all 155 committed historical trials re-grade identically.
-- **Status:** a fix has been proposed and is waiting for approval. It renames the fake's parameters to the documented names and adds a keyword-argument regression solution. **It has not been applied, and the grader is unchanged in this run.**
-- The same defect probably also lowered two t1 results in an earlier, uncommitted local free run.
+- **The defect.** The task prompt documents the store and provider methods as `update(payout_id, expected_status, new_status, **fields)`, `send(reference, dest, amount_minor)` and so on. The grader's fake store named the same parameters differently (`pid`, `expected`, `new`, `amount`, `ref`). Nemotron called the methods by the documented keyword names, so every call crashed with `TypeError: World.update() missing 2 required positional arguments`, and all 14 checks failed on that one crash.
+- **The fix.** The fake's parameters now use exactly the names the prompt documents. No grading logic changed. `reference_alt/t1_payout_executor_keyword_args.py` calls every method by keyword and is kept as a regression test: it passes all 14 checks, and all 6 t1 mutants still fail the checks they target.
+- **Effect.** All 155 trials of the main benchmark and calibration runs re-grade identically, because every Claude trial passed these values by position. Only three free-model trials changed, all from 0 to their real scores:
+  - this run's Nemotron t1, which became **100%**;
+  - two t1 trials in an earlier, uncommitted local run.
 
 ## Comparison with the original Claude results
 
@@ -67,7 +69,7 @@ The t1 score of 0% is **not a model failure**. The task prompt documents the sto
 | Claude Opus 5.5 | Anthropic (CLI) | 36 | 100.0% | 100.0% | 100.0% | 100.0% |
 | Claude Sonnet 5.5 | Anthropic (CLI) | 36 | 97.2% | 98.4% | 99.7% | 88.6% |
 | Claude Haiku 5.5 | Anthropic (CLI) | 36 | 93.0% | 98.7% | 91.2% | 79.6% |
-| Nemotron 3 Ultra (free) | NVIDIA (OpenRouter) | **12** | 70.2% | 83.3% | 63.9% | 43.3% |
+| Nemotron 3 Ultra (free) | NVIDIA (OpenRouter) | **12** | 78.5% | 100.0% | 63.9% | 43.3% |
 
 The ordering of difficulty matches across providers: payment engineering is largely solved, PostgreSQL behaviour is harder, and Nigerian tax law is hardest. The specific tax mistakes recur across providers. This supports the original README's observation that the tax gap is not specific to Claude models. It is one trial, on one other model, so treat it as an indication, not a conclusion.
 

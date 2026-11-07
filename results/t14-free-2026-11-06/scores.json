@@ -1,0 +1,84 @@
+[
+ {
+  "model": "free-nemotron-ultra",
+  "resolved_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "provider": "Nvidia",
+  "task": "t14_ng_tax_year_end",
+  "trial": 1,
+  "utc": "2026-11-06T22:01:57+00:00",
+  "finish_reason": "stop",
+  "cost_usd": 0,
+  "tokens_in": 1684,
+  "tokens_out": 18273,
+  "score": 0.23076923076923078,
+  "passed": false,
+  "checks": [
+   {
+    "check": "KR1",
+    "passed": false,
+    "detail": "AssertionError: KR1.donation_deduction: expected 60000000, got 53380000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: KR1.donation_deduction: expected 60000000, got 53380000\n"
+   },
+   {
+    "check": "KR2",
+    "passed": false,
+    "detail": "AssertionError: KR2.assessable_profit: expected 782000000, got 727000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: KR2.assessable_profit: expected 782000000, got 727000000\n"
+   },
+   {
+    "check": "KR3",
+    "passed": false,
+    "detail": "AssertionError: KR3.capital_allowance: expected 40000000, got 93200000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: KR3.capital_allowance: expected 40000000, got 93200000\n"
+   },
+   {
+    "check": "KR4",
+    "passed": false,
+    "detail": "AssertionError: KR4.total_profit: expected 642000000, got 480420000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: KR4.total_profit: expected 642000000, got 480420000\n"
+   },
+   {
+    "check": "KR5",
+    "passed": false,
+    "detail": "AssertionError: KR5.company_income_tax: expected 192600000, got 144126000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: KR5.company_income_tax: expected 192600000, got 144126000\n"
+   },
+   {
+    "check": "KR6",
+    "passed": false,
+    "detail": "AssertionError: KR6.development_levy: expected 31280000, got 15845000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: KR6.development_levy: expected 31280000, got 15845000\n"
+   },
+   {
+    "check": "D2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G1",
+    "passed": false,
+    "detail": "AssertionError: G1.chargeable_gain: expected 1500000, got 3000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G1.chargeable_gain: expected 1500000, got 3000000\n"
+   },
+   {
+    "check": "G2",
+    "passed": true,
+    "detail": ""
+   },
+   {
+    "check": "G3",
+    "passed": false,
+    "detail": "AssertionError: G3.chargeable_gain: expected 2000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G3.chargeable_gain: expected 2000000, got 0\n"
+   },
+   {
+    "check": "G4",
+    "passed": false,
+    "detail": "AssertionError: G4.chargeable_gain: expected 25000000, got 0\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G4.chargeable_gain: expected 25000000, got 0\n"
+   },
+   {
+    "check": "G5",
+    "passed": false,
+    "detail": "AssertionError: G5.chargeable_gain: expected 0, got 6000000\nTraceback (most recent call last):\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/common.py\", line 29, in run\n    fn(target)\n    ~~^^^^^^^^\n  File \"/Users/macbookm1/Desktop/micro_hackerthon/ledger-eval/graders/t14_ng_tax_year_end.py\", line 19, in check\n    raise AssertionError(f\"{name}.{field}: expected {value}, got {got[field]!r}\")\nAssertionError: G5.chargeable_gain: expected 0, got 6000000\n"
+   },
+   {
+    "check": "V1",
+    "passed": true,
+    "detail": ""
+   }
+  ],
+  "error": null
+ }
+]
