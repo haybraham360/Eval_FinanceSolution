@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "if [ -d frontend ]; then cd frontend; fi && npm ci",
+  "buildCommand": "if [ -d scripts ]; then sh scripts/vercel_build.sh; else sh ../scripts/vercel_build.sh; fi",
+  "outputDirectory": "dist",
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  },
+  "headers": [
+    {
+      "source": "/explorer-data.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    }
+  ]
+}
